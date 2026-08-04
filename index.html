@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Mading Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MadingSiswa</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+            <li><a href="prestasi.html">Prestasi</a></li>
+            <li><a href="ekskul.html">Ekstrakurikuler</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="#" class="portal-btn" onclick="openModal()">Portal Panitia</a></li>
+        </ul>
+    </nav>
+
+    <header class="blog-header">
+        <h1>Beranda Sekolah</h1>
+        <p>Halaman utama informasi sekolah.</p>
+    </header>
+
+    <main class="blog-content" style="max-width: 800px; margin: 2rem auto; padding: 0 1rem; min-height: 50vh;">
+        <article class="post">
+            <h2>Sambutan Kepala Sekolah</h2>
+            <p>Selamat datang di tahun ajaran baru! Sekolah mengharapkan PResensi penuh dari seluruh siswa dalam setiap kegiatan akademik maupun non-akademik demi mencapai prestasi terbaik.</p>
+        </article>
+    </main>
+
+    <footer class="blog-footer">
+        <p>Hak Cipta &copy; 2026 MadingSiswa SMP Merdeka.</p>
+    </footer>
+
+    <!-- FAKE LOGIN MODAL -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Akses Portal Panitia</h2>
+            <p>Masukkan sandi rahasia gabungan (12 huruf/angka).</p>
+            <div class="input-group">
+                <input type="text" id="secret-code" placeholder="Sandi rahasia...">
+                <button onclick="checkSecretCode()">Buka Portal</button>
+            </div>
+            <p id="modal-error" class="error-msg"></p>
+        </div>
+    </div>
+    
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>

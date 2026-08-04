@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Mading Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MadingSiswa</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+            <li><a href="prestasi.html">Prestasi</a></li>
+            <li><a href="ekskul.html">Ekstrakurikuler</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="#" class="portal-btn" onclick="openModal()">Portal Panitia</a></li>
+        </ul>
+    </nav>
+
+    <header class="blog-header">
+        <h1>Galeri Sekolah</h1>
+        <p>Kumpulan foto dan video dokumentasi kegiatan SMP Merdeka.</p>
+    </header>
+
+    <div class="blog-layout">
+        <main class="blog-content">
+            <article class="post">
+                <h2>Kunjungan Museum Nasional</h2>
+                <div style="width: 100%; height: 200px; background: #ddd; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: #888;">[ Gambar Siswa di Museum ]</div>
+                <p>Dokumentasi saat siswa kelas 8 berkunjung ke Museum Nasional di Jakarta pada bulan lalu. Pengalaman belajar yang sangat menyenangkan.</p>
+            </article>
+
+            <article class="post">
+                <h2>Lomba Kebersihan Kelas</h2>
+                <div style="width: 100%; height: 200px; background: #ddd; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: #888;">[ Gambar Kelas Bersih ]</div>
+                <p>Foto-foto pemenang lomba kebersihan antar kelas semester lalu. Kelas 9A memenangkan piala bergilir karena kebersihan dan kerapian kelasnya yang luar biasa.</p>
+            </article>
+
+            <article class="post">
+                <h2>Galeri Sejarah</h2>
+                <div style="width: 100%; height: 200px; background: #ddd; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: #888;">[ Gambar Sepia Dokumentasi Lama ]</div>
+                <p>Arsip sekolah. Foto dokumentasi kemerdekaan RI tahun 1945 dapat dilihat versi fisiknya di mading perpustakaan pusat.</p>
+            </article>
+
+            <article class="post">
+                <h2>Porseni Tahunan</h2>
+                <div style="width: 100%; height: 200px; background: #ddd; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: #888;">[ Gambar Perlombaan Olahraga ]</div>
+                <p>Pekan Olahraga dan Seni (Porseni) tahunan sekolah selalu berlangsung meriah. Berikut adalah sorotan dari pertandingan final bola basket.</p>
+            </article>
+        </main>
+
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Cari Album</h3>
+                <input type="text" placeholder="Nama album..." style="width:100%; padding: 8px;">
+            </div>
+            <div class="widget">
+                <h3>Kategori Galeri</h3>
+                <ul>
+                    <li><a href="#">Foto Kegiatan Belajar</a></li>
+                    <li><a href="#">Foto Lomba</a></li>
+                    <li><a href="#">Video Pentas Seni</a></li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Link Terkait</h3>
+                <ul>
+                    <li><a href="#">Instagram Resmi Sekolah</a></li>
+                    <li><a href="#" onclick="showFakeLogin()">Login Fotografer Sekolah</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="blog-footer">
+        <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> MadingSiswa SMP Merdeka.</p>
+    </footer>
+
+    <!-- FAKE LOGIN MODAL -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Akses Portal Panitia</h2>
+            <p>Masukkan sandi rahasia gabungan (12 huruf/angka).</p>
+            <div class="input-group">
+                <input type="text" id="secret-code" placeholder="Sandi rahasia...">
+                <button onclick="checkSecretCode()">Buka Portal</button>
+            </div>
+            <p id="modal-error" class="error-msg"></p>
+        </div>
+    </div>
+    
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>

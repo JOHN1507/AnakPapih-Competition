@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestasi - Mading Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MadingSiswa</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+            <li><a href="prestasi.html">Prestasi</a></li>
+            <li><a href="ekskul.html">Ekstrakurikuler</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="#" class="portal-btn" onclick="openModal()">Portal Panitia</a></li>
+        </ul>
+    </nav>
+
+    <header class="blog-header">
+        <h1>Prestasi Gemilang</h1>
+        <p>Daftar siswa-siswi yang mengharumkan nama sekolah kita tercinta.</p>
+    </header>
+
+    <div class="blog-layout">
+        <main class="blog-content">
+            <article class="post">
+                <h2>Juara 1 Lomba Pidato Bahasa Inggris</h2>
+                <p class="date">Dipublikasikan: 16 Agustus 2026</p>
+                <p>Selamat kepada ananda Siti dari kelas 9A yang berhasil menyabet juara pertama dalam perlombaan pidato bahasa Inggris tingkat provinsi. Prestasinya menjadi kebanggaan besar bagi SMP Merdeka.</p>
+            </article>
+
+            <article class="post">
+                <h2>Medali Emas Olimpiade Sains Nasional (OSN)</h2>
+                <p class="date">Dipublikasikan: 12 Agustus 2026</p>
+                <p>Kabar gembira datang dari tim OSN IPA sekolah kita. Andi dari kelas 8C berhasil membawa pulang medali emas. Semoga ini bisa memotivasi siswa lain untuk terus berprestasi di bidang akademik.</p>
+            </article>
+
+            <article class="post">
+                <h2>Daftar Juara Lomba Olahraga & Seni Bulan Ini</h2>
+                <p class="date">Dipublikasikan: 10 Agustus 2026</p>
+                <p>Berikut adalah rekapitulasi juara lomba non-akademik bulan ini:</p>
+                <ul>
+                    <li>Juara 1 Lomba Lari Maraton tingkat Kota: Dika (9B)</li>
+                    <li>Juara 1 Lomba MAkan Kerupuk tingkat Kabupaten: Budi (7A)</li>
+                    <li>Juara 2 Lomba Melukis Poster: Rina (8A)</li>
+                </ul>
+            </article>
+
+            <article class="post">
+                <h2>Juara 3 Turnamen Futsal Antar SMP</h2>
+                <p class="date">Dipublikasikan: 2 Agustus 2026</p>
+                <p>Tim futsal andalan SMP Merdeka sukses menduduki peringkat ketiga pada turnamen walikota cup yang diselenggarakan minggu lalu. Terus tingkatkan latihan kalian, tim!</p>
+            </article>
+        </main>
+
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Pencarian Prestasi</h3>
+                <input type="text" placeholder="Cari nama siswa..." style="width:100%; padding: 8px;">
+            </div>
+            <div class="widget">
+                <h3>Kategori Lomba</h3>
+                <ul>
+                    <li><a href="#">Akademik (OSN, LCC)</a></li>
+                    <li><a href="#">Olahraga (Futsal, Basket)</a></li>
+                    <li><a href="#">Seni (Menyanyi, Menari)</a></li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Link Terkait</h3>
+                <ul>
+                    <li><a href="#">Pusat Prestasi Nasional</a></li>
+                    <li><a href="#" onclick="showFakeLogin()">Login Admin (Khusus Guru)</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="blog-footer">
+        <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> MadingSiswa SMP Merdeka.</p>
+    </footer>
+
+    <!-- FAKE LOGIN MODAL -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Akses Portal Panitia</h2>
+            <p>Masukkan sandi rahasia gabungan (12 huruf/angka).</p>
+            <div class="input-group">
+                <input type="text" id="secret-code" placeholder="Sandi rahasia...">
+                <button onclick="checkSecretCode()">Buka Portal</button>
+            </div>
+            <p id="modal-error" class="error-msg"></p>
+        </div>
+    </div>
+    
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman - Mading Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MadingSiswa</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="berita.html">Berita</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+            <li><a href="prestasi.html">Prestasi</a></li>
+            <li><a href="ekskul.html">Ekstrakurikuler</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="#" class="portal-btn" onclick="openModal()">Portal Panitia</a></li>
+        </ul>
+    </nav>
+
+    <header class="blog-header">
+        <h1>Pengumuman Resmi</h1>
+        <p>Papan pengumuman penting untuk seluruh elemen sekolah.</p>
+    </header>
+
+    <div class="blog-layout">
+        <main class="blog-content">
+            <article class="post">
+                <h2>Jadwal Ujian Semester Ganjil</h2>
+                <p class="date">Dipublikasikan: 15 Agustus 2026</p>
+                <p>Diinformasikan kepada seluruh siswa bahwa Ujian Tengah Semester (UTS) ganjil akan dilaksanakan mulai tanggal 10 September hingga 17 September 2026. Harap mempersiapkan diri dengan baik dan melunasi administrasi sebelum tanggal 5 September.</p>
+            </article>
+
+            <article class="post">
+                <h2>Pembayaran Uang Gedung dan SPP</h2>
+                <p class="date">Dipublikasikan: 12 Agustus 2026</p>
+                <p>Bagi siswa kelas 7 yang belum melunasi uang gedung tahap pertama, batas waktu pembayaran diperpanjang hingga akhir bulan ini. Pembayaran dapat dilakukan melalui transfer bank ke rekening resmi sekolah atau langsung ke bagian tata usaha.</p>
+            </article>
+
+            <article class="post">
+                <h2>Tata Tertib Kebersihan Lingkungan Sekolah</h2>
+                <p class="date">Dipublikasikan: 10 Agustus 2026</p>
+                <p>Demi menjaga kenyamanan belajar bersama, seluruh siswa diwajibkan untuk menjaga kebersihan. Dilarang keras membuang sampah di seLAtan lapangan utama saat jam istirahat. Satpam sekolah akan melakukan patroli secara rutin dan akan menindak tegas pelanggar.</p>
+            </article>
+
+            <article class="post">
+                <h2>Undangan Rapat Orang Tua Murid</h2>
+                <p class="date">Dipublikasikan: 5 Agustus 2026</p>
+                <p>Kepada Yth. Bapak/Ibu Wali Murid, kami mengundang kehadiran Bapak/Ibu dalam rapat komite sekolah yang akan diselenggarakan pada hari Sabtu minggu ini pukul 09.00 WIB di Aula Serbaguna.</p>
+            </article>
+        </main>
+
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Pencarian</h3>
+                <input type="text" placeholder="Cari pengumuman..." style="width:100%; padding: 8px;">
+            </div>
+            <div class="widget">
+                <h3>Kategori Pengumuman</h3>
+                <ul>
+                    <li><a href="#">Akademik</a></li>
+                    <li><a href="#">Keuangan</a></li>
+                    <li><a href="#">Kegiatan Siswa</a></li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Link Terkait</h3>
+                <ul>
+                    <li><a href="#">Portal Nilai Siswa</a></li>
+                    <li><a href="#" onclick="showFakeLogin()">Login Admin (Khusus Guru)</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="blog-footer">
+        <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> MadingSiswa SMP Merdeka.</p>
+    </footer>
+
+    <!-- FAKE LOGIN MODAL -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Akses Portal Panitia</h2>
+            <p>Masukkan sandi rahasia gabungan (12 huruf/angka).</p>
+            <div class="input-group">
+                <input type="text" id="secret-code" placeholder="Sandi rahasia...">
+                <button onclick="checkSecretCode()">Buka Portal</button>
+            </div>
+            <p id="modal-error" class="error-msg"></p>
+        </div>
+    </div>
+    
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>
