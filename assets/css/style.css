@@ -87,10 +87,43 @@ body {
 }
 
 .blog-header {
-    background: white;
+    position: relative;
+    background: #ffffff;
     text-align: center;
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     border-bottom: 1px solid rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* Efek Mesh/Blur Gradient Orbs di Header */
+.blog-header::before, .blog-header::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.15;
+}
+
+.blog-header::before {
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    top: -200px;
+    left: -100px;
+}
+
+.blog-header::after {
+    width: 350px;
+    height: 350px;
+    background: #3b82f6;
+    bottom: -150px;
+    right: -100px;
+}
+
+.blog-header > * {
+    position: relative;
+    z-index: 1;
 }
 
 .blog-header h1 {
