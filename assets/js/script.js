@@ -1,12 +1,22 @@
 // --- PROTECTION FOR GAME ARENA ---
 function checkArenaAccess() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const path = window.location.pathname;
+
+    // Jika sedang di pos1.html, cek apakah URL memiliki ?key=protokol17
+    if (path.includes("pos1.html")) {
+        if (urlParams.get('key') === 'protokol17') {
+            sessionStorage.setItem("unlocked", "true"); // Berikan akses
+            // Bersihkan URL parameter agar terlihat rapi
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }
+
     if (sessionStorage.getItem("unlocked") !== "true") {
-        alert("Akses Ditolak! Anda harus memasukkan sandi di Portal Panitia.");
+        alert("Akses Ditolak! Anda harus menemukan portal rahasia yang asli.");
         window.location.href = "index.html";
         return;
     }
-
-    const path = window.location.pathname;
     
     // Cek Akses Berurutan
     if (path.includes("pos2.html") && sessionStorage.getItem("pos2Unlocked") !== "true") {
@@ -66,48 +76,7 @@ function showToast(message) {
     setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
 }
 
-// --- MODAL LOGIC ---
-function openModal() {
-    const modal = document.getElementById("login-modal");
-    if(modal) {
-        modal.style.display = "block";
-        document.getElementById("secret-code").value = "";
-        document.getElementById("modal-error").textContent = "";
-    }
-}
 
-function closeModal() {
-    const modal = document.getElementById("login-modal");
-    if(modal) {
-        modal.style.display = "none";
-    }
-}
-
-window.onclick = function(event) {
-    const modal = document.getElementById("login-modal");
-    if (event.target == modal) {
-        closeModal();
-    }
-}
-
-// --- PASSWORD CHECK ---
-function checkSecretCode() {
-    const input = document.getElementById("secret-code").value.trim().toUpperCase();
-    const errorMsg = document.getElementById("modal-error");
-    
-    if (input === "PASSWORD") {
-        errorMsg.textContent = "Itu password jebakan! Gabungkan 2 huruf aneh dari setiap menu (Kiri ke Kanan).";
-        return;
-    }
-
-    if (input === "PROKLAMASI45") {
-        errorMsg.textContent = "";
-        sessionStorage.setItem("unlocked", "true");
-        window.location.href = "pos1.html"; 
-    } else {
-        errorMsg.textContent = "Sandi akses ditolak! Ingat, ada 12 karakter dari 6 halaman.";
-    }
-}
 
 // ==========================================
 // --- REVEAL SECRETS LOGIC (DECOY TO GAME) ---
