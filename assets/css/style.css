@@ -1,4 +1,4 @@
-/* --- VARIABLES & RESET --- */
+﻿/* --- VARIABLES & RESET --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -101,7 +101,7 @@ body {
     position: absolute;
     /* Margin negatif agar pinggiran blur tidak terpotong (vignette effect) */
     top: -30px; left: -30px; right: -30px; bottom: -30px;
-    background: url('../images/hero_school.png') center/cover no-repeat;
+    
     filter: blur(12px);
     opacity: 0.3; /* Transparansi agar teks tetap terbaca */
     z-index: 0;
@@ -656,3 +656,10 @@ button:active {
     border-color: white;
     transform: translateY(-2px);
 }
+
+.header-beranda::before { background: url('../images/hero_school.png') center/cover no-repeat; }
+.header-berita::before { background: url('../images/school_bulletin.jpg') center/cover no-repeat; }
+.header-pengumuman::before { background: url('../images/school_assembly.jpg') center/cover no-repeat; }
+.header-prestasi::before { background: url('../images/golden_kerupuk.png') center/cover no-repeat; }
+.header-ekskul::before { background: url('../images/sack_race.png') center/cover no-repeat; }
+.header-galeri::before { background: url('../images/epic_rope.png') center/cover no-repeat; }
