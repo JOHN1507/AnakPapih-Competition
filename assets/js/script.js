@@ -9,6 +9,11 @@ function checkArenaAccess() {
             sessionStorage.setItem("unlocked", "true"); // Berikan akses
             // Bersihkan URL parameter agar terlihat rapi
             window.history.replaceState({}, document.title, window.location.pathname);
+            
+            // Berikan ucapan selamat (Easter Egg found)
+            setTimeout(() => {
+                alert("SYSTEM OVERRIDE SUCCESSFUL\n\nSelamat! Anda berhasil memecahkan teka-teki URL dan menemukan Easter Egg Protokol 17. Selamat datang di Server Rahasia Anak Papih!");
+            }, 500);
         }
     }
 
