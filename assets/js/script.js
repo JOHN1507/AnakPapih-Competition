@@ -1,4 +1,4 @@
-// --- PROTECTION FOR GAME ARENA ---
+﻿// --- PROTECTION FOR GAME ARENA ---
 function checkArenaAccess() {
     const urlParams = new URLSearchParams(window.location.search);
     const path = window.location.pathname;
@@ -355,3 +355,34 @@ function triggerConfetti() {
         container.innerHTML = `${emoji1} ${emoji2} ${emoji3}`;
     }, 500);
 }
+
+
+// --- DARK/LIGHT MODE LOGIC ---
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        const toggleBtn = document.getElementById('theme-toggle');
+        if(toggleBtn) toggleBtn.textContent = '☀️';
+    }
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        if(toggleBtn) toggleBtn.textContent = '☀️';
+    } else {
+        localStorage.setItem('theme', 'light');
+        if(toggleBtn) toggleBtn.textContent = '🌙';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    initTheme();
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleTheme);
+    }
+});

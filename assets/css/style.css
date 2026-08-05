@@ -663,3 +663,43 @@ button:active {
 .header-prestasi::before { background: url('../images/school_trophies.jpg') center/cover no-repeat; }
 .header-ekskul::before { background: url('../images/school_sports.jpg') center/cover no-repeat; }
 .header-galeri::before { background: url('../images/school_gallery.jpg') center/cover no-repeat; }
+body.dark-mode {
+    --bg-light: #0f172a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --dark: #f8fafc;
+    --dark-card: #1e293b;
+}
+body.dark-mode .navbar {
+    background: rgba(15, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .blog-header {
+    background: #0f172a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .post, body.dark-mode .widget {
+    background: var(--dark-card);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+body.dark-mode .post h2, body.dark-mode .widget h3 {
+    color: var(--text-main);
+}
+body.dark-mode .sidebar input {
+    background: #0f172a;
+    color: var(--text-main);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
