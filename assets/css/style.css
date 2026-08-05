@@ -95,30 +95,16 @@ body {
     overflow: hidden;
 }
 
-/* Efek Mesh/Blur Gradient Orbs di Header */
-.blog-header::before, .blog-header::after {
+/* Background gambar blur di Header */
+.blog-header::before {
     content: '';
     position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
+    /* Margin negatif agar pinggiran blur tidak terpotong (vignette effect) */
+    top: -30px; left: -30px; right: -30px; bottom: -30px;
+    background: url('../images/hero_school.png') center/cover no-repeat;
+    filter: blur(12px);
+    opacity: 0.3; /* Transparansi agar teks tetap terbaca */
     z-index: 0;
-    opacity: 0.15;
-}
-
-.blog-header::before {
-    width: 400px;
-    height: 400px;
-    background: var(--primary);
-    top: -200px;
-    left: -100px;
-}
-
-.blog-header::after {
-    width: 350px;
-    height: 350px;
-    background: #3b82f6;
-    bottom: -150px;
-    right: -100px;
 }
 
 .blog-header > * {
