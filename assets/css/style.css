@@ -660,6 +660,6 @@ button:active {
 .header-beranda::before { background: url('../images/hero_school.png') center/cover no-repeat; }
 .header-berita::before { background: url('../images/school_bulletin.jpg') center/cover no-repeat; }
 .header-pengumuman::before { background: url('../images/school_assembly.jpg') center/cover no-repeat; }
-.header-prestasi::before { background: url('../images/golden_kerupuk.png') center/cover no-repeat; }
-.header-ekskul::before { background: url('../images/sack_race.png') center/cover no-repeat; }
-.header-galeri::before { background: url('../images/epic_rope.png') center/cover no-repeat; }
+.header-prestasi::before { background: url('../images/school_trophies.jpg') center/cover no-repeat; }
+.header-ekskul::before { background: url('../images/school_sports.jpg') center/cover no-repeat; }
+.header-galeri::before { background: url('../images/school_gallery.jpg') center/cover no-repeat; }
