@@ -8,21 +8,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Anak Papih</div>
-        <div class="hamburger"><span></span><span></span><span></span></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="berita.html">Berita</a></li>
-            <li><a href="pengumuman.html">Pengumuman</a></li>
-            <li><a href="prestasi.html">Prestasi</a></li>
-            <li><a href="ekskul.html">Ekstrakurikuler</a></li>
-            <li><a href="galeri.html">Galeri</a></li>
-            <li><a href="hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17" class="portal-btn" target="_blank">Portal Panitia</a></li>
-            <li><button id="theme-toggle" class="theme-toggle" title="Toggle Theme">🌙</button></li>
-            <li><button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button></li>
-        </ul>
-    </nav>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <div class="logo">Anak Papih</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">🏠 Beranda</a></li>
+                <li><a href="course.html">📚 Course Pelajaran</a></li>
+                <li><a href="absensi.html">📝 Absensi</a></li>
+                <li><a href="peringkat.html">🏆 Papan Peringkat</a></li>
+                <li><a href="pengumuman.html">📢 Pengumuman</a></li>
+                <li><a href="galeri.html">🖼️ Galeri</a></li>
+                <li style="margin-top: 2rem;"><a href="hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17" target="_blank" style="color: #ef4444;">🚀 Portal Panitia</a></li>
+            </ul>
+        </aside>
+        <div class="main-wrapper">
+            <header class="topbar">
+                <button class="hamburger-dashboard">☰</button>
+                <div class="topbar-actions">
+                    <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">🌙</button>
+                    <button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button>
+                </div>
+            </header>
 
     <header class="blog-header header-prestasi">
         <h1>Prestasi Gemilang</h1>
@@ -105,5 +111,7 @@
     
     <div id="toast" class="toast"></div>
     <script src="assets/js/script.js"></script>
+</div>
+    </div>
 </body>
 </html>

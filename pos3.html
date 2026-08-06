@@ -8,17 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav id="arena-nav" class="navbar">
-        <div class="logo"><img src="assets/images/logo_anak_papih.png" alt="Logo Anak Papih" style="height: 40px; vertical-align: middle;"></div>
-        <div class="hamburger"><span></span><span></span><span></span></div>
-        <ul class="nav-links">
-            <li><a href="pos1.html">Pos 1</a></li>
-            <li><a href="pos2.html">Pos 2</a></li>
-            <li><a href="pos3.html" class="active-pos">Pos 3</a></li>
-            <li><a href="index.html" class="portal-btn">Keluar Arena</a></li>
-            <li><button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button></li>
-        </ul>
-    </nav>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <div class="logo">ARENA GAME</div>
+            <ul class="nav-menu">
+                <li><a href="pos1.html">🚩 Pos 1 (Balap Karung)</a></li>
+                <li><a href="pos2.html">🚩 Pos 2 (Kerupuk)</a></li>
+                <li><a href="pos3.html">🚩 Pos 3 (Tarik Tambang)</a></li>
+                <li style="margin-top: 2rem;"><a href="index.html" style="color: #ef4444;">🚪 Keluar Arena</a></li>
+            </ul>
+        </aside>
+        <div class="main-wrapper">
+            <header class="topbar">
+                <button class="hamburger-dashboard">☰</button>
+                <div class="topbar-actions">
+                    <button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button>
+                </div>
+            </header>
 
     <!-- FASE PENYAMARAN (DECOY) -->
     <header class="blog-header decoy-element" style="background: linear-gradient(135deg, #dbeafe, #eff6ff);">

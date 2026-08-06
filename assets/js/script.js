@@ -449,3 +449,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+// --- NEW DASHBOARD HAMBURGER LOGIC ---
+document.addEventListener("DOMContentLoaded", function() {
+    const hamburgerDash = document.querySelector('.hamburger-dashboard');
+    const sidebarLeft = document.querySelector('.sidebar-left');
+    if (hamburgerDash && sidebarLeft) {
+        hamburgerDash.addEventListener('click', () => {
+            sidebarLeft.classList.toggle('active');
+        });
+    }
+});
