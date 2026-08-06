@@ -1,4 +1,4 @@
-﻿/* --- VARIABLES & RESET --- */
+/* --- VARIABLES & RESET --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -1163,6 +1163,10 @@ body.dark-mode .demo-credentials-box {
     flex-direction: column;
     transition: transform 0.3s ease;
     z-index: 1000;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .sidebar-left .logo {
