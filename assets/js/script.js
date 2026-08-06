@@ -39,9 +39,17 @@ function handleLogin(event) {
         return;
     }
 
-    sessionStorage.setItem("userLoggedIn", "true");
-    sessionStorage.setItem("username", username);
-    window.location.href = "index.html";
+    // Validasi Kredensial Asli
+    if (username.toLowerCase() === "siswa" && password === "anakpapih2026") {
+        sessionStorage.setItem("userLoggedIn", "true");
+        sessionStorage.setItem("username", username);
+        window.location.href = "index.html";
+    } else {
+        if (errorMsg) {
+            errorMsg.textContent = "Username atau Password salah!";
+            errorMsg.style.display = "block";
+        }
+    }
 }
 
 function handleLogout() {
