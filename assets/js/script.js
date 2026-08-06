@@ -453,9 +453,24 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const hamburgerDash = document.querySelector('.hamburger-dashboard');
     const sidebarLeft = document.querySelector('.sidebar-left');
+    const closeSidebar = document.querySelector('.close-sidebar');
+    
     if (hamburgerDash && sidebarLeft) {
         hamburgerDash.addEventListener('click', () => {
-            sidebarLeft.classList.toggle('active');
+            sidebarLeft.classList.add('active');
         });
     }
+    
+    if (closeSidebar && sidebarLeft) {
+        closeSidebar.addEventListener('click', () => {
+            sidebarLeft.classList.remove('active');
+        });
+    }
+    
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+        if (sidebarLeft && sidebarLeft.classList.contains('active') && !sidebarLeft.contains(e.target) && !hamburgerDash.contains(e.target)) {
+            sidebarLeft.classList.remove('active');
+        }
+    });
 });

@@ -1271,3 +1271,20 @@ body.dark-mode .hamburger-dashboard {
         padding: 0.8rem 1rem;
     }
 }
+.close-sidebar {
+    display: none;
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    background: none;
+    border: none;
+    color: #f8fafc;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+@media (max-width: 768px) {
+    .close-sidebar {
+        display: block;
+    }
+}
