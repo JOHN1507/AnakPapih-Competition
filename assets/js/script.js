@@ -1,49 +1,7 @@
-﻿// --- AUTHENTICATION & LOGIN GUARD ---
-function checkAuth() {
-    const path = window.location.pathname;
-    const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
-    const isLoginPage = path.includes("login.html");
-
-    if (!isLoggedIn && !isLoginPage) {
-        window.location.href = "login.html";
-        return false;
-    }
-    
-    if (isLoggedIn && isLoginPage) {
-        window.location.href = "index.html";
-        return true;
-    }
-
-    return isLoggedIn;
-}
-
-function handleLogin(event) {
-    if (event) event.preventDefault();
-    const usernameInput = document.getElementById("login-username");
-    const passwordInput = document.getElementById("login-password");
-    const errorMsg = document.getElementById("login-error");
-
-    const username = usernameInput ? usernameInput.value.trim() : "";
-    const password = passwordInput ? passwordInput.value.trim() : "";
-
-    if (!username || !password) {
-        if (errorMsg) {
-            errorMsg.textContent = "Username dan Password wajib diisi!";
-            errorMsg.style.display = "block";
-        }
-        return;
-    }
-
-    // Login Sukses
-    sessionStorage.setItem("userLoggedIn", "true");
-    sessionStorage.setItem("username", username);
-    window.location.href = "index.html";
-}
-
-function handleLogout() {
+﻿function handleLogout() {
     sessionStorage.removeItem("userLoggedIn");
     sessionStorage.removeItem("username");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 // --- PROTECTION FOR GAME ARENA ---
@@ -51,8 +9,7 @@ function checkArenaAccess() {
     const urlParams = new URLSearchParams(window.location.search);
     const path = window.location.pathname;
 
-    // Pastikan user sudah login dulu sebelum memproses game arena
-    if (!checkAuth()) return;
+    
 
     // Jika sedang di pos1.html, cek apakah URL memiliki ?key=protokol17
     if (path.includes("pos1.html")) {
@@ -436,7 +393,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (toggleBtn) {
         toggleBtn.addEventListener('click', toggleTheme);
     }
-    checkAuth();
 });
 // --- HAMBURGER MENU LOGIC ---
 document.addEventListener("DOMContentLoaded", function() {
