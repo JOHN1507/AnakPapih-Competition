@@ -1,4 +1,4 @@
-// --- AUTHENTICATION & LOGIN GUARD ---
+﻿// --- AUTHENTICATION & LOGIN GUARD ---
 function checkAuth() {
     const path = window.location.pathname;
     const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
@@ -437,4 +437,15 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleBtn.addEventListener('click', toggleTheme);
     }
     checkAuth();
+});
+// --- HAMBURGER MENU LOGIC ---
+document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle');
+        });
+    }
 });

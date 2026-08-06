@@ -1,4 +1,4 @@
-/* --- VARIABLES & RESET --- */
+﻿/* --- VARIABLES & RESET --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -43,6 +43,8 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
+
+.hamburger { display: none; }
 
 .navbar .logo {
     font-size: 1.5rem;
@@ -929,41 +931,72 @@ body.dark-mode .demo-credentials-box {
 @media (max-width: 768px) {
     /* Navbar Responsive */
     .navbar {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 0.85rem 1rem;
-        gap: 12px;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
     }
 
-    .navbar .logo {
+    .hamburger { display: none; }
+
+.navbar .logo {
         text-align: center;
         margin-bottom: 2px;
     }
 
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 1001;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.2rem;
+    }
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--dark);
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
+    body.dark-mode .hamburger span {
+        background-color: var(--text-main);
+    }
     .nav-links {
-        display: flex;
-        overflow-x: auto;
-        white-space: nowrap;
-        padding-bottom: 6px;
-        width: 100%;
+        position: fixed;
+        right: -100%;
+        top: 0;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        width: 250px;
+        height: 100vh;
         justify-content: flex-start;
-        gap: 8px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Firefox */
+        padding-top: 80px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transition: right 0.4s ease;
+        z-index: 1000;
+        align-items: center;
     }
-
-    .nav-links::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
+    body.dark-mode .nav-links {
+        background-color: rgba(15, 23, 42, 0.95);
     }
-
+    .nav-links.nav-active {
+        right: 0;
+    }
     .nav-links li {
-        flex-shrink: 0;
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
     }
-
-    .nav-links a, .nav-links button {
-        padding: 6px 12px;
-        font-size: 0.875rem;
-        display: inline-block;
+    .hamburger.toggle span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.toggle span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 
     .portal-btn {
