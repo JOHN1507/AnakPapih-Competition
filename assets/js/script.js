@@ -1,8 +1,55 @@
-﻿function handleLogout() {
-    sessionStorage.removeItem("userLoggedIn");
-    sessionStorage.removeItem("username");
+﻿// --- AUTHENTICATION & LOGIN GUARD ---
+function checkAuth() {
+    const path = window.location.pathname;
+    const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
+    const isLoginPage = path.includes("login.html");
+    
+    // Pengecualian agar teka-teki URL Stripping tidak terganggu
+    if (path.includes("hijacked.html") || path.includes("pos1.html") || path.includes("pos2.html") || path.includes("pos3.html") || path.includes("menang.html")) {
+        return true;
+    }
+
+    if (!isLoggedIn && !isLoginPage) {
+        window.location.href = "login.html";
+        return false;
+    }
+    
+    if (isLoggedIn && isLoginPage) {
+        window.location.href = "index.html";
+        return true;
+    }
+
+    return isLoggedIn;
+}
+
+function handleLogin(event) {
+    if (event) event.preventDefault();
+    const usernameInput = document.getElementById("login-username");
+    const passwordInput = document.getElementById("login-password");
+    const errorMsg = document.getElementById("login-error");
+
+    const username = usernameInput ? usernameInput.value.trim() : "";
+    const password = passwordInput ? passwordInput.value.trim() : "";
+
+    if (!username || !password) {
+        if (errorMsg) {
+            errorMsg.textContent = "Username dan Password wajib diisi!";
+            errorMsg.style.display = "block";
+        }
+        return;
+    }
+
+    sessionStorage.setItem("userLoggedIn", "true");
+    sessionStorage.setItem("username", username);
     window.location.href = "index.html";
 }
+
+function handleLogout() {
+    sessionStorage.removeItem("userLoggedIn");
+    sessionStorage.removeItem("username");
+    window.location.href = "login.html";
+}
+
 
 // --- PROTECTION FOR GAME ARENA ---
 function checkArenaAccess() {
@@ -388,6 +435,7 @@ function toggleTheme() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    checkAuth();
     initTheme();
     const toggleBtn = document.getElementById('theme-toggle');
     if (toggleBtn) {
@@ -396,6 +444,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 // --- HAMBURGER MENU LOGIC ---
 document.addEventListener("DOMContentLoaded", function() {
+    checkAuth();
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     if (hamburger && navLinks) {
@@ -407,6 +456,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 // --- NEW DASHBOARD HAMBURGER LOGIC ---
 document.addEventListener("DOMContentLoaded", function() {
+    checkAuth();
     const hamburgerDash = document.querySelector('.hamburger-dashboard');
     const sidebarLeft = document.querySelector('.sidebar-left');
     const closeSidebar = document.querySelector('.close-sidebar');
