@@ -1473,3 +1473,13 @@ body.dark-mode .user-name {
 body.dark-mode .blog-header::before {
     opacity: 0.4;
 }
+/* Locked Game Links */
+.sidebar-left .nav-menu a.locked-link {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.sidebar-left .nav-menu a.locked-link:hover {
+    background: transparent !important;
+    transform: none !important;
+    color: inherit !important;
+}

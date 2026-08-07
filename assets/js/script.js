@@ -1,4 +1,4 @@
-﻿// --- AUTHENTICATION & LOGIN GUARD ---
+// --- AUTHENTICATION & LOGIN GUARD ---
 function checkAuth() {
     const path = window.location.pathname;
     const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
@@ -107,7 +107,7 @@ function updateNavbarUI() {
     const pos2Unlocked = sessionStorage.getItem("pos2Unlocked") === "true";
     const pos3Unlocked = sessionStorage.getItem("pos3Unlocked") === "true";
     
-    const links = document.querySelectorAll('.game-nav .nav-links a');
+    const links = document.querySelectorAll('.sidebar-left .nav-menu a');
     links.forEach(link => {
         if (link.textContent.includes("Pos 2") && !pos2Unlocked) {
             link.classList.add("locked-link");
@@ -152,14 +152,12 @@ function showToast(message) {
 
 function revealPos1() {
     document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'none');
-    document.getElementById('arena-nav').classList.add('game-nav');
     document.getElementById('ctf-game').classList.remove('hidden');
     document.body.classList.add('active-game-bg');
 }
 
 function revealPos2() {
     document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'none');
-    document.getElementById('arena-nav').classList.add('game-nav');
     document.body.classList.add('active-game-bg');
     
     // Langsung mulai game saat rahasia diklik!
@@ -168,7 +166,6 @@ function revealPos2() {
 
 function revealPos3() {
     document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'none');
-    document.getElementById('arena-nav').classList.add('game-nav');
     document.getElementById('ctf-game').classList.remove('hidden');
     document.body.classList.add('active-game-bg');
 }
