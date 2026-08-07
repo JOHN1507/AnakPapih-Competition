@@ -1,4 +1,4 @@
-// --- AUTHENTICATION & LOGIN GUARD ---
+﻿// --- AUTHENTICATION & LOGIN GUARD ---
 function checkAuth() {
     const path = window.location.pathname;
     const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
@@ -491,4 +491,19 @@ document.addEventListener("DOMContentLoaded", function() {
             sidebarLeft.classList.remove('active');
         }
     });
+});// --- PASSWORD VISIBILITY LOGIC ---
+document.addEventListener("DOMContentLoaded", function() {
+    const togglePassword = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('login-password');
+    
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function() {
+            // Toggle type attribute
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Toggle icon (Eye open/closed emoji)
+            this.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+    }
 });

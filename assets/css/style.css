@@ -1,4 +1,4 @@
-/* --- VARIABLES & RESET --- */
+﻿/* --- VARIABLES & RESET --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -1298,4 +1298,24 @@ body.dark-mode .hamburger-dashboard {
     .close-sidebar {
         display: block;
     }
+}
+/* Toggle Password Button */
+.toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: opacity 0.3s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toggle-password-btn:hover {
+    opacity: 0.7;
 }
