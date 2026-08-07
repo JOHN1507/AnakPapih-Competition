@@ -1245,7 +1245,8 @@ body.dark-mode .topbar {
 
 /* Hamburger for mobile dashboard */
 .hamburger-dashboard {
-    display: none;
+    display: block;
+    margin-right: auto;
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -1254,6 +1255,12 @@ body.dark-mode .topbar {
 }
 body.dark-mode .hamburger-dashboard {
     color: #f8fafc;
+}
+
+@media (min-width: 769px) {
+    .sidebar-left.collapsed {
+        margin-left: -260px;
+    }
 }
 
 /* Responsive Dashboard */

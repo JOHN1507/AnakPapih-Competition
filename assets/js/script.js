@@ -1,4 +1,4 @@
-﻿// --- AUTHENTICATION & LOGIN GUARD ---
+// --- AUTHENTICATION & LOGIN GUARD ---
 function checkAuth() {
     const path = window.location.pathname;
     const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
@@ -471,7 +471,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
     if (hamburgerDash && sidebarLeft) {
         hamburgerDash.addEventListener('click', () => {
-            sidebarLeft.classList.add('active');
+            if (window.innerWidth <= 768) {
+                sidebarLeft.classList.add('active');
+            } else {
+                sidebarLeft.classList.toggle('collapsed');
+            }
         });
     }
     
@@ -481,7 +485,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     
-    // Close sidebar when clicking outside
+    // Close sidebar when clicking outside (mobile only)
     document.addEventListener('click', (e) => {
         if (sidebarLeft && sidebarLeft.classList.contains('active') && !sidebarLeft.contains(e.target) && !hamburgerDash.contains(e.target)) {
             sidebarLeft.classList.remove('active');
