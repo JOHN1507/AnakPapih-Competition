@@ -729,6 +729,21 @@ body.dark-mode .sidebar input {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(-45deg, #fce7f3, #e0e7ff, #fef3c7, #fee2e2);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+body.dark-mode.login-page-bg {
+    background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1e1b4b);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .login-container {
@@ -737,8 +752,7 @@ body.dark-mode .sidebar input {
     justify-content: center;
     align-items: center;
     padding: 2rem 1rem;
-    background: radial-gradient(circle at top right, rgba(239, 68, 68, 0.08), transparent 50%),
-                radial-gradient(circle at bottom left, rgba(15, 23, 42, 0.05), transparent 50%);
+    background: transparent;
 }
 
 .login-card {
