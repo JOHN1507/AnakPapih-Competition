@@ -1,4 +1,4 @@
-// --- AUTHENTICATION & LOGIN GUARD ---
+﻿// --- AUTHENTICATION & LOGIN GUARD ---
 function checkAuth() {
     const path = window.location.pathname;
     const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
@@ -101,6 +101,11 @@ function checkArenaAccess() {
 
     // Update UI Navbar agar yang terkunci jadi abu-abu
     updateNavbarUI();
+
+    // Auto reveal if unlocked
+    if (path.includes('pos1.html') && sessionStorage.getItem('unlocked') === 'true') { revealPos1(); }
+    if (path.includes('pos2.html') && sessionStorage.getItem('pos2Unlocked') === 'true') { revealPos2(); }
+    if (path.includes('pos3.html') && sessionStorage.getItem('pos3Unlocked') === 'true') { revealPos3(); }
 }
 
 function updateNavbarUI() {
@@ -221,6 +226,11 @@ function winStage1() {
     // Buka akses Pos 2
     sessionStorage.setItem("pos2Unlocked", "true");
     updateNavbarUI();
+
+    // Auto reveal if unlocked
+    if (path.includes('pos1.html') && sessionStorage.getItem('unlocked') === 'true') { revealPos1(); }
+    if (path.includes('pos2.html') && sessionStorage.getItem('pos2Unlocked') === 'true') { revealPos2(); }
+    if (path.includes('pos3.html') && sessionStorage.getItem('pos3Unlocked') === 'true') { revealPos3(); }
 }
 
 function loseStage1() {
@@ -315,6 +325,11 @@ function winKerupuk() {
     // Buka akses Pos 3
     sessionStorage.setItem("pos3Unlocked", "true");
     updateNavbarUI();
+
+    // Auto reveal if unlocked
+    if (path.includes('pos1.html') && sessionStorage.getItem('unlocked') === 'true') { revealPos1(); }
+    if (path.includes('pos2.html') && sessionStorage.getItem('pos2Unlocked') === 'true') { revealPos2(); }
+    if (path.includes('pos3.html') && sessionStorage.getItem('pos3Unlocked') === 'true') { revealPos3(); }
 }
 
 function loseKerupuk() {
