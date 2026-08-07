@@ -1370,12 +1370,11 @@ body.dark-mode .close-sidebar {
     font-size: 1.8rem;
 }
 .sidebar-section {
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.8rem;
+    font-weight: 600;
     color: var(--text-muted);
-    letter-spacing: 1px;
     margin: 1.5rem 1.5rem 0.5rem 1.5rem;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 .sidebar-left .nav-menu {
     padding: 0 1rem;
