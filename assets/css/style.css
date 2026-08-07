@@ -1357,3 +1357,114 @@ body.dark-mode .close-sidebar {
 .toggle-password-btn:hover {
     opacity: 0.7;
 }
+/* --- ENHANCED SIDEBAR STYLES --- */
+.sidebar-left {
+    padding-bottom: 1rem;
+}
+.sidebar-left .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo-icon {
+    font-size: 1.8rem;
+}
+.sidebar-section {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin: 1.5rem 1.5rem 0.5rem 1.5rem;
+    text-transform: uppercase;
+}
+.sidebar-left .nav-menu {
+    padding: 0 1rem;
+    gap: 0.3rem;
+}
+.sidebar-left .nav-menu a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    border-radius: 10px;
+    gap: 12px;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+body.dark-mode .sidebar-left .nav-menu a {
+    color: #94a3b8;
+}
+.sidebar-left .nav-menu a:hover {
+    background: rgba(0,0,0,0.05);
+    transform: translateX(4px);
+    color: var(--dark);
+}
+body.dark-mode .sidebar-left .nav-menu a:hover {
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
+}
+
+/* Active State */
+.sidebar-left .nav-menu a.active {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+    border-left: 4px solid #2563eb;
+    border-radius: 4px 10px 10px 4px;
+}
+body.dark-mode .sidebar-left .nav-menu a.active {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border-left: 4px solid #60a5fa;
+}
+
+.danger-link {
+    color: var(--primary) !important;
+    background: rgba(239, 68, 68, 0.05);
+}
+.danger-link:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+}
+.sidebar-spacer {
+    flex-grow: 1;
+}
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+body.dark-mode .sidebar-user {
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #3b82f6;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+body.dark-mode .user-name {
+    color: #f8fafc;
+}
+.user-role {
+    font-size: 0.75rem;
+    color: var(--success);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}

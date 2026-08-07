@@ -506,4 +506,17 @@ document.addEventListener("DOMContentLoaded", function() {
             this.textContent = type === 'password' ? '👁️' : '🙈';
         });
     }
+});// --- AUTO SET ACTIVE MENU ---
+document.addEventListener("DOMContentLoaded", function() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const menuLinks = document.querySelectorAll('.sidebar-left .nav-menu a');
+    
+    menuLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
 });
