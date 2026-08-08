@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -265,8 +265,19 @@
 
         .fm-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            grid-template-columns: repeat(4, 1fr); /* Desktop default: 4 columns */
             gap: 1.5rem;
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 1024px) {
+            .fm-grid { grid-template-columns: repeat(3, 1fr); } /* Tablet: 3 columns */
+        }
+        @media (max-width: 768px) {
+            .fm-grid { grid-template-columns: repeat(2, 1fr); } /* Mobile: 2 columns */
+        }
+        @media (max-width: 480px) {
+            .fm-grid { grid-template-columns: 1fr; } /* Very small mobile: 1 column */
         }
         
 
