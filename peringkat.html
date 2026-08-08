@@ -6,6 +6,19 @@
     <title>Prestasi - Web Anak Papih</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body.dark-mode .leaderboard-container {
+            background: var(--dark-card) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+        }
+        body.dark-mode .list-item {
+            background: rgba(15, 23, 42, 0.5) !important;
+            border-color: rgba(255,255,255,0.05) !important;
+        }
+        body.dark-mode .progress-bar {
+            background: rgba(255,255,255,0.1) !important;
+        }
+    </style>
 </head>
 <body>
     <div class="dashboard-container">
@@ -45,67 +58,87 @@
                 </div>
             </header>
 
-    <header class="blog-header header-prestasi">
-        <h1>Prestasi Gemilang</h1>
-        <p>Daftar siswa-siswi yang mengharumkan nama sekolah kita tercinta.</p>
+        <header class="blog-header header-prestasi">
+        <h1>Papan Peringkat</h1>
+        <p>Klasemen Umum Anak Papih Competition 2026</p>
     </header>
 
-    <div class="blog-layout">
-        <main class="blog-content">
-            <article class="post">
-                <h2>Juara 1 Lomba Pidato Bahasa Inggris</h2>
-                <p class="date">Dipublikasikan: 16 Agustus 2026</p>
-                <img src="assets/images/school_trophies.jpg" alt="Prestasi Gemilang" class="article-img">
-                <p>Selamat kepada ananda Siti dari kelas 9A yang berhasil menyabet juara pertama dalam perlombaan pidato bahasa Inggris tingkat provinsi. Prestasinya menjadi kebanggaan besar bagi SMP Merdeka.</p>
-            </article>
+    <div class="blog-layout" style="display: flex; justify-content: center; padding: 2rem;">
+        <main class="blog-content" style="max-width: 800px; width: 100%;">
+            <div class="leaderboard-container" style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 2rem;">
+                
+                <!-- Podium Top 3 -->
+                <div class="podium-section" style="display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin-bottom: 3rem; margin-top: 2rem;">
+                    <!-- Rank 2 -->
+                    <div class="podium-item" style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="avatar" style="width: 60px; height: 60px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 4px solid #cbd5e1; margin-bottom: 10px;">B</div>
+                        <div class="name" style="font-weight: bold; color: var(--text-main);">Budi</div>
+                        <div class="score" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">12j 22m</div>
+                        <div class="podium-block" style="width: 80px; height: 80px; background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold;">2</div>
+                    </div>
+                    
+                    <!-- Rank 1 -->
+                    <div class="podium-item" style="display: flex; flex-direction: column; align-items: center; transform: translateY(-20px);">
+                        <div style="font-size: 2rem; margin-bottom: -10px; z-index: 2;">👑</div>
+                        <div class="avatar" style="width: 80px; height: 80px; background: #fbbf24; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem; border: 4px solid #fde68a; margin-bottom: 10px; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);">J</div>
+                        <div class="name" style="font-weight: 800; color: var(--text-main); font-size: 1.2rem;">John</div>
+                        <div class="score" style="font-size: 0.85rem; color: var(--primary); font-weight: bold; margin-bottom: 10px;">14j 05m</div>
+                        <div class="podium-block" style="width: 100px; height: 120px; background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2.5rem; font-weight: bold;">1</div>
+                    </div>
 
-            <article class="post">
-                <h2>Medali Emas Olimpiade Sains Nasional (OSN)</h2>
-                <p class="date">Dipublikasikan: 12 Agustus 2026</p>
-                <p>Kabar gembira datang dari tim OSN IPA sekolah kita. Andi dari kelas 8C berhasil membawa pulang medali emas. Semoga ini bisa memotivasi siswa lain untuk terus berprestasi di bidang akademik.</p>
-            </article>
+                    <!-- Rank 3 -->
+                    <div class="podium-item" style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="avatar" style="width: 60px; height: 60px; background: #fb923c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 4px solid #fed7aa; margin-bottom: 10px;">R</div>
+                        <div class="name" style="font-weight: bold; color: var(--text-main);">Reza</div>
+                        <div class="score" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">11j 35m</div>
+                        <div class="podium-block" style="width: 80px; height: 60px; background: linear-gradient(180deg, #fb923c 0%, #ea580c 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold;">3</div>
+                    </div>
+                </div>
 
-            <article class="post">
-                <h2>Daftar Juara Lomba Olahraga & Seni Bulan Ini</h2>
-                <p class="date">Dipublikasikan: 10 Agustus 2026</p>
-                <p>Berikut adalah rekapitulasi juara lomba non-akademik bulan ini:</p>
-                <ul>
-                    <li>Juara 1 Lomba Lari Maraton tingkat Kota: Dika (9B)</li>
-                    <li>Juara 1 Lomba MAkan Kerupuk tingkat Kabupaten: Budi (7A)</li>
-                    <li>Juara 2 Lomba Melukis Poster: Rina (8A)</li>
-                </ul>
-            </article>
+                <!-- List View (Rank 4+) -->
+                <div class="leaderboard-list" style="display: flex; flex-direction: column; gap: 10px;">
+                    <!-- Rank 4 -->
+                    <div class="list-item" style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
+                        <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">4</div>
+                        <div class="avatar-small" style="width: 40px; height: 40px; background: #60a5fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">L</div>
+                        <div class="info" style="flex: 1;">
+                            <div class="name" style="font-weight: 600; color: var(--text-main);">Lloyd</div>
+                            <div class="progress-bar" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
+                                <div style="width: 85%; height: 100%; background: #60a5fa; border-radius: 3px;"></div>
+                            </div>
+                        </div>
+                        <div class="score" style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">10j 30m</div>
+                    </div>
 
-            <article class="post">
-                <h2>Juara 3 Turnamen Futsal Antar SMP</h2>
-                <p class="date">Dipublikasikan: 2 Agustus 2026</p>
-                <p>Tim futsal andalan SMP Merdeka sukses menduduki peringkat ketiga pada turnamen walikota cup yang diselenggarakan minggu lalu. Terus tingkatkan latihan kalian, tim!</p>
-            </article>
+                    <!-- Rank 5 -->
+                    <div class="list-item" style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
+                        <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">5</div>
+                        <div class="avatar-small" style="width: 40px; height: 40px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">A</div>
+                        <div class="info" style="flex: 1;">
+                            <div class="name" style="font-weight: 600; color: var(--text-main);">Alex</div>
+                            <div class="progress-bar" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
+                                <div style="width: 75%; height: 100%; background: #94a3b8; border-radius: 3px;"></div>
+                            </div>
+                        </div>
+                        <div class="score" style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">9j 40m</div>
+                    </div>
+                    
+                    <!-- Rank 6 -->
+                    <div class="list-item" style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
+                        <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">6</div>
+                        <div class="avatar-small" style="width: 40px; height: 40px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">D</div>
+                        <div class="info" style="flex: 1;">
+                            <div class="name" style="font-weight: 600; color: var(--text-main);">Dina</div>
+                            <div class="progress-bar" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
+                                <div style="width: 70%; height: 100%; background: #94a3b8; border-radius: 3px;"></div>
+                            </div>
+                        </div>
+                        <div class="score" style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">9j 0m</div>
+                    </div>
+                </div>
+            </div>
         </main>
-
-        <aside class="sidebar">
-            <div class="widget">
-                <h3>Pencarian Prestasi</h3>
-                <input type="text" placeholder="Cari nama siswa..." style="width:100%; padding: 8px;">
-            </div>
-            <div class="widget">
-                <h3>Kategori Lomba</h3>
-                <ul>
-                    <li><a href="#">Akademik (OSN, LCC)</a></li>
-                    <li><a href="#">Olahraga (Futsal, Basket)</a></li>
-                    <li><a href="#">Seni (Menyanyi, Menari)</a></li>
-                </ul>
-            </div>
-            <div class="widget">
-                <h3>Link Terkait</h3>
-                <ul>
-                    <li><a href="#">Pusat Prestasi Nasional</a></li>
-                    <li><a href="#" onclick="showFakeLogin()">Login Admin (Khusus Guru)</a></li>
-                </ul>
-            </div>
-        </aside>
     </div>
-
     <footer class="blog-footer">
         <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP Merdeka.</p>
     </footer>
