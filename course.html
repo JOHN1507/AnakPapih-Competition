@@ -263,37 +263,15 @@
             color: white;
         }
 
-                .fm-grid {
-            display: flex;
-            overflow-x: auto;
+                        .fm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
-            padding-bottom: 1.5rem; /* Space for scrollbar */
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         }
-        /* Custom scrollbar for fm-grid */
-        .fm-grid::-webkit-scrollbar {
-            height: 8px;
-        }
-        .fm-grid::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.05);
-            border-radius: 10px;
-        }
-        .fm-grid::-webkit-scrollbar-thumb {
-            background: rgba(0,0,0,0.2);
-            border-radius: 10px;
-        }
-        body.dark-mode .fm-grid::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
-        }
-        body.dark-mode .fm-grid::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-        }
+        
 
         .fm-card {
-            min-width: 280px;
-            flex-shrink: 0;
-            scroll-snap-align: start;
+
             background: white;
             border: 1px solid rgba(0,0,0,0.05);
             border-radius: 20px;
@@ -302,9 +280,7 @@
             cursor: pointer;
         }
         body.dark-mode .fm-card {
-            min-width: 280px;
-            flex-shrink: 0;
-            scroll-snap-align: start;
+
             background: #0f172a;
             border-color: rgba(255,255,255,0.05);
         }
