@@ -15,7 +15,7 @@ function checkAuth() {
     }
     
     if (isLoggedIn && isLoginPage) {
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
         return true;
     }
 
@@ -43,7 +43,7 @@ function handleLogin(event) {
     if (username.toLowerCase() === "siswa" && password === "anakpapih2026") {
         sessionStorage.setItem("userLoggedIn", "true");
         sessionStorage.setItem("username", username);
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
     } else {
         if (errorMsg) {
             errorMsg.textContent = "Username atau Password salah!";
@@ -82,7 +82,7 @@ function checkArenaAccess() {
 
     if (sessionStorage.getItem("unlocked") !== "true") {
         alert("Akses Ditolak! Anda harus menemukan portal rahasia yang asli.");
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
         return;
     }
     
@@ -520,7 +520,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });// --- AUTO SET ACTIVE MENU ---
 document.addEventListener("DOMContentLoaded", function() {
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPath = window.location.pathname.split('/').pop() || "index.html";
     const menuLinks = document.querySelectorAll('.sidebar-left .nav-menu a');
     
     menuLinks.forEach(link => {

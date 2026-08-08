@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Web Anak Papih</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <button class="close-sidebar">&times;</button>
+            <div class="logo">
+                <span class="logo-icon">🎓</span> Anak Papih
+            </div>
+            
+            <div class="sidebar-section">MAIN MENU</div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html">🏠 <span class="nav-text">Beranda</span></a></li>
+                <li><a href="course.html">📚 <span class="nav-text">Course Pelajaran</span></a></li>
+                <li><a href="absensi.html">📝 <span class="nav-text">Absensi</span></a></li>
+                <li><a href="peringkat.html">🏆 <span class="nav-text">Papan Peringkat</span></a></li>
+            </ul>
+
+            <div class="sidebar-section">INFORMASI</div>
+            <ul class="nav-menu">
+                <li><a href="pengumuman.html">📢 <span class="nav-text">Pengumuman</span></a></li>
+                <li><a href="galeri.html">🖼️ <span class="nav-text">Galeri</span></a></li>
+            </ul>
+            
+            <div class="sidebar-spacer"></div>
+
+            <ul class="nav-menu">
+                <li><a href="hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17" target="_blank" class="danger-link">🚀 <span class="nav-text">Portal Panitia</span></a></li>
+            </ul>
+        </aside>
+        <div class="main-wrapper">
+            <header class="topbar">
+                <button class="hamburger-dashboard">☰</button>
+                <div class="topbar-actions">
+                    <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">🌙</button>
+                    <button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button>
+                </div>
+            </header>
+
+            <header class="blog-header header-beranda">
+                <h1>Beranda Sekolah</h1>
+                <p>Halaman utama informasi dan kegiatan SMP Merdeka.</p>
+            </header>
+
+            <div class="blog-layout">
+                <main class="blog-content">
+                    <article class="post">
+                        <h2>Sambutan Kepala Sekolah</h2>
+                        <img src="assets/images/hero_school.png" alt="Festival Sekolah" class="article-img">
+                        <p>Selamat datang di tahun ajaran baru! Sekolah mengharapkan PResensi penuh dari seluruh siswa dalam setiap kegiatan akademik maupun non-akademik demi mencapai prestasi terbaik.</p>
+                    </article>
+
+                    <article class="post">
+                        <h2>Visi & Misi SMP Merdeka</h2>
+                        <p>Mewujudkan generasi cerdas, berkarakter unggul, dan berdaya saing global melalui pembelajaran berkualitas dan lingkungan yang ramah anak.</p>
+                    </article>
+                </main>
+
+                <aside class="sidebar">
+                    <div class="widget">
+                        <h3>Informasi Ringkas</h3>
+                        <ul>
+                            <li>🏫 Status: Akreditasi A</li>
+                            <li>👨‍🎓 Total Siswa: 850 Siswa</li>
+                            <li>📚 Kurikulum: Kurikulum Merdeka</li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h3>Akses Cepat</h3>
+                        <ul>
+                            <li><a href="course.html">📚 Modul Pelajaran</a></li>
+                            <li><a href="absensi.html">📝 Rekap Absensi</a></li>
+                            <li><a href="peringkat.html">🏆 Prestasi Siswa</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+
+            <footer class="blog-footer">
+                <p>Hak Cipta &copy; 2026 Anak Papih SMP Merdeka.</p>
+            </footer>
+
+            <div id="toast" class="toast"></div>
+            <script src="assets/js/script.js"></script>
+        </div>
+    </div>
+</body>
+</html>
