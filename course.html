@@ -49,76 +49,241 @@
                 </div>
             </header>
 
-            <header class="blog-header header-course">
-        <h1>Course & Modul Pelajaran</h1>
-        <p>Akses materi pembelajaran, modul interaktif, dan video tutorial SMP Merdeka.</p>
-    </header>
+                <!-- FILE MANAGER UI -->
+    <div class="file-manager-layout">
+        
+        <!-- HEADER -->
+        <header class="fm-header">
+            <div class="fm-breadcrumb">📁 List Course</div>
+            <div class="fm-header-content">
+                <div>
+                    <h1>List Course</h1>
+                    <p>Kelola mata kuliah dan materi belajarmu dengan mudah.</p>
+                </div>
+                <!-- Button removed as requested -->
+            </div>
+        </header>
 
-            <div class="blog-layout">
-                <main class="blog-content">
-                    <article class="post">
-                        <h2>Matematika Kelas 9: Persamaan & Fungsi Kuadrat</h2>
-                        <p class="date">Dipublikasikan: 14 Agustus 2026</p>
-                        <p>Modul pembelajaran lengkap mengenai bab Aljabar dan Persamaan Kuadrat untuk siswa kelas 9.
-                            Silakan unduh lembar kerja dan simak video pembahasan contoh soal yang telah disediakan oleh
-                            tim guru Matematika.</p>
-                        <p>Materi ini merupakan bahan utama Ujian Tengah Semester (UTS) mendatang. Pastikan kalian
-                            mempelajari metode faktorisasi dan rumus ABC dengan teliti.</p>
-                    </article>
+        <!-- SEARCH BAR -->
+        <div class="fm-toolbar">
+            <div class="fm-search">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Cari course...">
+            </div>
+            <div class="fm-view-toggles">
+                <button class="view-btn active" title="Grid View">⊞</button>
+                <button class="view-btn" title="List View">≡</button>
+            </div>
+        </div>
 
-                    <article class="post">
-                        <h2>Ilmu Pengetahuan Alam (IPA): Praktikum Fisika & Kimia Dasar</h2>
-                        <p class="date">Dipublikasikan: 12 Agustus 2026</p>
-                        <p>Modul panduan praktikum Hukum Newton, Gelombang, dan Reaksi Kimia Sederhana. Sebelum
-                            mengikuti sesi lOKasi laboratorium IPA minggu depan, setiap siswa wajib membaca tata tertib
-                            keselamatan kerja.</p>
-                    </article>
-
-                    <article class="post">
-                        <h2>Teknologi Informasi & Komunikasi (TIK): Dasar Pemrograman Web</h2>
-                        <p class="date">Dipublikasikan: 10 Agustus 2026</p>
-                        <p>Pengenalan struktur HTML5, styling CSS3, dan logika JavaScript interaktif untuk membuat situs
-                            web responsive.</p>
-                        <p>Bagi yang mau mendaftar modul pengayaan TIK, mohon jangan mudah tertipu oleh <span
-                                class="fake-clue" onclick="showFakeToast()">PASSWORD</span> palsu yang disebar pihak tak
-                            bertanggung jawab. Informasi resmi hanya melalui Web Anak Papih ini.</p>
-                    </article>
-
-                    <article class="post">
-                        <h2>Bahasa Inggris Kelas 8: Analytical Exposition & Essay Writing</h2>
-                        <p class="date">Dipublikasikan: 5 Agustus 2026</p>
-                        <p>Panduan menyusun teks eksposisi analitis dalam bahasa Inggris beserta latihan kosa kata
-                            (vocabulary builder) dan contoh naskah pidato pendek untuk tugas mingguan.</p>
-                    </article>
-                </main>
-
-                <aside class="sidebar">
-                    <div class="widget">
-                        <h3>Pencarian Course</h3>
-                        <input type="text" placeholder="Cari materi pelajaran..." style="width:100%; padding: 8px;">
-                    </div>
-                    <div class="widget">
-                        <h3>Kategori Pelajaran</h3>
-                        <ul>
-                            <li>📚 Matematika & IPA</li>
-                            <li>💻 TIK & Informatika</li>
-                            <li>🌐 Bahasa & Sastra</li>
-                            <li>🎨 Seni & Olahraga</li>
-                        </ul>
-                    </div>
-                    <div class="widget">
-                        <h3>Link Terkait</h3>
-                        <ul>
-                            <li><a href="#">E-Library & Perpustakaan Digital</a></li>
-                            <li><a href="#">Portal Download Modul PDF</a></li>
-                            <li><a href="#">Jadwal Konsultasi Guru</a></li>
-                            <li><a href="#" onclick="showFakeLogin()">Login Admin (Khusus Guru)</a></li>
-                        </ul>
-                    </div>
-                </aside>
+        <!-- GRID -->
+        <div class="fm-grid">
+            <!-- Card 1 -->
+            <div class="fm-card">
+                <div class="fm-card-icon-container">
+                    <div class="fm-folder-icon">🖥️</div>
+                </div>
+                <div class="fm-card-info">
+                    <h3>Scientific Computing</h3>
+                    <p>📄 6 modul &bull; 27 Mei 2026</p>
+                </div>
             </div>
 
-            <footer class="blog-footer">
+            <!-- Card 2 -->
+            <div class="fm-card">
+                <div class="fm-card-icon-container" style="background: rgba(234, 179, 8, 0.05);">
+                    <div class="fm-folder-icon" style="background: rgba(234, 179, 8, 0.1);">💡</div>
+                </div>
+                <div class="fm-card-info">
+                    <h3>Creativity & Innovation</h3>
+                    <p>📄 10 modul &bull; 27 Mei 2026</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="fm-card">
+                <div class="fm-card-icon-container" style="background: rgba(16, 185, 129, 0.05);">
+                    <div class="fm-folder-icon" style="background: rgba(16, 185, 129, 0.1);">💻</div>
+                </div>
+                <div class="fm-card-info">
+                    <h3>Algoritma & Pemrograman</h3>
+                    <p>📄 5 modul &bull; 10 Jan 2026</p>
+                </div>
+            </div>
+            
+             <!-- Card 4 (Extra for aesthetics) -->
+            <div class="fm-card">
+                <div class="fm-card-icon-container" style="background: rgba(239, 68, 68, 0.05);">
+                    <div class="fm-folder-icon" style="background: rgba(239, 68, 68, 0.1);">📐</div>
+                </div>
+                <div class="fm-card-info">
+                    <h3>Matematika Lanjut</h3>
+                    <p>📄 8 modul &bull; 01 Feb 2026</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .file-manager-layout {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            color: var(--text-main);
+        }
+
+        .fm-breadcrumb {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .fm-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .fm-header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        body.dark-mode .fm-header-content h1 { color: #f8fafc; }
+
+        .fm-header-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .fm-toolbar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            align-items: center;
+        }
+
+        .fm-search {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            transition: all 0.3s ease;
+        }
+        body.dark-mode .fm-search {
+            background: #1e293b;
+            border-color: rgba(255,255,255,0.05);
+        }
+
+        .fm-search input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            outline: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            margin-left: 10px;
+            font-family: inherit;
+        }
+
+        .fm-view-toggles {
+            display: flex;
+            background: rgba(0,0,0,0.03);
+            border-radius: 12px;
+            padding: 0.3rem;
+        }
+        body.dark-mode .fm-view-toggles { background: #1e293b; }
+
+        .view-btn {
+            background: transparent;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .view-btn.active {
+            background: white;
+            color: var(--dark);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        body.dark-mode .view-btn.active {
+            background: #334155;
+            color: white;
+        }
+
+        .fm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .fm-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        body.dark-mode .fm-card {
+            background: #0f172a;
+            border-color: rgba(255,255,255,0.05);
+        }
+        .fm-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
+        }
+        body.dark-mode .fm-card:hover {
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .fm-card-icon-container {
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 16px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .fm-folder-icon {
+            font-size: 2.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+
+        .fm-card-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .fm-card-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .fm-header-content { flex-direction: column; align-items: flex-start; }
+            .fm-header-content h1 { font-size: 2rem; }
+        }
+    </style>
+    <footer class="blog-footer">
                 <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP
                     Merdeka.</p>
             </footer>
