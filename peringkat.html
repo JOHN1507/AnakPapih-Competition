@@ -58,13 +58,44 @@
                 </div>
             </header>
 
-        <header class="blog-header header-prestasi">
-        <h1>Papan Peringkat</h1>
-        <p>Klasemen Umum Anak Papih Competition 2026</p>
+            <header class="blog-header header-prestasi" style="text-align: center;">
+        <h1>Prestasi & Klasemen</h1>
+        <p>Berita Membanggakan & Papan Peringkat Umum 2026</p>
     </header>
 
-    <div class="blog-layout" style="display: flex; justify-content: center; padding: 2rem;">
-        <main class="blog-content" style="max-width: 800px; width: 100%;">
+    <style>
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        @media (max-width: 1024px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <div class="split-layout">
+        <main class="blog-content" style="width: 100%;">
+            <article class="post">
+                <h2>Juara 1 Lomba Pidato Bahasa Inggris</h2>
+                <p class="date">Dipublikasikan: 16 Agustus 2026</p>
+                <img src="assets/images/school_trophies.jpg" alt="Prestasi Gemilang" class="article-img">
+                <p>Selamat kepada ananda Siti dari kelas 9A yang berhasil menyabet juara pertama dalam perlombaan pidato bahasa Inggris tingkat provinsi. Prestasinya menjadi kebanggaan besar bagi SMP Merdeka.</p>
+            </article>
+
+            <article class="post">
+                <h2>Medali Emas Olimpiade Sains Nasional (OSN)</h2>
+                <p class="date">Dipublikasikan: 12 Agustus 2026</p>
+                <p>Kabar gembira datang dari tim OSN IPA sekolah kita. Andi dari kelas 8C berhasil membawa pulang medali emas. Semoga ini bisa memotivasi siswa lain untuk terus berprestasi di bidang akademik.</p>
+            </article>
+        </main>
+        <aside class="leaderboard-sidebar" style="width: 100%;">
             <div class="leaderboard-container" style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 2rem;">
                 
                 <!-- Podium Top 3 -->
@@ -137,7 +168,7 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </aside>
     </div>
     <footer class="blog-footer">
         <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP Merdeka.</p>
