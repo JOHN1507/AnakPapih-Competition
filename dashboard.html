@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
-        /* Style untuk penyamaran decoy element */
         .encrypted-text {
             font-family: monospace;
             background: rgba(0, 0, 0, 0.05);
@@ -51,7 +50,6 @@
 
             <div class="sidebar-spacer"></div>
 
-            <!-- KODE BARU (TERKUNCI MIDDLEWARE) -->
             <ul class="nav-menu">
                 <li><a href="#" onclick="openPortalPanitia(event)" class="danger-link">🚀 <span class="nav-text">Portal
                             Panitia</span></a></li>
@@ -80,13 +78,6 @@
                         <img src="assets/images/hero_school.png" alt="Festival Sekolah" class="article-img">
                         <p>Selamat datang di tahun ajaran baru! Sekolah mengharapkan PResensi penuh dari seluruh siswa
                             dalam setiap kegiatan akademik maupun non-akademik demi mencapai PREstasi terbaik.</p>
-
-                        <!-- CLUE JEBAKAN 1: String ala Base64 / Hex -->
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem;">
-                            <em>Catatan Arsip Server #0182: <span class="encrypted-text" onclick="showFakeToast()"
-                                    title="Klik untuk dekripsi">S05PV1BBU1NXT1JE</span> (Hash MD5 terenkripsi
-                                SHA-256)</em>
-                        </p>
                     </article>
 
                     <article class="post">
@@ -94,8 +85,6 @@
                         <p>Mewujudkan generasi cerdas, berkarakter unggul, dan berdaya saing global melalui pembelajaran
                             berkualitas dan lingkungan yang ramah anak.</p>
 
-                        <!-- CLUE JEBAKAN 2: Komentar HTML tersembunyi kalau mereka Inspect Element -->
-                        <!-- DEBUG_KEY_STAGE_0: "ROT13(XNZH_XEVX_NXH)" -> Kalau di-decode artinya "KAMU_KRIK_AKU" -->
                         <div style="display: none;" id="hidden-debug-data" data-secret="42_IS_THE_ANSWER_BUT_NOT_HERE">
                         </div>
                     </article>
@@ -111,7 +100,6 @@
                         </ul>
                     </div>
 
-                    <!-- CLUE JEBAKAN 3: Widget khusus yang seolah-olah butuh Password / PIN -->
                     <div class="widget" style="border: 1px dashed var(--primary);">
                         <h3>🔐 Kunci Portal Server</h3>
                         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">Masukkan Token
@@ -141,14 +129,12 @@
             <div id="toast" class="toast"></div>
             <script src="assets/js/script.js"></script>
 
-            <!-- Script Tambahan Khusus Jebakan Beranda -->
             <script>
                 function checkFakeToken() {
                     const input = document.getElementById('fake-token-input').value.trim();
                     if (input === "") {
                         showToast("⚠️ Masukkan token terlebih dahulu!");
                     } else {
-                        // Bikin mereka makin pusing dengan jawaban sistem
                         showToast("❌ Token Salah! Petunjuk: 'Bukan di sini kunci utamanya, coba cari di mading pengumuman!'");
                     }
                 }

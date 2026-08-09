@@ -1541,3 +1541,99 @@ body.dark-mode .back-btn:hover {
         margin-right: 15px;
     }
 }
+
+/* --- PORTAL LOCK MODAL CUSTOM STYLES --- */
+.portal-modal-card {
+    border: 1.5px solid rgba(239, 68, 68, 0.3) !important;
+    border-top: 5px solid var(--primary) !important;
+    padding: 2.2rem 2rem !important;
+    max-width: 420px !important;
+}
+
+.portal-badge {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 99px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.portal-title {
+    color: var(--dark);
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+.portal-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.sec-note-box {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-left: 4px solid var(--primary);
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin: 1.25rem 0 0.5rem 0;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.825rem;
+}
+
+body.dark-mode .sec-note-box {
+    background: #0f172a;
+    border-color: #334155;
+    border-left-color: var(--primary);
+}
+
+.sec-header {
+    color: var(--primary);
+    font-weight: bold;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.sec-item {
+    color: var(--text-main);
+    margin-bottom: 3px;
+}
+
+body.dark-mode .sec-item {
+    color: #cbd5e1;
+}
+
+.sec-label {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.sec-note-box code {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+#portal-password-input {
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+.portal-submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}

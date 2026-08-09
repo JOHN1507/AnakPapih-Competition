@@ -1,20 +1,26 @@
-﻿// --- AUTHENTICATION & LOGIN GUARD ---
-function checkAuth() {
-    const path = window.location.pathname;
+﻿function checkAuth() {
+    const path = window.location.pathname.split("/").pop() || "index.html";
     const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
-    const isLoginPage = path.includes("login.html");
-    
-    // Pengecualian agar teka-teki URL Stripping tidak terganggu
-    if (path.includes("hijacked.html") || path.includes("pos1.html") || path.includes("pos2.html") || path.includes("pos3.html") || path.includes("menang.html")) {
-        return true;
-    }
 
-    if (!isLoggedIn && !isLoginPage) {
+    const publicPages = [
+        "index.html",
+        "login.html",
+        "hijacked.html",
+        "pos1.html",
+        "pos2.html",
+        "pos3.html",
+        "menang.html"
+    ];
+
+    const isPublicPage = publicPages.includes(path) || path === "";
+
+    if (!isLoggedIn && !isPublicPage) {
+        sessionStorage.clear();
         window.location.href = "login.html";
         return false;
     }
-    
-    if (isLoggedIn && isLoginPage) {
+
+    if (isLoggedIn && path === "login.html") {
         window.location.href = "dashboard.html";
         return true;
     }
@@ -39,7 +45,6 @@ function handleLogin(event) {
         return;
     }
 
-    // Validasi Kredensial Asli
     if (username.toLowerCase() === "siswa" && password === "anakpapih2026") {
         sessionStorage.setItem("userLoggedIn", "true");
         sessionStorage.setItem("username", username);
@@ -55,25 +60,21 @@ function handleLogin(event) {
 function handleLogout() {
     sessionStorage.removeItem("userLoggedIn");
     sessionStorage.removeItem("username");
+    sessionStorage.removeItem("unlocked");
+    sessionStorage.removeItem("pos2Unlocked");
+    sessionStorage.removeItem("pos3Unlocked");
     window.location.href = "login.html";
 }
 
-
-// --- PROTECTION FOR GAME ARENA ---
 function checkArenaAccess() {
     const urlParams = new URLSearchParams(window.location.search);
-    const path = window.location.pathname;
+    const path = window.location.pathname.split("/").pop();
 
-    
-
-    // Jika sedang di pos1.html, cek apakah URL memiliki ?key=protokol17
     if (path.includes("pos1.html")) {
         if (urlParams.get('key') === 'protokol17') {
-            sessionStorage.setItem("unlocked", "true"); // Berikan akses
-            // Bersihkan URL parameter agar terlihat rapi
+            sessionStorage.setItem("unlocked", "true");
             window.history.replaceState({}, document.title, window.location.pathname);
             
-            // Berikan ucapan selamat (Easter Egg found)
             setTimeout(() => {
                 alert("SYSTEM OVERRIDE SUCCESSFUL\n\nSelamat! Anda berhasil memecahkan teka-teki URL dan menemukan Easter Egg Protokol 17. Selamat datang di Server Rahasia Anak Papih!");
             }, 500);
@@ -86,7 +87,6 @@ function checkArenaAccess() {
         return;
     }
     
-    // Cek Akses Berurutan
     if (path.includes("pos2.html") && sessionStorage.getItem("pos2Unlocked") !== "true") {
         alert("Akses Ditolak! Selesaikan Pos 1 terlebih dahulu.");
         window.location.href = "pos1.html";
@@ -99,10 +99,8 @@ function checkArenaAccess() {
         return;
     }
 
-    // Update UI Navbar agar yang terkunci jadi abu-abu
     updateNavbarUI();
 
-    // Auto reveal if unlocked
     if (path.includes('pos1.html') && sessionStorage.getItem('unlocked') === 'true') { revealPos1(); }
     if (path.includes('pos2.html') && sessionStorage.getItem('pos2Unlocked') === 'true') { revealPos2(); }
     if (path.includes('pos3.html') && sessionStorage.getItem('pos3Unlocked') === 'true') { revealPos3(); }
@@ -127,7 +125,6 @@ function updateNavbarUI() {
     });
 }
 
-// --- FAKE CLUES LOGIC ---
 function showFakeToast() {
     showToast("Itu jebakan! Cari 2 huruf berurutan di setiap halaman menu.");
 }
@@ -149,36 +146,25 @@ function showToast(message) {
     setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
 }
 
-
-
-// ==========================================
-// --- REVEAL SECRETS LOGIC (DECOY TO GAME) ---
-// ==========================================
-
 function revealPos1() {
     document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'none');
-    document.getElementById('ctf-game').classList.remove('hidden');
+    const ctf = document.getElementById('ctf-game');
+    if (ctf) ctf.classList.remove('hidden');
     document.body.classList.add('active-game-bg');
 }
 
 function revealPos2() {
     document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'none');
     document.body.classList.add('active-game-bg');
-    
-    // Langsung mulai game saat rahasia diklik!
     startKerupukGameFullScreen();
 }
 
 function revealPos3() {
     document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'none');
-    document.getElementById('ctf-game').classList.remove('hidden');
+    const ctf = document.getElementById('ctf-game');
+    if (ctf) ctf.classList.remove('hidden');
     document.body.classList.add('active-game-bg');
 }
-
-
-// ==========================================
-// --- GAME LOGIC ---
-// ==========================================
 
 // --- POS 1 LOGIC (Balap Karung) ---
 let clicks = 0;
@@ -223,31 +209,25 @@ function winStage1() {
     document.getElementById('jump-btn').disabled = true;
     document.getElementById('stage-1-success').classList.remove('hidden');
     
-    // Buka akses Pos 2
     sessionStorage.setItem("pos2Unlocked", "true");
     updateNavbarUI();
-
-    // Auto reveal if unlocked
-    if (path.includes('pos1.html') && sessionStorage.getItem('unlocked') === 'true') { revealPos1(); }
-    if (path.includes('pos2.html') && sessionStorage.getItem('pos2Unlocked') === 'true') { revealPos2(); }
-    if (path.includes('pos3.html') && sessionStorage.getItem('pos3Unlocked') === 'true') { revealPos3(); }
 }
 
 function loseStage1() {
     gameEnded = true;
     document.getElementById('jump-btn').disabled = true;
     const errorEl = document.getElementById('error-game');
-    errorEl.textContent = 'Waktu habis! Kamu kurang cepat.';
+    if(errorEl) errorEl.textContent = 'Waktu habis! Kamu kurang cepat.';
     
     setTimeout(() => {
         clicks = 0;
         timeLeft = 5.0;
         gameStarted = false;
         gameEnded = false;
-        document.getElementById('jump-count').textContent = '0';
-        document.getElementById('time-left').textContent = '5.0';
-        document.getElementById('jump-btn').disabled = false;
-        errorEl.textContent = '';
+        if (document.getElementById('jump-count')) document.getElementById('jump-count').textContent = '0';
+        if (document.getElementById('time-left')) document.getElementById('time-left').textContent = '5.0';
+        if (document.getElementById('jump-btn')) document.getElementById('jump-btn').disabled = false;
+        if (errorEl) errorEl.textContent = '';
     }, 2000);
 }
 
@@ -263,19 +243,19 @@ function startKerupukGameFullScreen() {
     kTimeLeft = 15.0;
     kGameEnded = false;
     
-    document.getElementById('k-score').textContent = '0';
-    document.getElementById('k-time').textContent = '15.0';
-    
-    document.getElementById('kerupuk-full-screen').classList.remove('hidden');
+    if (document.getElementById('k-score')) document.getElementById('k-score').textContent = '0';
+    if (document.getElementById('k-time')) document.getElementById('k-time').textContent = '15.0';
+    if (document.getElementById('kerupuk-full-screen')) document.getElementById('kerupuk-full-screen').classList.remove('hidden');
     
     kTimerInterval = setInterval(updateKTimer, 100);
-    kMoveInterval = setInterval(moveKerupukFullScreen, 1000); // Bergerak setiap 1 detik
+    kMoveInterval = setInterval(moveKerupukFullScreen, 1000);
     moveKerupukFullScreen(); 
 }
 
 function moveKerupukFullScreen() {
     if (kGameEnded) return;
     const kerupuk = document.getElementById('flying-kerupuk');
+    if (!kerupuk) return;
     
     const maxX = window.innerWidth - 100;
     const maxY = window.innerHeight - 100;
@@ -290,10 +270,10 @@ function moveKerupukFullScreen() {
 function biteKerupuk() {
     if (kGameEnded) return;
     kClicks++;
-    document.getElementById('k-score').textContent = kClicks;
+    if (document.getElementById('k-score')) document.getElementById('k-score').textContent = kClicks;
     
     const kerupuk = document.getElementById('flying-kerupuk');
-    kerupuk.style.transform = `translate(-50%, -50%) scale(${1 - (kClicks * 0.05)})`;
+    if (kerupuk) kerupuk.style.transform = `translate(-50%, -50%) scale(${1 - (kClicks * 0.05)})`;
     
     moveKerupukFullScreen();
     
@@ -304,7 +284,7 @@ function biteKerupuk() {
 
 function updateKTimer() {
     kTimeLeft -= 0.1;
-    document.getElementById('k-time').textContent = Math.max(0, kTimeLeft).toFixed(1);
+    if (document.getElementById('k-time')) document.getElementById('k-time').textContent = Math.max(0, kTimeLeft).toFixed(1);
     
     if (kTimeLeft <= 0) {
         if (kClicks < 10) {
@@ -318,18 +298,12 @@ function winKerupuk() {
     clearInterval(kTimerInterval);
     clearInterval(kMoveInterval);
     
-    document.getElementById('kerupuk-full-screen').classList.add('hidden');
+    if (document.getElementById('kerupuk-full-screen')) document.getElementById('kerupuk-full-screen').classList.add('hidden');
     const pos2Intro = document.querySelector('.pos2-intro');
     if (pos2Intro) pos2Intro.classList.remove('hidden');
     
-    // Buka akses Pos 3
     sessionStorage.setItem("pos3Unlocked", "true");
     updateNavbarUI();
-
-    // Auto reveal if unlocked
-    if (path.includes('pos1.html') && sessionStorage.getItem('unlocked') === 'true') { revealPos1(); }
-    if (path.includes('pos2.html') && sessionStorage.getItem('pos2Unlocked') === 'true') { revealPos2(); }
-    if (path.includes('pos3.html') && sessionStorage.getItem('pos3Unlocked') === 'true') { revealPos3(); }
 }
 
 function loseKerupuk() {
@@ -339,14 +313,12 @@ function loseKerupuk() {
     
     alert("Waktu habis! Kerupuk gagal ditangkap. Coba lagi dari awal.");
     
-    // Kembalikan ke halaman decoy
-    document.getElementById('kerupuk-full-screen').classList.add('hidden');
+    if (document.getElementById('kerupuk-full-screen')) document.getElementById('kerupuk-full-screen').classList.add('hidden');
     document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'block');
-    document.getElementById('arena-nav').classList.remove('game-nav');
+    if (document.getElementById('arena-nav')) document.getElementById('arena-nav').classList.remove('game-nav');
     document.body.classList.remove('active-game-bg');
     
-    // Reset kerupuk
-    document.getElementById('flying-kerupuk').style.transform = 'translate(-50%, -50%) scale(1)';
+    if (document.getElementById('flying-kerupuk')) document.getElementById('flying-kerupuk').style.transform = 'translate(-50%, -50%) scale(1)';
 }
 
 // --- POS 3 LOGIC (Tarik Tambang) ---
@@ -357,12 +329,12 @@ let tInterval;
 function startTambangGame() {
     tPower = 50;
     tGameEnded = false;
-    document.getElementById('t-score').textContent = tPower;
-    document.getElementById('t-progress').style.width = '50%';
-    document.getElementById('error-stage-3').textContent = '';
+    if (document.getElementById('t-score')) document.getElementById('t-score').textContent = tPower;
+    if (document.getElementById('t-progress')) document.getElementById('t-progress').style.width = '50%';
+    if (document.getElementById('error-stage-3')) document.getElementById('error-stage-3').textContent = '';
     
-    document.getElementById('start-t-btn').classList.add('hidden');
-    document.getElementById('pull-btn').classList.remove('hidden');
+    if (document.getElementById('start-t-btn')) document.getElementById('start-t-btn').classList.add('hidden');
+    if (document.getElementById('pull-btn')) document.getElementById('pull-btn').classList.remove('hidden');
     
     tInterval = setInterval(opponentPull, 150);
 }
@@ -391,33 +363,32 @@ function updateTambangUI() {
     if (tPower < 0) tPower = 0;
     if (tPower > 100) tPower = 100;
     
-    document.getElementById('t-score').textContent = tPower;
-    document.getElementById('t-progress').style.width = `${tPower}%`;
+    if (document.getElementById('t-score')) document.getElementById('t-score').textContent = tPower;
+    if (document.getElementById('t-progress')) document.getElementById('t-progress').style.width = `${tPower}%`;
 }
 
 function winTambang() {
     tGameEnded = true;
     clearInterval(tInterval);
-    document.getElementById('pull-btn').classList.add('hidden');
-    document.getElementById('stage-3-success').classList.remove('hidden');
+    if (document.getElementById('pull-btn')) document.getElementById('pull-btn').classList.add('hidden');
+    if (document.getElementById('stage-3-success')) document.getElementById('stage-3-success').classList.remove('hidden');
 }
 
 function loseTambang() {
     tGameEnded = true;
     clearInterval(tInterval);
     
-    document.getElementById('pull-btn').classList.add('hidden');
-    document.getElementById('error-stage-3').textContent = 'Kamu kalah kuat! Coba spam klik lebih cepat.';
+    if (document.getElementById('pull-btn')) document.getElementById('pull-btn').classList.add('hidden');
+    if (document.getElementById('error-stage-3')) document.getElementById('error-stage-3').textContent = 'Kamu kalah kuat! Coba spam klik lebih cepat.';
     
     setTimeout(() => {
-        document.getElementById('start-t-btn').classList.remove('hidden');
-        document.getElementById('error-stage-3').textContent = '';
-        document.getElementById('t-progress').style.width = '50%';
-        document.getElementById('t-score').textContent = '50';
+        if (document.getElementById('start-t-btn')) document.getElementById('start-t-btn').classList.remove('hidden');
+        if (document.getElementById('error-stage-3')) document.getElementById('error-stage-3').textContent = '';
+        if (document.getElementById('t-progress')) document.getElementById('t-progress').style.width = '50%';
+        if (document.getElementById('t-score')) document.getElementById('t-score').textContent = '50';
     }, 2500);
 }
 
-// --- Confetti Logic ---
 function triggerConfetti() {
     const container = document.querySelector('.confetti-container');
     if(!container) return;
@@ -431,8 +402,6 @@ function triggerConfetti() {
     }, 500);
 }
 
-
-// --- DARK/LIGHT MODE LOGIC ---
 function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -454,17 +423,88 @@ function toggleTheme() {
     }
 }
 
+function openPortalPanitia(event) {
+    if (event) event.preventDefault();
+
+    let modal = document.getElementById("portal-lock-modal");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "portal-lock-modal";
+        modal.className = "modal";
+        modal.style.display = "block";
+        modal.innerHTML = `
+            <div class="modal-content portal-modal-card">
+                <span class="close-btn" onclick="closePortalModal()">&times;</span>
+                
+                <div class="portal-badge">🔒 OTORISASI RESTRUKTURISASI</div>
+                <h2 class="portal-title">Portal Panitia</h2>
+                
+                <div class="sec-note-box">
+                    <div class="sec-header">[SEC_NOTE_#17]</div>
+                    <div class="sec-item"><span class="sec-label">REF_AUDIO:</span> <em>INDONESIA_NATION_ANTHEM_3STANZAS.wav</em></div>
+                    <div class="sec-item"><span class="sec-label">INDEX_MARK:</span> <code>01:05</code></div>
+                </div>
+
+                <div class="input-group" style="margin-top: 1.25rem;">
+                    <input type="password" id="portal-password-input" placeholder="Kata Kunci Akses..." autocomplete="off">
+                    <button onclick="verifyPortalPassword()" class="portal-submit-btn">
+                        <span>Verifikasi Akses</span>
+                        <span>&rarr;</span>
+                    </button>
+                </div>
+                
+                <p id="portal-error-msg" class="error-msg" style="margin-top: 12px; font-size: 0.85rem; min-height: 20px;"></p>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    } else {
+        modal.style.display = "block";
+    }
+
+    const pwdInput = document.getElementById("portal-password-input");
+    const errorMsg = document.getElementById("portal-error-msg");
+    if (pwdInput) {
+        pwdInput.value = "";
+        pwdInput.focus();
+    }
+    if (errorMsg) errorMsg.textContent = "";
+}
+
+function closePortalModal() {
+    const modal = document.getElementById("portal-lock-modal");
+    if (modal) modal.style.display = "none";
+}
+
+function verifyPortalPassword() {
+    const pwdInput = document.getElementById("portal-password-input");
+    const errorMsg = document.getElementById("portal-error-msg");
+    const password = pwdInput ? pwdInput.value.trim().toLowerCase() : "";
+
+    // Password kunci: merdeka
+    if (password === "merdeka") {
+        closePortalModal();
+        showToast("🔓 Otorisasi Berhasil! Membuka jalur komunikasi...");
+        
+        const targetUrl = "hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17";
+        setTimeout(() => {
+            window.open(targetUrl, "_blank");
+        }, 800);
+    } else {
+        if (errorMsg) {
+            errorMsg.textContent = "❌ ACCESS_DENIED: Kata kunci tidak valid. Periksa catatan indeks audio.";
+        }
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     checkAuth();
     initTheme();
+
     const toggleBtn = document.getElementById('theme-toggle');
     if (toggleBtn) {
         toggleBtn.addEventListener('click', toggleTheme);
     }
-});
-// --- HAMBURGER MENU LOGIC ---
-document.addEventListener("DOMContentLoaded", function() {
-    checkAuth();
+
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     if (hamburger && navLinks) {
@@ -473,10 +513,7 @@ document.addEventListener("DOMContentLoaded", function() {
             hamburger.classList.toggle('toggle');
         });
     }
-});
-// --- NEW DASHBOARD HAMBURGER LOGIC ---
-document.addEventListener("DOMContentLoaded", function() {
-    checkAuth();
+
     const hamburgerDash = document.querySelector('.hamburger-dashboard');
     const sidebarLeft = document.querySelector('.sidebar-left');
     const closeSidebar = document.querySelector('.close-sidebar');
@@ -496,30 +533,18 @@ document.addEventListener("DOMContentLoaded", function() {
             sidebarLeft.classList.remove('active');
         });
     }
-    
-    // Close sidebar when clicking outside (mobile only)
-    document.addEventListener('click', (e) => {
-        if (sidebarLeft && sidebarLeft.classList.contains('active') && !sidebarLeft.contains(e.target) && !hamburgerDash.contains(e.target)) {
-            sidebarLeft.classList.remove('active');
-        }
-    });
-});// --- PASSWORD VISIBILITY LOGIC ---
-document.addEventListener("DOMContentLoaded", function() {
+
     const togglePassword = document.getElementById('toggle-password');
     const passwordInput = document.getElementById('login-password');
     
     if (togglePassword && passwordInput) {
         togglePassword.addEventListener('click', function() {
-            // Toggle type attribute
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            
-            // Toggle icon (Eye open/closed emoji)
             this.textContent = type === 'password' ? '👁️' : '🙈';
         });
     }
-});// --- AUTO SET ACTIVE MENU ---
-document.addEventListener("DOMContentLoaded", function() {
+
     const currentPath = window.location.pathname.split('/').pop() || "index.html";
     const menuLinks = document.querySelectorAll('.sidebar-left .nav-menu a');
     
@@ -533,70 +558,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// --- MIDDLEWARE PORTAL PANITIA (LOCKED PORTAL) ---
-function openPortalPanitia(event) {
-    if (event) event.preventDefault(); // Tahan link agar tidak langsung berpindah/terbuka
-
-    // Cek apakah modal portal panitia sudah ada di DOM, jika belum buat dinamis
-    let modal = document.getElementById("portal-lock-modal");
-    if (!modal) {
-        modal = document.createElement("div");
-        modal.id = "portal-lock-modal";
-        modal.className = "modal";
-        modal.style.display = "block";
-        modal.innerHTML = `
-            <div class="modal-content" style="border: 2px solid var(--primary);">
-                <span class="close-btn" onclick="closePortalModal()">&times;</span>
-                <h2 style="color: var(--primary);">🔒 Akses Portal Panitia Terkunci</h2>
-                <p style="font-size: 0.9rem; margin-top: 5px;">Masukkan kata sandi otorisasi panitia untuk melanjutkan.</p>
-                
-                <div style="background: rgba(239, 68, 68, 0.08); padding: 10px; border-radius: 10px; margin: 15px 0; font-size: 0.85rem; border-left: 3px solid var(--primary); text-align: left;">
-                    🎵 <strong>Petunjuk Suara Panitia:</strong><br>
-                    Dengarkan lagu kebangsaan <em>Indonesia Raya</em> tepat pada timestamp <strong>01:05</strong>. Kata apa yang terdengar bergelora di detik tersebut?
-                </div>
-
-                <div class="input-group" style="margin-top: 1rem;">
-                    <input type="password" id="portal-password-input" placeholder="Ketik kata sandi..." style="text-align: center; font-weight: bold; letter-spacing: 1px;">
-                    <button onclick="verifyPortalPassword()">Buka Portal Panitia &rarr;</button>
-                </div>
-                <p id="portal-error-msg" class="error-msg" style="margin-top: 10px;"></p>
-            </div>
-        `;
-        document.body.appendChild(modal);
-    } else {
-        modal.style.display = "block";
-    }
-
-    // Reset input dan error setiap dibuka
-    const pwdInput = document.getElementById("portal-password-input");
-    const errorMsg = document.getElementById("portal-error-msg");
-    if (pwdInput) pwdInput.value = "";
-    if (errorMsg) errorMsg.textContent = "";
-}
-
-function closePortalModal() {
-    const modal = document.getElementById("portal-lock-modal");
-    if (modal) modal.style.display = "none";
-}
-
-function verifyPortalPassword() {
-    const pwdInput = document.getElementById("portal-password-input");
-    const errorMsg = document.getElementById("portal-error-msg");
-    const password = pwdInput ? pwdInput.value.trim().toLowerCase() : "";
-
-    // Password kunci: merdeka
-    if (password === "merdeka") {
-        closePortalModal();
-        showToast("🔓 Sandi Benar! Mengalihkan ke Portal Panitia...");
-        
-        // Buka URL Hijacked secara aman setelah lolos password
-        const targetUrl = "hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17";
-        setTimeout(() => {
-            window.open(targetUrl, "_blank");
-        }, 800);
-    } else {
-        if (errorMsg) {
-            errorMsg.textContent = "❌ Kata sandi salah! Coba dengarkan kembali lagu pada detik 1:05.";
-        }
-    }
-}

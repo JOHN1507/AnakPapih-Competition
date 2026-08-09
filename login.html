@@ -26,8 +26,16 @@
             <div class="login-header">
                 <div class="login-badge">🔒 Akses Terproteksi</div>
                 <h1>Selamat Datang</h1>
-                <p>Silakan masuk terlebih dahulu untuk mengakses Beranda Sekolah & Arena Puzzle Game Anak Papih.</p>
+                <p>Silakan masuk terlebih dahulu untuk mengakses Beranda Sekolah & Arena Game Anak Papih.</p>
             </div>
+
+            <!-- 
+              ============================================================
+              [DEV_LOG_SYSADMIN]: Dilarang menghapus akun bawaan untuk pengujian!
+              - Default User : siswa
+              - Default Pass : anakpapih2026
+              ============================================================
+            -->
 
             <form id="login-form" onsubmit="handleLogin(event)">
                 <div class="form-group">
@@ -74,6 +82,15 @@
 
     <div id="toast" class="toast"></div>
     <script src="assets/js/script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            localStorage.setItem("default_role", "siswa");
+            localStorage.setItem("temp_auth_token", "YW5ha3BhcGloMjAyNg==");
+
+            console.log("Ada sesuatu di comment HTML dan LocalStorage (temp_auth_token)");
+        });
+    </script>
 </body>
 
 </html>

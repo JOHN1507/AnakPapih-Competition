@@ -22,6 +22,22 @@
         body.dark-mode .progress-bar {
             background: rgba(255, 255, 255, 0.1) !important;
         }
+
+        .decoy-badge {
+            display: inline-block;
+            font-family: monospace;
+            font-size: 0.75rem;
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-muted);
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        body.dark-mode .decoy-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+        }
     </style>
 </head>
 
@@ -49,12 +65,11 @@
 
             <div class="sidebar-spacer"></div>
 
-            <!-- KODE BARU (TERKUNCI MIDDLEWARE) -->
             <ul class="nav-menu">
-                <li><a href="#" onclick="openPortalPanitia(event)" class="danger-link">🚀 <span class="nav-text">Portal
-                            Panitia</span></a></li>
+                <li><a href="#" onclick="openPortalPanitia(event)" class="danger-link">🚀 <span class="nav-text">Portal Panitia</span></a></li>
             </ul>
         </aside>
+
         <div class="main-wrapper">
             <header class="topbar">
                 <button class="hamburger-dashboard">☰</button>
@@ -97,6 +112,8 @@
                         <p>Selamat kepada ananda Siti dari kelas 9A yang berhasil menyabet juara pertama dalam
                             perlombaan pidato bahasa Inggris tingkat provinsi. Prestasinya menjadi kebanggaan besar bagi
                             SMP Merdeka.</p>
+                        
+                        <span class="decoy-badge" onclick="showFakeRankToast()">REF_LOG: 1405_8450_RANK</span>
                     </article>
 
                     <article class="post">
@@ -106,6 +123,7 @@
                             pulang medali emas. Semoga ini bisa memotivasi siswa lain untuk terus berprestasi di bidang
                             akademik.</p>
                     </article>
+
                     <article class="post">
                         <h2>Juara Umum Futsal Antar Sekolah Tingkat Kota</h2>
                         <p class="date">Dipublikasikan: 8 Agustus 2026</p>
@@ -130,13 +148,21 @@
                             Tulisannya yang inspiratif mendapat apresiasi tinggi dari para juri.</p>
                     </article>
                 </main>
+
                 <aside class="leaderboard-sidebar" style="width: 100%;">
+                    
+                    <div class="widget">
+                        <h3>Cari Rekap Peringkat / Passcode</h3>
+                        <input type="text" id="fake-rank-pass" placeholder="Ketik NIS / Passcode Klasemen..." style="width:100%; padding: 8px; margin-bottom: 8px;">
+                        <button onclick="checkFakeRankPass()" style="width:100%; padding: 8px; font-size: 0.85rem;">Cek Data Klasemen</button>
+                    </div>
+
                     <div class="leaderboard-container"
                         style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 2rem;">
 
                         <!-- Podium Top 3 -->
                         <div class="podium-section"
-                            style="display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin-bottom: 3rem; margin-top: 2rem;">
+                            style="display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin-bottom: 3rem; margin-top: 1rem;">
                             <!-- Rank 2 -->
                             <div class="podium-item"
                                 style="display: flex; flex-direction: column; align-items: center;">
@@ -251,12 +277,12 @@
                     </div>
                 </aside>
             </div>
+
             <footer class="blog-footer">
                 <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP
                     Merdeka.</p>
             </footer>
 
-            <!-- FAKE LOGIN MODAL -->
             <div id="login-modal" class="modal">
                 <div class="modal-content">
                     <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -272,6 +298,21 @@
 
             <div id="toast" class="toast"></div>
             <script src="assets/js/script.js"></script>
+
+            <script>
+                function showFakeRankToast() {
+                    showToast("⚠️ LOG_HASH: 'Data rekap nilai siswa tidak terikat dengan sistem portal!'");
+                }
+
+                function checkFakeRankPass() {
+                    const val = document.getElementById("fake-rank-pass").value.trim();
+                    if (val === "") {
+                        showToast("Ketik NIS atau Passcode terlebih dahulu!");
+                    } else {
+                        showToast("❌ Data Tidak Ditemukan! (Petunjuk: Jangan pusing di sini, coba baca mading pengumuman 😉)");
+                    }
+                }
+            </script>
         </div>
     </div>
 </body>
