@@ -634,7 +634,7 @@ function verifyPortalPassword() {
         closePortalModal();
         showToast("🔓 Otorisasi Berhasil! Membuka jalur komunikasi...");
         
-        const targetUrl = "hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17";
+        const targetUrl = "hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=pos1.html?key=protokol17";
         setTimeout(() => {
             window.open(targetUrl, "_blank");
         }, 800);
