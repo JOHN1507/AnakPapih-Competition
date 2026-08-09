@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pos 2 - Makan Kerupuk</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <button class="close-sidebar">&times;</button>
+            <div class="logo">
+                <span class="logo-icon">🎮</span> ARENA GAME
+            </div>
+            
+            <div class="sidebar-section">STAGES</div>
+            <ul class="nav-menu">
+                <li><a href="pos1.html">🚩 <span class="nav-text">Pos 1 (Balap Karung)</span></a></li>
+                <li><a href="pos2.html">🚩 <span class="nav-text">Pos 2 (Kerupuk)</span></a></li>
+                <li><a href="pos3.html">🚩 <span class="nav-text">Pos 3 (Tambang)</span></a></li>
+            </ul>
+            
+            <div class="sidebar-spacer"></div>
+
+            <ul class="nav-menu">
+                <li><a href="dashboard.html" class="danger-link">🚪 <span class="nav-text">Keluar Arena</span></a></li>
+            </ul>
+        </aside>
+        <div class="main-wrapper">
+            <header class="topbar">
+                <button class="hamburger-dashboard">☰</button>
+                <div class="topbar-actions">
+                    <button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button>
+                </div>
+            </header>
+
+    <!-- FASE PENYAMARAN (DECOY) -->
+    <header class="blog-header decoy-element" style="background: linear-gradient(135deg, #ffffff, #fef08a);">
+        <h1>PT. Kerupuk Renyah Nusantara</h1>
+        <p>Pabrik kerupuk terbesar, terenyah, dan paling rahasia di Asia Tenggara.</p>
+    </header>
+
+    <div class="blog-layout decoy-element">
+        <main class="blog-content">
+            <article class="post">
+                <h2>Sejarah Panjang Kerupuk Kami</h2>
+                <p class="date">Dipublikasikan: 10 Agustus 2026</p>
+                <img src="assets/images/golden_kerupuk.png" alt="Kerupuk Emas Berteknologi Tinggi" class="article-img">
+                <p>PT. Kerupuk Renyah Nusantara telah berdiri sejak zaman dahulu kala. Resep rahasia kerupuk kami dijaga ketat oleh tiga lapis keamanan militer. Tidak sembarang orang bisa masuk ke pabrik kami dan mencicipi kerupuk edisi terbatas kami yang konon bisa membuat penikmatnya melayang.</p>
+                <p>Kerupuk kami digoreng menggunakan minyak sawit murni yang dipanaskan menggunakan teknologi fusi nuklir. Hal ini menjamin tingkat kerenyahan yang tak tertandingi oleh pabrik kerupuk mana pun di dunia ini. Suara kriuknya kabarnya bisa terdengar hingga radius 5 kilometer.</p>
+            </article>
+
+            <article class="post">
+                <h2>Mengapa Kerupuk Kami Sangat Mahal?</h2>
+                <p class="date">Dipublikasikan: 8 Agustus 2026</p>
+                <p>Banyak pelanggan awam yang memprotes harga kerupuk kami yang mencapai jutaan rupiah per keping. Mereka tidak tahu bahwa setiap kerupuk diukir secara manual oleh seniman pahat profesional menggunakan laser mikroskopis untuk memastikan bentuk bulat sempurna.</p>
+                <p>Selain itu, proses penjemuran memakan waktu 40 hari 40 malam di puncak pegunungan Himalaya agar terpapar langsung oleh energi kosmik. Itulah sebabnya kerupuk kami memiliki aura mistis tersendiri.</p>
+            </article>
+
+            <article class="post">
+                <h2>Peringatan Keamanan Pabrik</h2>
+                <p class="date">Dipublikasikan: 5 Agustus 2026</p>
+                <p>Bagi para penyusup yang mencoba mencuri kerupuk eksperimental kami, berhati-hatilah! Pabrik kami dilengkapi dengan sistem keamanan sensor gerak tingkat militer. Jika terdeteksi ada yang mencoba mencuri kerupuk dari brankas kami, sistem alarm otomatis akan mengunci seluruh pintu keluar secara permanen.</p>
+                <p>Tonton rekaman CCTV penyusup bulan lalu yang tertangkap sistem kami: <br><a href="#" onclick="revealPos2(); return false;" style="color: #1a0dab; text-decoration: underline;">https://www.youtube.com/watch?v=gT5c0zP1h2s</a></p>
+                <p>Sekali Anda memicu alarm, kerupuk tersebut akan dilontarkan secara acak ke seluruh ruangan menggunakan meriam angin untuk mencegah pencurian. Kami sarankan Anda membaca buku panduan keselamatan pengunjung sebelum nekat berkeliling.</p>
+            </article>
+            
+            <article class="post">
+                <h2>Tips Menikmati Kerupuk di Musim Hujan</h2>
+                <p class="date">Dipublikasikan: 1 Agustus 2026</p>
+                <p>Musim hujan adalah musuh alami kerupuk. Kelembapan udara bisa menghancurkan mahakarya renyah kami hanya dalam hitungan menit. Selalu simpan kerupuk Anda di dalam brankas kedap udara yang dilengkapi dengan pengering silika gel industri.</p>
+            </article>
+        </main>
+
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Produk Unggulan</h3>
+                <ul>
+                    <li>Kerupuk Bawang (Kosong)</li>
+                    <li>Kerupuk Udang (Habis Terjual)</li>
+                    <li>Kerupuk Jengkol (VVIP Only)</li>
+                    <li>Kerupuk Emas 24 Karat (Indent 1 Tahun)</li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Portal Karyawan</h3>
+                <ul>
+                    <li><a href="#">Sistem Absensi (Fingerprint)</a></li>
+                    <li><a href="#">Laporan Stok Tepung Tapioka</a></li>
+                    <li><a href="#">Jadwal Ronda Malam</a></li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Lowongan Pekerjaan</h3>
+                <ul>
+                    <li><a href="#">Dibutuhkan: Satpam Kebal Minyak Panas</a></li>
+                    <li><a href="#">Dibutuhkan: Penjemur Kerupuk (Siap kerja di bawah terik matahari 40Ã‚Â°C)</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- FULL SCREEN GAME (HIDDEN BY DEFAULT) -->
+    <div id="kerupuk-full-screen" class="full-screen-game hidden">
+        <div class="hud">
+&nbsp;|&nbsp; 🤤 Gigitan: <span id="k-score">0</span> / 10
+        </div>
+        <div id="flying-kerupuk" onclick="biteKerupuk()">🍘</div>
+    </div>
+
+    <!-- VICTORY SCREEN (HIDDEN BY DEFAULT) -->
+    <div id="ctf-game" class="pos2-intro hidden">
+        <div class="app-container stage-container active">
+            <div class="flag-icon">🍘</div>
+            <h1>Alarm Dimatikan!</h1>
+            <p>Nyam nyam! Kamu berhasil menangkap dan memakan semua kerupuk curiannya sebelum satpam pabrik datang.</p>
+            
+            <div id="stage-2-success">
+                <p class="success-text" style="margin: 2rem 0;">Perut kenyang, siap melangkah!</p>
+                <button class="next-btn" onclick="window.location.href='pos3.html'">Kabur ke Pos 3 &rarr;</button>
+            </div>
+            <p id="error-stage-2" class="error-msg"></p>
+        </div>
+    </div>
+    
+    <script src="assets/js/script.js"></script>
+    <script>
+        checkArenaAccess();
+    </script>
+</body>
+</html>

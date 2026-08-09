@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kemenangan!</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="active-game-bg">
+    <nav id="arena-nav" class="navbar game-nav">
+        <div class="logo"><img src="assets/images/logo_anak_papih.png" alt="Logo Anak Papih" style="height: 40px; vertical-align: middle;"></div>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+        <ul class="nav-links">
+            <li><a href="pos1.html">Pos 1</a></li>
+            <li><a href="pos2.html">Pos 2</a></li>
+            <li><a href="pos3.html">Pos 3</a></li>
+            <li><a href="dashboard.html" class="portal-btn">Keluar Arena</a></li>
+            <li><button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button></li>
+        </ul>
+    </nav>
+    <div id="ctf-game">
+        <div class="app-container stage-container active">
+            <h1 style="font-size: 2.5rem;">MERDEKA!</h1>
+            <div class="confetti-container">
+                🎉🎆🎊
+            </div>
+            <p class="success-text" style="margin-bottom: 2rem;">Selamat! Kamu telah berhasil menjuarai seluruh
+                perlombaan 17-an di Server Anak Papih.</p>
+            <button class="restart-btn" onclick="window.location.href='dashboard.html'">Kembali ke Beranda</button>
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script>checkArenaAccess(); triggerConfetti();</script>
+</body>
+
+</html>

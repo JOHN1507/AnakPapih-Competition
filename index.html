@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anak Papih Competition 2026</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* General Resets for Landing Page */
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body.landing-page-body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+        }
+
+        body.dark-mode.landing-page-body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        /* 1. HERO SECTION */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #fce7f3, #e0e7ff, #fef3c7, #fee2e2);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        body.dark-mode .hero-section {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        .landing-content {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            padding: 4rem 3rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: 10;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.2s;
+        }
+
+        body.dark-mode .landing-content {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .landing-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -1.5px;
+        }
+
+        .landing-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .landing-subtitle { color: #94a3b8; }
+
+        /* Countdown */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+        .countdown-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            min-width: 100px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        body.dark-mode .countdown-box {
+            background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        body.dark-mode .countdown-number { color: #f8fafc; }
+        .countdown-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Buttons */
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, #dc2626 100%);
+            color: white;
+            padding: 1.25rem 3rem;
+            border-radius: 100px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px -5px rgba(239, 68, 68, 0.5);
+            color: white;
+        }
+        .secondary-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--text-main);
+            padding: 1.25rem 2rem;
+            border-radius: 100px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        body.dark-mode .secondary-btn { color: white; border-color: rgba(255,255,255,0.2); }
+        .secondary-btn:hover { background: rgba(0,0,0,0.05); }
+        body.dark-mode .secondary-btn:hover { background: rgba(255,255,255,0.1); }
+
+        /* Floating Toggle */
+        .theme-toggle-floating {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        body.dark-mode .theme-toggle-floating {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .theme-toggle-floating:hover { transform: rotate(15deg) scale(1.1); }
+
+        /* Scroll Down Indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--text-muted);
+            font-size: 2rem;
+            text-decoration: none;
+        }
+
+        /* 2. FEATURES SECTION */
+        .features-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        body.dark-mode .section-title { color: #f8fafc; }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark-mode .feature-card {
+            background: var(--dark-card);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(239, 68, 68, 0.15);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 1rem;
+            border-radius: 20px;
+        }
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        body.dark-mode .feature-title { color: #f8fafc; }
+        .feature-desc {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* 3. ABOUT SECTION */
+        .about-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.03) 0%, rgba(59, 130, 246, 0.03) 100%);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .about-section {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.02) 0%, rgba(59, 130, 246, 0.02) 100%);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .about-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 3rem;
+        }
+
+        /* 4. FOOTER */
+        .landing-footer {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .landing-footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-text {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        @media (max-width: 768px) {
+            .landing-title { font-size: 2.2rem; }
+            .landing-content { padding: 3rem 1.5rem; }
+            .countdown-container { gap: 0.75rem; flex-wrap: wrap; }
+            .countdown-box { min-width: 70px; padding: 1rem; }
+            .countdown-number { font-size: 1.8rem; }
+            .cta-btn, .secondary-btn { display: block; width: 100%; margin: 10px 0; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body class="landing-page-body">
+
+    <button id="theme-toggle-landing" class="theme-toggle-floating" title="Toggle Theme">🌙</button>
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section">
+        <div class="landing-content">
+            <h1 class="landing-title">Anak Papih Competition 2026</h1>
+            <p class="landing-subtitle">Menyambut Hari Kemerdekaan dengan semangat pantang menyerah. Persiapkan dirimu untuk kompetisi terbesar dan termegah tahun ini!</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <span id="days" class="countdown-number">00</span>
+                    <span class="countdown-label">Hari</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="hours" class="countdown-number">00</span>
+                    <span class="countdown-label">Jam</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="minutes" class="countdown-number">00</span>
+                    <span class="countdown-label">Menit</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="seconds" class="countdown-number">00</span>
+                    <span class="countdown-label">Detik</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="login.html" class="cta-btn">Mulai Kompetisi &rarr;</a>
+                <a href="#features" class="secondary-btn">Pelajari Lebih Lanjut</a>
+            </div>
+        </div>
+        <a href="#features" class="scroll-down">↓</a>
+    </section>
+
+    <!-- 2. FEATURES SECTION -->
+    <section id="features" class="features-section">
+        <h2 class="section-title">Cabang Perlombaan</h2>
+        <p class="section-subtitle">Tiga tantangan utama yang akan menguji kecepatan, ketangkasan, dan kekuatan Anda.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏁</div>
+                <h3 class="feature-title">Balap Karung Ekstrem</h3>
+                <p class="feature-desc">Bukan sekadar melompat. Anda membutuhkan kecepatan jari yang luar biasa untuk menjadi yang tercepat mencapai garis akhir sebelum waktu habis.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🍘</div>
+                <h3 class="feature-title">Makan Kerupuk Gila</h3>
+                <p class="feature-desc">Kerupuk melayang tak menentu! Uji refleks Anda dengan menangkap dan "menggigit" kerupuk yang berterbangan di udara secepat kilat.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🪢</div>
+                <h3 class="feature-title">Tarik Tambang Besi</h3>
+                <p class="feature-desc">Kerahkan seluruh tenaga virtual Anda. Lawan kecerdasan buatan dalam permainan adu kekuatan dan kecepatan tanpa henti.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ABOUT SECTION -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2 class="section-title">Semangat 17 Agustus</h2>
+            <p class="about-text">
+                Anak Papih Competition didirikan untuk mengenang jasa para pahlawan dengan cara yang modern, seru, dan kompetitif. 
+                Kami menggabungkan tradisi perlombaan 17-an dengan teka-teki logika dan kecepatan *cyber*. 
+                Buktikan bahwa Anda memiliki semangat pantang menyerah dan jadilah sang juara di papan peringkat nasional!
+            </p>
+            <a href="login.html" class="cta-btn">Daftar Sekarang &rarr;</a>
+        </div>
+    </section>
+
+    <!-- 4. FOOTER -->
+    <footer class="landing-footer">
+        <p class="footer-text">&copy; 2026 Anak Papih Competition. Semua Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script>
+        // Countdown Timer Logic (Target: Aug 17, 2026)
+        const targetDate = new Date("August 17, 2026 00:00:00").getTime();
+
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+        // Standalone Theme Toggle Logic for Landing Page
+        const themeBtn = document.getElementById("theme-toggle-landing");
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeBtn.textContent = "☀️";
+        }
+
+        themeBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                themeBtn.textContent = "☀️";
+            } else {
+                localStorage.setItem("theme", "light");
+                themeBtn.textContent = "🌙";
+            }
+        });
+    </script>
+</body>
+</html>
