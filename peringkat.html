@@ -151,32 +151,35 @@
                     </article>
                 </main>
 
-                <aside class="leaderboard-sidebar" style="width: 100%;">
+                <aside class="leaderboard-sidebar" style="width: 100%; max-width: 500px; margin: 0 auto;">
                     
-                    <div class="widget">
-                        <h3>Cari Rekap Peringkat / Passcode</h3>
-                        <input type="text" id="fake-rank-pass" placeholder="Ketik NIS / Passcode Klasemen..." style="width:100%; padding: 8px; margin-bottom: 8px;">
-                        <button onclick="checkFakeRankPass()" style="width:100%; padding: 8px; font-size: 0.85rem;">Cek Data Klasemen</button>
+                    <div class="widget" style="background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%); color: white; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2); border: 1px solid rgba(255,255,255,0.1);">
+                        <h3 style="color: white; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;"><span>🔍</span> Cari Rekap Peringkat / Passcode</h3>
+                        <input type="text" id="fake-rank-pass" placeholder="Ketik NIS / Passcode Klasemen..." style="width:100%; padding: 12px 15px; margin-bottom: 12px; border-radius: 10px; border: none; outline: none; background: rgba(255,255,255,0.1); color: white;">
+                        <button onclick="checkFakeRankPass()" style="width:100%; padding: 12px; font-size: 0.95rem; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s;">Cek Data Klasemen</button>
                     </div>
 
-                    <div class="leaderboard-container"
-                        style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 2rem;">
+                    <div class="leaderboard-container" style="background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); padding: 2.5rem 1.5rem; border: 1px solid rgba(0,0,0,0.02); position: relative; overflow: hidden;">
+                        
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <span style="background: rgba(239, 68, 68, 0.1); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Real-Time</span>
+                            <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--dark); margin-top: 10px;">🏆 Papan Peringkat</h2>
+                        </div>
 
-                                                <!-- Dynamic Podium Top 3 -->
-                        <div id="dynamic-podium" class="podium-section" style="display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin-bottom: 3rem; margin-top: 1rem;">
-                            <div style="text-align:center; color:var(--text-muted); padding:2rem;">📡 Memuat Koneksi ke Pusat Data...</div>
+                        <!-- Dynamic Podium Top 3 -->
+                        <div id="dynamic-podium" class="podium-section" style="display: flex; justify-content: center; align-items: flex-end; gap: 10px; margin-bottom: 3rem; margin-top: 2rem; height: 220px;">
+                            <div style="text-align:center; color:var(--text-muted); padding:2rem; width: 100%;">📡 Menghubungkan ke Pusat Data...</div>
                         </div>
 
                         <!-- Dynamic List View (Rank 4+) -->
-                        <div id="dynamic-list" class="leaderboard-list" style="display: flex; flex-direction: column; gap: 10px;">
-                        </div></div>
+                        <div id="dynamic-list" class="leaderboard-list" style="display: flex; flex-direction: column; gap: 12px;">
+                        </div>
                     </div>
                 </aside>
             </div>
 
             <footer class="blog-footer">
-                <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP
-                    Merdeka.</p>
+                <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP Merdeka.</p>
             </footer>
 
             <div id="login-modal" class="modal">
@@ -231,6 +234,15 @@
                 return m + "m " + s + "s";
             }
             
+            // Remove duplicates by username (keep the best/lowest duration)
+            const uniquePlayers = {};
+            players.forEach(p => {
+                if(!uniquePlayers[p.username] || uniquePlayers[p.username].duration > p.duration) {
+                    uniquePlayers[p.username] = p;
+                }
+            });
+            players = Object.values(uniquePlayers);
+            
             players.sort((a, b) => a.duration - b.duration);
             
             let podiumHtml = '';
@@ -238,45 +250,45 @@
                 if (players.length > 1) {
                     const p2 = players[1];
                     podiumHtml += `
-                        <div class="podium-item" style="display: flex; flex-direction: column; align-items: center;">
-                            <div class="avatar" style="width: 60px; height: 60px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 4px solid #cbd5e1; margin-bottom: 10px;">
+                        <div class="podium-item" style="display: flex; flex-direction: column; align-items: center; width: 30%; position: relative; animation: slideUp 0.6s ease-out;">
+                            <div class="avatar" style="width: 55px; height: 55px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 8px; z-index: 2;">
                                 ${p2.username.charAt(0).toUpperCase()}
                             </div>
-                            <div class="name" style="font-weight: bold; color: var(--text-main);">${p2.username}</div>
-                            <div class="score" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">${formatTime(p2.duration)}</div>
-                            <div class="podium-block" style="width: 80px; height: 80px; background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold;">2</div>
+                            <div class="name" style="font-weight: 700; color: var(--text-main); font-size: 0.9rem; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p2.username}</div>
+                            <div class="score" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600;">${formatTime(p2.duration)}</div>
+                            <div class="podium-block" style="width: 100%; height: 70px; background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%); border-radius: 8px 8px 0 0; display: flex; justify-content: center; align-items: center; color: #64748b; font-size: 2rem; font-weight: 800; border-top: 3px solid #f8fafc; box-shadow: inset 0 10px 20px rgba(255,255,255,0.5);">2</div>
                         </div>
                     `;
                 }
                 
                 const p1 = players[0];
                 podiumHtml += `
-                    <div class="podium-item" style="display: flex; flex-direction: column; align-items: center; transform: translateY(-20px);">
-                        <div style="font-size: 2rem; margin-bottom: -10px; z-index: 2;">👑</div>
-                        <div class="avatar" style="width: 80px; height: 80px; background: #fbbf24; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem; border: 4px solid #fde68a; margin-bottom: 10px; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);">
+                    <div class="podium-item" style="display: flex; flex-direction: column; align-items: center; width: 35%; position: relative; animation: slideUp 0.5s ease-out; z-index: 5;">
+                        <div style="font-size: 2.2rem; margin-bottom: -15px; z-index: 3; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">👑</div>
+                        <div class="avatar" style="width: 70px; height: 70px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem; border: 4px solid white; margin-bottom: 8px; box-shadow: 0 8px 15px rgba(245, 158, 11, 0.3); z-index: 2;">
                             ${p1.username.charAt(0).toUpperCase()}
                         </div>
-                        <div class="name" style="font-weight: 800; color: var(--text-main); font-size: 1.2rem;">${p1.username}</div>
-                        <div class="score" style="font-size: 0.85rem; color: var(--primary); font-weight: bold; margin-bottom: 10px;">${formatTime(p1.duration)}</div>
-                        <div class="podium-block" style="width: 100px; height: 120px; background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2.5rem; font-weight: bold;">1</div>
+                        <div class="name" style="font-weight: 800; color: var(--dark); font-size: 1.05rem; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p1.username}</div>
+                        <div class="score" style="font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-bottom: 8px; background: rgba(239, 68, 68, 0.1); padding: 2px 8px; border-radius: 10px;">${formatTime(p1.duration)}</div>
+                        <div class="podium-block" style="width: 100%; height: 110px; background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%); border-radius: 8px 8px 0 0; display: flex; justify-content: center; align-items: center; color: #d97706; font-size: 3rem; font-weight: 800; border-top: 3px solid #fffbeb; box-shadow: inset 0 10px 20px rgba(255,255,255,0.8), 0 -4px 15px rgba(251, 191, 36, 0.2);">1</div>
                     </div>
                 `;
                 
                 if (players.length > 2) {
                     const p3 = players[2];
                     podiumHtml += `
-                        <div class="podium-item" style="display: flex; flex-direction: column; align-items: center;">
-                            <div class="avatar" style="width: 60px; height: 60px; background: #fb923c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 4px solid #fed7aa; margin-bottom: 10px;">
+                        <div class="podium-item" style="display: flex; flex-direction: column; align-items: center; width: 30%; position: relative; animation: slideUp 0.7s ease-out;">
+                            <div class="avatar" style="width: 55px; height: 55px; background: #fb923c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 8px; z-index: 2;">
                                 ${p3.username.charAt(0).toUpperCase()}
                             </div>
-                            <div class="name" style="font-weight: bold; color: var(--text-main);">${p3.username}</div>
-                            <div class="score" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">${formatTime(p3.duration)}</div>
-                            <div class="podium-block" style="width: 80px; height: 60px; background: linear-gradient(180deg, #fb923c 0%, #ea580c 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold;">3</div>
+                            <div class="name" style="font-weight: 700; color: var(--text-main); font-size: 0.9rem; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p3.username}</div>
+                            <div class="score" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600;">${formatTime(p3.duration)}</div>
+                            <div class="podium-block" style="width: 100%; height: 50px; background: linear-gradient(180deg, #ffedd5 0%, #fed7aa 100%); border-radius: 8px 8px 0 0; display: flex; justify-content: center; align-items: center; color: #ea580c; font-size: 2rem; font-weight: 800; border-top: 3px solid #fff7ed; box-shadow: inset 0 10px 20px rgba(255,255,255,0.6);">3</div>
                         </div>
                     `;
                 }
             } else {
-                podiumHtml = '<div style="text-align:center; padding: 2rem; color: var(--text-muted);">Belum ada peserta yang berhasil menembus keamanan kami. Menunggu sang penakluk...</div>';
+                podiumHtml = '<div style="text-align:center; padding: 2rem; color: var(--text-muted); width: 100%;">Belum ada peserta yang berhasil menembus keamanan kami. Menunggu sang penakluk...</div>';
             }
             
             document.getElementById('dynamic-podium').innerHTML = podiumHtml;
@@ -285,24 +297,48 @@
             for (let i = 3; i < players.length; i++) {
                 const p = players[i];
                 listHtml += `
-                    <div class="list-item" style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                        <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">${i+1}</div>
-                        <div class="avatar-small" style="width: 40px; height: 40px; background: #60a5fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
+                    <div class="list-item" style="display: flex; align-items: center; padding: 12px 16px; background: #f8fafc; border-radius: 16px; border: 1px solid rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; cursor: default; animation: slideUp 0.8s ease-out;">
+                        <div class="rank" style="font-weight: 800; color: #94a3b8; width: 25px; font-size: 1.1rem;">${i+1}</div>
+                        <div class="avatar-small" style="width: 36px; height: 36px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 12px; box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);">
                             ${p.username.charAt(0).toUpperCase()}
                         </div>
-                        <div class="info" style="flex: 1;">
-                            <div class="name" style="font-weight: 600; color: var(--text-main);">${p.username}</div>
-                            <div class="progress-bar" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
-                                <div style="width: 85%; height: 100%; background: #60a5fa; border-radius: 3px;"></div>
-                            </div>
+                        <div class="info" style="flex: 1; overflow: hidden;">
+                            <div class="name" style="font-weight: 700; color: var(--dark); font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p.username}</div>
                         </div>
-                        <div class="score" style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">${formatTime(p.duration)}</div>
+                        <div class="score" style="font-weight: 700; color: var(--primary); margin-left: 10px; font-size: 0.9rem; background: rgba(239, 68, 68, 0.1); padding: 4px 10px; border-radius: 20px;">${formatTime(p.duration)}</div>
                     </div>
                 `;
             }
             
             document.getElementById('dynamic-list').innerHTML = listHtml;
+            
+            // Add hover effects for list items via JS instead of CSS file for quick injection
+            document.querySelectorAll('.list-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 8px 15px rgba(0,0,0,0.05)';
+                    this.style.background = 'white';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                    this.style.background = '#f8fafc';
+                });
+            });
         });
+    }
+    
+    // Add slideUp animation keyframes if not exists
+    if (!document.getElementById('leaderboard-styles')) {
+        const style = document.createElement('style');
+        style.id = 'leaderboard-styles';
+        style.innerHTML = `
+            @keyframes slideUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -310,5 +346,4 @@
     });
 </script>
 </body>
-
 </html>
