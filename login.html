@@ -39,7 +39,7 @@
               ============================================================
             -->
 
-            <form id="login-form" onsubmit="handleLogin(event)">
+                        <form id="login-form" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label for="login-username">Nama Pengguna / Username</label>
                     <div class="input-wrapper">
@@ -56,16 +56,58 @@
                         <input type="password" id="login-password" placeholder="Masukkan password Anda..." required
                             autocomplete="current-password" style="padding-right: 40px;">
                         <button type="button" id="toggle-password" class="toggle-password-btn"
-                            title="Tampilkan/Sembunyikan Password">👁️</button>
+                            title="Tampilkan/Sembunyikan Password" onclick="const p = document.getElementById('login-password'); p.type = p.type === 'password' ? 'text' : 'password';">👁️</button>
                     </div>
                 </div>
 
-                <div id="login-error" class="login-error-msg" style="display: none;"></div>
+                <div id="login-error" class="login-error-msg" style="display: none; color: #ef4444; margin-bottom: 1rem; font-size: 0.9rem;"></div>
 
                 <button type="submit" class="login-submit-btn">
                     <span>Masuk ke Dashboard</span>
                     <span class="btn-arrow">&rarr;</span>
                 </button>
+                
+                <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                    Belum punya akun? <a href="#" onclick="toggleForm('register')" style="color: var(--primary); font-weight: bold; text-decoration: none;">Daftar di sini</a>
+                </p>
+            </form>
+
+            <form id="register-form" onsubmit="handleRegister(event)" style="display: none;">
+                <div class="form-group">
+                    <label for="reg-username">Pilih Username</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="reg-username" placeholder="Buat username (tanpa spasi)..." required autocomplete="off" pattern="[a-zA-Z0-9_]+" title="Hanya huruf, angka, dan garis bawah">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-password">Kata Sandi</label>
+                    <div class="input-wrapper" style="position: relative;">
+                        <span class="input-icon">🔑</span>
+                        <input type="password" id="reg-password" placeholder="Buat password..." required style="padding-right: 40px;">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-password-confirm">Konfirmasi Kata Sandi</label>
+                    <div class="input-wrapper" style="position: relative;">
+                        <span class="input-icon">🔑</span>
+                        <input type="password" id="reg-password-confirm" placeholder="Ketik ulang password..." required style="padding-right: 40px;">
+                    </div>
+                </div>
+
+                <div id="reg-error" class="login-error-msg" style="display: none; color: #ef4444; margin-bottom: 1rem; font-size: 0.9rem; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 8px;"></div>
+                <div id="reg-success" class="login-success-msg" style="display: none; color: #10b981; margin-bottom: 1rem; font-size: 0.9rem; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;"></div>
+
+                <button type="submit" class="login-submit-btn" style="background: var(--secondary);">
+                    <span>Buat Akun Baru</span>
+                    <span class="btn-arrow">&rarr;</span>
+                </button>
+                
+                <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                    Sudah punya akun? <a href="#" onclick="toggleForm('login')" style="color: var(--primary); font-weight: bold; text-decoration: none;">Masuk di sini</a>
+                </p>
             </form>
 
             <div class="demo-credentials-box" style="display: none;">
@@ -92,6 +134,21 @@
 
             console.log("Ada sesuatu di comment HTML dan LocalStorage (temp_auth_token)");
         });
+    </script>
+    <script>
+        function toggleForm(type) {
+            if (type === 'register') {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('register-form').style.display = 'block';
+                document.querySelector('.login-header h1').textContent = 'Buat Akun Baru';
+                document.querySelector('.login-header p').textContent = 'Daftarkan diri Anda untuk mengikuti kompetisi Anak Papih.';
+            } else {
+                document.getElementById('register-form').style.display = 'none';
+                document.getElementById('login-form').style.display = 'block';
+                document.querySelector('.login-header h1').textContent = 'Selamat Datang';
+                document.querySelector('.login-header p').textContent = 'Silakan masuk terlebih dahulu untuk mengakses Beranda Sekolah & Arena Game Anak Papih.';
+            }
+        }
     </script>
 </body>
 

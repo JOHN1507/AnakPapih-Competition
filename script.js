@@ -60,19 +60,129 @@ function handleLogin(event) {
         return;
     }
 
-    // Mengizinkan nama apapun selama passwordnya benar
-    if (password === "anakpapih2026") {
-        sessionStorage.setItem("userLoggedIn", "true");
-        // Batasi nama maksimum 15 karakter agar rapi di leaderboard
-        const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
-        sessionStorage.setItem("username", cleanName);
-        window.location.href = "dashboard.html";
-    } else {
+    if (typeof firebase === 'undefined') {
+        // Fallback jika tidak ada koneksi
+        if (password === "anakpapih2026") {
+            const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
+            sessionStorage.setItem("userLoggedIn", "true");
+            sessionStorage.setItem("username", cleanName);
+            window.location.href = "dashboard.html";
+        }
+        return;
+    }
+
+    // Login via Firebase
+    const btn = document.querySelector('#login-form .login-submit-btn');
+    if(btn) btn.innerHTML = "Memverifikasi... <span class='btn-arrow'>&rarr;</span>";
+
+    firebase.database().ref('users/' + username).once('value').then(snapshot => {
+        if (snapshot.exists()) {
+            const userData = snapshot.val();
+            if (userData.password === password) {
+                const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
+                sessionStorage.setItem("userLoggedIn", "true");
+                sessionStorage.setItem("username", cleanName);
+                window.location.href = "dashboard.html";
+            } else {
+                if (errorMsg) {
+                    errorMsg.textContent = "Password salah!";
+                    errorMsg.style.display = "block";
+                }
+                if(btn) btn.innerHTML = "Masuk ke Dashboard <span class='btn-arrow'>&rarr;</span>";
+            }
+        } else {
+            // Tetap izinkan kunci master jika user blm daftar, sebagai fallback darurat
+            if (password === "anakpapih2026") {
+                const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
+                sessionStorage.setItem("userLoggedIn", "true");
+                sessionStorage.setItem("username", cleanName);
+                window.location.href = "dashboard.html";
+            } else {
+                if (errorMsg) {
+                    errorMsg.textContent = "Akun tidak ditemukan. Silakan daftar dulu.";
+                    errorMsg.style.display = "block";
+                }
+                if(btn) btn.innerHTML = "Masuk ke Dashboard <span class='btn-arrow'>&rarr;</span>";
+            }
+        }
+    }).catch(err => {
         if (errorMsg) {
-            errorMsg.textContent = "Password salah!";
+            errorMsg.textContent = "Terjadi kesalahan koneksi database.";
             errorMsg.style.display = "block";
         }
+        if(btn) btn.innerHTML = "Masuk ke Dashboard <span class='btn-arrow'>&rarr;</span>";
+    });
+}
+
+function handleRegister(event) {
+    if (event) event.preventDefault();
+    const usernameInput = document.getElementById("reg-username");
+    const passwordInput = document.getElementById("reg-password");
+    const confirmInput = document.getElementById("reg-password-confirm");
+    const errorMsg = document.getElementById("reg-error");
+    const successMsg = document.getElementById("reg-success");
+
+    const username = usernameInput ? usernameInput.value.trim() : "";
+    const password = passwordInput ? passwordInput.value.trim() : "";
+    const confirm = confirmInput ? confirmInput.value.trim() : "";
+
+    errorMsg.style.display = "none";
+    successMsg.style.display = "none";
+
+    if (!username || !password || !confirm) {
+        errorMsg.textContent = "Semua kolom wajib diisi!";
+        errorMsg.style.display = "block";
+        return;
     }
+
+    if (password !== confirm) {
+        errorMsg.textContent = "Password dan Konfirmasi tidak cocok!";
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    if (password.length < 5) {
+        errorMsg.textContent = "Password minimal 5 karakter!";
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    if (typeof firebase === 'undefined') {
+        errorMsg.textContent = "Gagal terhubung ke database registrasi.";
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    const btn = document.querySelector('#register-form .login-submit-btn');
+    if(btn) btn.innerHTML = "Membuat Akun... <span class='btn-arrow'>&rarr;</span>";
+
+    const dbRef = firebase.database().ref('users/' + username);
+    dbRef.once('value').then(snapshot => {
+        if (snapshot.exists()) {
+            errorMsg.textContent = "Username ini sudah dipakai oleh orang lain!";
+            errorMsg.style.display = "block";
+            if(btn) btn.innerHTML = "Buat Akun Baru <span class='btn-arrow'>&rarr;</span>";
+        } else {
+            dbRef.set({
+                password: password,
+                createdAt: Date.now()
+            }).then(() => {
+                successMsg.textContent = "Akun berhasil dibuat! Silakan masuk.";
+                successMsg.style.display = "block";
+                usernameInput.value = "";
+                passwordInput.value = "";
+                confirmInput.value = "";
+                if(btn) btn.innerHTML = "Buat Akun Baru <span class='btn-arrow'>&rarr;</span>";
+                
+                // Auto switch to login after 1.5 seconds
+                setTimeout(() => toggleForm('login'), 1500);
+            });
+        }
+    }).catch(err => {
+        errorMsg.textContent = "Terjadi kesalahan koneksi database.";
+        errorMsg.style.display = "block";
+        if(btn) btn.innerHTML = "Buat Akun Baru <span class='btn-arrow'>&rarr;</span>";
+    });
 }
 
 function handleLogout() {
