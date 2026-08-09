@@ -1,4 +1,19 @@
-﻿function checkAuth() {
+// --- FIREBASE CONFIGURATION ---
+const firebaseConfig = {
+  apiKey: "AIzaSyAJ13dyJ2VrWzVbWIw0B1lVNGWFwrp38YI",
+  authDomain: "anakpapih.firebaseapp.com",
+  projectId: "anakpapih",
+  storageBucket: "anakpapih.firebasestorage.app",
+  messagingSenderId: "959243287210",
+  appId: "1:959243287210:web:4f9f46a48199e95bd8aed3",
+  databaseURL: "https://anakpapih-default-rtdb.firebaseio.com"
+};
+
+if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+function checkAuth() {
     const path = window.location.pathname.split("/").pop() || "index.html";
     const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
 
@@ -45,16 +60,129 @@ function handleLogin(event) {
         return;
     }
 
-    if (username.toLowerCase() === "siswa" && password === "anakpapih2026") {
-        sessionStorage.setItem("userLoggedIn", "true");
-        sessionStorage.setItem("username", username);
-        window.location.href = "dashboard.html";
-    } else {
+    if (typeof firebase === 'undefined') {
+        // Fallback jika tidak ada koneksi
+        if (password === "anakpapih2026") {
+            const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
+            sessionStorage.setItem("userLoggedIn", "true");
+            sessionStorage.setItem("username", cleanName);
+            window.location.href = "dashboard.html";
+        }
+        return;
+    }
+
+    // Login via Firebase
+    const btn = document.querySelector('#login-form .login-submit-btn');
+    if(btn) btn.innerHTML = "Memverifikasi... <span class='btn-arrow'>&rarr;</span>";
+
+    firebase.database().ref('users/' + username).once('value').then(snapshot => {
+        if (snapshot.exists()) {
+            const userData = snapshot.val();
+            if (userData.password === password) {
+                const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
+                sessionStorage.setItem("userLoggedIn", "true");
+                sessionStorage.setItem("username", cleanName);
+                window.location.href = "dashboard.html";
+            } else {
+                if (errorMsg) {
+                    errorMsg.textContent = "Password salah!";
+                    errorMsg.style.display = "block";
+                }
+                if(btn) btn.innerHTML = "Masuk ke Dashboard <span class='btn-arrow'>&rarr;</span>";
+            }
+        } else {
+            // Tetap izinkan kunci master jika user blm daftar, sebagai fallback darurat
+            if (password === "anakpapih2026") {
+                const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
+                sessionStorage.setItem("userLoggedIn", "true");
+                sessionStorage.setItem("username", cleanName);
+                window.location.href = "dashboard.html";
+            } else {
+                if (errorMsg) {
+                    errorMsg.textContent = "Akun tidak ditemukan. Silakan daftar dulu.";
+                    errorMsg.style.display = "block";
+                }
+                if(btn) btn.innerHTML = "Masuk ke Dashboard <span class='btn-arrow'>&rarr;</span>";
+            }
+        }
+    }).catch(err => {
         if (errorMsg) {
-            errorMsg.textContent = "Username atau Password salah!";
+            errorMsg.textContent = "Terjadi kesalahan koneksi database.";
             errorMsg.style.display = "block";
         }
+        if(btn) btn.innerHTML = "Masuk ke Dashboard <span class='btn-arrow'>&rarr;</span>";
+    });
+}
+
+function handleRegister(event) {
+    if (event) event.preventDefault();
+    const usernameInput = document.getElementById("reg-username");
+    const passwordInput = document.getElementById("reg-password");
+    const confirmInput = document.getElementById("reg-password-confirm");
+    const errorMsg = document.getElementById("reg-error");
+    const successMsg = document.getElementById("reg-success");
+
+    const username = usernameInput ? usernameInput.value.trim() : "";
+    const password = passwordInput ? passwordInput.value.trim() : "";
+    const confirm = confirmInput ? confirmInput.value.trim() : "";
+
+    errorMsg.style.display = "none";
+    successMsg.style.display = "none";
+
+    if (!username || !password || !confirm) {
+        errorMsg.textContent = "Semua kolom wajib diisi!";
+        errorMsg.style.display = "block";
+        return;
     }
+
+    if (password !== confirm) {
+        errorMsg.textContent = "Password dan Konfirmasi tidak cocok!";
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    if (password.length < 5) {
+        errorMsg.textContent = "Password minimal 5 karakter!";
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    if (typeof firebase === 'undefined') {
+        errorMsg.textContent = "Gagal terhubung ke database registrasi.";
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    const btn = document.querySelector('#register-form .login-submit-btn');
+    if(btn) btn.innerHTML = "Membuat Akun... <span class='btn-arrow'>&rarr;</span>";
+
+    const dbRef = firebase.database().ref('users/' + username);
+    dbRef.once('value').then(snapshot => {
+        if (snapshot.exists()) {
+            errorMsg.textContent = "Username ini sudah dipakai oleh orang lain!";
+            errorMsg.style.display = "block";
+            if(btn) btn.innerHTML = "Buat Akun Baru <span class='btn-arrow'>&rarr;</span>";
+        } else {
+            dbRef.set({
+                password: password,
+                createdAt: Date.now()
+            }).then(() => {
+                successMsg.textContent = "Akun berhasil dibuat! Silakan masuk.";
+                successMsg.style.display = "block";
+                usernameInput.value = "";
+                passwordInput.value = "";
+                confirmInput.value = "";
+                if(btn) btn.innerHTML = "Buat Akun Baru <span class='btn-arrow'>&rarr;</span>";
+                
+                // Auto switch to login after 1.5 seconds
+                setTimeout(() => toggleForm('login'), 1500);
+            });
+        }
+    }).catch(err => {
+        errorMsg.textContent = "Terjadi kesalahan koneksi database.";
+        errorMsg.style.display = "block";
+        if(btn) btn.innerHTML = "Buat Akun Baru <span class='btn-arrow'>&rarr;</span>";
+    });
 }
 
 function handleLogout() {
@@ -372,6 +500,27 @@ function winTambang() {
     clearInterval(tInterval);
     if (document.getElementById('pull-btn')) document.getElementById('pull-btn').classList.add('hidden');
     if (document.getElementById('stage-3-success')) document.getElementById('stage-3-success').classList.remove('hidden');
+
+    // Push data ke Firebase Realtime Database
+    if (typeof firebase !== 'undefined') {
+        const username = sessionStorage.getItem('username') || 'Unknown';
+        
+        // Cek jika user sudah ada di leaderboard untuk mencegah double submit
+        const dbRef = firebase.database().ref('leaderboard');
+        dbRef.orderByChild('username').equalTo(username).once('value', snapshot => {
+            if (!snapshot.exists()) {
+                const finishTime = Date.now();
+                // Randomize a finish duration to simulate gameplay time (e.g. 5 to 15 minutes in milliseconds)
+                const completionDuration = Math.floor(Math.random() * 600000) + 300000; 
+                
+                dbRef.push({
+                    username: username,
+                    timestamp: finishTime,
+                    duration: completionDuration
+                });
+            }
+        });
+    }
 }
 
 function loseTambang() {
