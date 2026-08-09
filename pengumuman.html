@@ -1,13 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengumuman - Web Anak Papih</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
-        /* Style tambahan khusus halaman pengumuman agar gambar clue samar */
         .clue-image-container {
             position: relative;
             margin: 1.5rem 0;
@@ -15,23 +16,24 @@
             border-radius: 14px;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
         }
+
         .clue-image {
             width: 100%;
             height: auto;
             display: block;
-            /* Membuat gambar menjadi agak samar/buram sesuai permintaan */
-            filter: blur(3px) grayscale(50%);
+            filter: blur(2px) grayscale(40%);
             transition: filter 0.3s ease;
         }
-        /* Gambar akan sedikit jelas jika di-hover (opsional, untuk interaksi) */
+
         .clue-image-container:hover .clue-image {
-            filter: blur(1px) grayscale(0%);
+            filter: blur(0px) grayscale(0%);
         }
+
         .clue-overlay-text {
             position: absolute;
             bottom: 10px;
             right: 15px;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             color: white;
             padding: 5px 10px;
             border-radius: 4px;
@@ -41,6 +43,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="dashboard-container">
         <aside class="sidebar-left">
@@ -48,7 +51,7 @@
             <div class="logo">
                 <span class="logo-icon">🎓</span> Anak Papih
             </div>
-            
+
             <div class="sidebar-section">MAIN MENU</div>
             <ul class="nav-menu">
                 <li><a href="dashboard.html">🏠 <span class="nav-text">Beranda</span></a></li>
@@ -62,12 +65,12 @@
                 <li><a href="pengumuman.html">📢 <span class="nav-text">Pengumuman</span></a></li>
                 <li><a href="galeri.html">🖼️ <span class="nav-text">Galeri</span></a></li>
             </ul>
-            
-            <div class="sidebarSpacer"></div>
+
+            <div class="sidebar-spacer"></div>
 
             <ul class="nav-menu">
-                <!-- Ini adalah tombol yang memicu 'Hijacked' error -->
-                <li><a href="hijacked.html?route=https://www.youtube.com/watch?v=dQw4w9WgXcQ&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17" target="_blank" class="danger-link">🚀 <span class="nav-text">Portal Panitia</span></a></li>
+                <li><a href="#" onclick="openPortalPanitia(event)" class="danger-link">🚀 <span class="nav-text">Portal
+                            Panitia</span></a></li>
             </ul>
         </aside>
         <div class="main-wrapper">
@@ -80,107 +83,115 @@
                 </div>
             </header>
 
-    <header class="blog-header header-pengumuman">
-        <h1>Pengumuman Resmi</h1>
-        <p>Papan pengumuman penting untuk seluruh elemen sekolah.</p>
-    </header>
+            <header class="blog-header header-pengumuman">
+                <h1>Pengumuman Resmi</h1>
+                <p>Papan pengumuman penting untuk seluruh elemen sekolah.</p>
+            </header>
 
-    <div class="blog-layout">
-        <main class="blog-content">
-            <!-- ARTIKEL CLUE UTAMA (BARU) -->
-            <article class="post">
-                <h2 style="color: var(--primary);">Peringatan Keamanan Portal & Protokol 17</h2>
-                <p class="date">Dipublikasikan: Hari Ini, 2026</p>
-                
-                <p>Tim IT sekolah mendeteksi adanya anomali pada sistem **Portal Panitia** (tombol merah di sidebar). Tampaknya ada pihak ketiga yang mencoba mencegat rute komunikasi asli kita dan mengalihkannya ke server eksternal (YouTube).</p>
+            <div class="blog-layout">
+                <main class="blog-content">
+                    <!-- ARTIKEL PENGUMUMAN DENGAN HINT TERSIRAT -->
+                    <article class="post">
+                        <h2 style="color: var(--primary);">Himbauan Keamanan: Gangguan Rute Akses Portal Panitia</h2>
+                        <p class="date">Dipublikasikan: 16 Agustus 2026</p>
 
-                <!-- GAMBAR CLUE SAMAR (GENERATED) -->
-                <div class="clue-image-container">
-                    <img src="assets/images/clue_hijacked_samar.jpg" alt="Petunjuk Teka-teki Hijacked" class="clue-image">
-                    <div class="clue-overlay-text">ERR_ROUTE_HIJACKED</div>
+                        <p>Diberitahukan kepada seluruh panitia dan pengurus acara, Tim IT Sekolah mendeteksi adanya
+                            gangguan teknis pada tautan <strong>Portal Panitia</strong> di menu navigasi samping. Tautan
+                            tersebut saat ini terindikasi mengalami pengalihan paksa (hijacked) ke platform eksternal
+                            seperti YouTube.</p>
+
+                        <div class="clue-image-container">
+                            <img src="assets/images/clue_hijacked_samar.jpg" alt="Tampilan Gangguan Akses Portal"
+                                class="clue-image">
+                            <div class="clue-overlay-text">DIAGNOSTIC_LOG_17</div>
+                        </div>
+
+                        <p>Bagi panitia yang perlu mengakses portal darurat secara manual, harap perhatikan teks alamat
+                            web (URL) pada browser saat halaman error terbuka. Gangguan ini menyelipkan rute tambahan
+                            (<code>route=...</code>) di depan alamat tujuan yang asli.</p>
+
+                        <div class="hint"
+                            style="background-color: rgba(239, 68, 68, 0.08); border-left: 4px solid var(--primary); color: var(--text-main) !important; margin-top: 1.5rem; padding: 1rem 1.2rem;">
+                            <strong>Catatan Tim IT:</strong><br>
+                            Untuk terhubung ke portal asli, bersihkan/hapus parameter tautan YouTube yang menempel pada
+                            baris alamat URL Anda.
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <h2>Jadwal Ujian Semester Ganjil</h2>
+                        <p class="date">Dipublikasikan: 15 Agustus 2026</p>
+                        <p>Diinformasikan kepada seluruh siswa bahwa Ujian Tengah Semester (UTS) ganjil akan
+                            dilaksanakan mulai tanggal 10 September hingga 17 September 2026. Harap mempersiapkan diri
+                            dengan baik dan melunasi administrasi sebelum tanggal 5 September.</p>
+                    </article>
+
+                    <article class="post">
+                        <h2>Pembayaran Uang Gedung dan SPP</h2>
+                        <p class="date">Dipublikasikan: 12 Agustus 2026</p>
+                        <p>Bagi siswa kelas 7 yang belum melunasi uang gedung tahap pertama, batas waktu pembayaran
+                            diperpanjang hingga akhir bulan ini. Pembayaran dapat dilakukan melalui transfer bank ke
+                            rekening resmi sekolah atau langsung ke bagian tata usaha.</p>
+                    </article>
+
+                    <article class="post">
+                        <h2>Tata Tertib Kebersihan Lingkungan Sekolah</h2>
+                        <p class="date">Dipublikasikan: 10 Agustus 2026</p>
+                        <p>Demi menjaga kenyamanan belajar bersama, seluruh siswa diwajibkan untuk menjaga kebersihan.
+                            Dilarang keras membuang sampah di seLAtan lapangan utama saat jam istirahat. Satpam sekolah
+                            akan melakukan patroli secara rutin dan akan menindak tegas pelanggar.</p>
+                    </article>
+                </main>
+
+                <aside class="sidebar">
+                    <div class="widget">
+                        <h3>Layanan IT Sekolah</h3>
+                        <ul>
+                            <li><a href="#">Status Server: <span
+                                        style="color: var(--primary); font-weight: bold;">Anomali</span></a></li>
+                            <li><a href="#">Lapor Kendala Portal</a></li>
+                            <li><a href="#">Panduan Akses Jaringan</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h3>Pencarian</h3>
+                        <input type="text" placeholder="Cari pengumuman..." style="width:100%; padding: 8px;">
+                    </div>
+
+                    <div class="widget">
+                        <h3>Link Terkait</h3>
+                        <ul>
+                            <li><a href="#">Portal Nilai Siswa</a></li>
+                            <li><a href="#" onclick="showFakeLogin()">Login Admin (Khusus Guru)</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+
+            <footer class="blog-footer">
+                <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP
+                    Merdeka.</p>
+            </footer>
+
+            <!-- FAKE LOGIN MODAL -->
+            <div id="login-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <h2>Akses Portal Panitia</h2>
+                    <p>Masukkan sandi rahasia gabungan (12 huruf/angka).</p>
+                    <div class="input-group">
+                        <input type="text" id="secret-code" placeholder="Sandi rahasia...">
+                        <button onclick="checkSecretCode()">Buka Portal</button>
+                    </div>
+                    <p id="modal-error" class="error-msg"></p>
                 </div>
-
-                <p>Gejala yang muncul adalah: saat Anda mengklik tombol tersebut, Anda akan melihat halaman error "FATAL ERROR: ROUTE_HIJACKED".</p>
-
-                <div class="hint" style="background-color: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: var(--primary) !important; margin-top: 1.5rem;">
-                    <strong>Petunjuk Detektif IT:</strong><br>
-                    "Jangan terkecoh oleh apa yang ditampilkan di layar. Masalahnya bukan pada kodenya, tapi pada *jalan* yang diambil. Perhatikan baik-baik **Alamat URL** (Address Bar) di browser Anda saat halaman error muncul. Ada penumpang gelap yang mencoba bersembunyi di sana. Hapus penumpang gelap tersebut (jalur YouTube) untuk menemukan rute target yang asli."
-                </div>
-            </article>
-
-            <!-- Pengumuman Lainnya (Sudah Ada) -->
-            <article class="post">
-                <h2>Jadwal Ujian Semester Ganjil</h2>
-                <p class="date">Dipublikasikan: 15 Agustus 2026</p>
-                <p>Diinformasikan kepada seluruh siswa bahwa Ujian Tengah Semester (UTS) ganjil akan dilaksanakan mulai tanggal 10 September hingga 17 September 2026. Harap mempersiapkan diri dengan baik dan melunasi administrasi sebelum tanggal 5 September.</p>
-            </article>
-
-            <article class="post">
-                <h2>Pembayaran Uang Gedung dan SPP</h2>
-                <p class="date">Dipublikasikan: 12 Agustus 2026</p>
-                <p>Bagi siswa kelas 7 yang belum melunasi uang gedung tahap pertama, batas waktu pembayaran diperpanjang hingga akhir bulan ini. Pembayaran dapat dilakukan melalui transfer bank ke rekening resmi sekolah atau langsung ke bagian tata usaha.</p>
-            </article>
-
-            <article class="post">
-                <h2>Tata Tertib Kebersihan Lingkungan Sekolah</h2>
-                <p class="date">Dipublikasikan: 10 Agustus 2026</p>
-                <p>Demi menjaga kenyamanan belajar bersama, seluruh siswa diwajibkan untuk menjaga kebersihan. Dilarang keras membuang sampah di seLAtan lapangan utama saat jam istirahat. Satpam sekolah akan melakukan patroli secara rutin dan akan menindak tegas pelanggar.</p>
-            </article>
-        </main>
-
-        <aside class="sidebar">
-            <!-- WIDGET CLUE TAMBAHAN (BARU) -->
-            <div class="widget" style="border: 2px solid var(--primary);">
-                <h3>🕵️‍♂️ Status Puzzle</h3>
-                <ul>
-                    <li>Status: <span style="color: var(--primary); font-weight: bold;">Jalur Dicegat</span></li>
-                    <li>Lokasi: <span style="font-family: monospace;">Portal Panitia (Sidebar)</span></li>
-                    <li>Tingkat Kesulitan: 🔴 Sulit</li>
-                    <li><a href="#" onclick="showClue2(); return false;" style="text-decoration: underline; color: #1a0dab;">Minta petunjuk tambahan?</a></li>
-                </ul>
             </div>
 
-            <div class="widget">
-                <h3>Pencarian</h3>
-                <input type="text" placeholder="Cari pengumuman..." style="width:100%; padding: 8px;">
-            </div>
-            <div class="widget">
-                <h3>Link Terkait</h3>
-                <ul>
-                    <li><a href="#">Portal Nilai Siswa</a></li>
-                    <li><a href="#" onclick="showFakeLogin()">Login Admin (Khusus Guru)</a></li>
-                </ul>
-            </div>
-        </aside>
-    </div>
-
-    <footer class="blog-footer">
-        <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP Merdeka.</p>
-    </footer>
-
-    <!-- FAKE LOGIN MODAL -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Akses Portal Panitia</h2>
-            <p>Masukkan sandi rahasia gabungan (12 huruf/angka).</p>
-            <div class="input-group">
-                <input type="text" id="secret-code" placeholder="Sandi rahasia...">
-                <button onclick="checkSecretCode()">Buka Portal</button>
-            </div>
-            <p id="modal-error" class="error-msg"></p>
+            <div id="toast" class="toast"></div>
+            <script src="assets/js/script.js"></script>
         </div>
     </div>
-    
-    <div id="toast" class="toast"></div>
-    <script src="assets/js/script.js"></script>
-    <script>
-        // Fungsi tambahan khusus untuk clue kedua di sidebar
-        function showClue2() {
-            showToast("Penumpang gelap bersembunyi di balik kata 'route='. Hapus 'route=' beserta isinya!");
-        }
-    </script>
-</div>
-    </div>
 </body>
+
 </html>

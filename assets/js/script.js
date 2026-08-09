@@ -532,3 +532,71 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+// --- MIDDLEWARE PORTAL PANITIA (LOCKED PORTAL) ---
+function openPortalPanitia(event) {
+    if (event) event.preventDefault(); // Tahan link agar tidak langsung berpindah/terbuka
+
+    // Cek apakah modal portal panitia sudah ada di DOM, jika belum buat dinamis
+    let modal = document.getElementById("portal-lock-modal");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "portal-lock-modal";
+        modal.className = "modal";
+        modal.style.display = "block";
+        modal.innerHTML = `
+            <div class="modal-content" style="border: 2px solid var(--primary);">
+                <span class="close-btn" onclick="closePortalModal()">&times;</span>
+                <h2 style="color: var(--primary);">🔒 Akses Portal Panitia Terkunci</h2>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Masukkan kata sandi otorisasi panitia untuk melanjutkan.</p>
+                
+                <div style="background: rgba(239, 68, 68, 0.08); padding: 10px; border-radius: 10px; margin: 15px 0; font-size: 0.85rem; border-left: 3px solid var(--primary); text-align: left;">
+                    🎵 <strong>Petunjuk Suara Panitia:</strong><br>
+                    Dengarkan lagu kebangsaan <em>Indonesia Raya</em> tepat pada timestamp <strong>01:05</strong>. Kata apa yang terdengar bergelora di detik tersebut?
+                </div>
+
+                <div class="input-group" style="margin-top: 1rem;">
+                    <input type="password" id="portal-password-input" placeholder="Ketik kata sandi..." style="text-align: center; font-weight: bold; letter-spacing: 1px;">
+                    <button onclick="verifyPortalPassword()">Buka Portal Panitia &rarr;</button>
+                </div>
+                <p id="portal-error-msg" class="error-msg" style="margin-top: 10px;"></p>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    } else {
+        modal.style.display = "block";
+    }
+
+    // Reset input dan error setiap dibuka
+    const pwdInput = document.getElementById("portal-password-input");
+    const errorMsg = document.getElementById("portal-error-msg");
+    if (pwdInput) pwdInput.value = "";
+    if (errorMsg) errorMsg.textContent = "";
+}
+
+function closePortalModal() {
+    const modal = document.getElementById("portal-lock-modal");
+    if (modal) modal.style.display = "none";
+}
+
+function verifyPortalPassword() {
+    const pwdInput = document.getElementById("portal-password-input");
+    const errorMsg = document.getElementById("portal-error-msg");
+    const password = pwdInput ? pwdInput.value.trim().toLowerCase() : "";
+
+    // Password kunci: merdeka
+    if (password === "merdeka") {
+        closePortalModal();
+        showToast("🔓 Sandi Benar! Mengalihkan ke Portal Panitia...");
+        
+        // Buka URL Hijacked secara aman setelah lolos password
+        const targetUrl = "hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17";
+        setTimeout(() => {
+            window.open(targetUrl, "_blank");
+        }, 800);
+    } else {
+        if (errorMsg) {
+            errorMsg.textContent = "❌ Kata sandi salah! Coba dengarkan kembali lagu pada detik 1:05.";
+        }
+    }
+}

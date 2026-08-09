@@ -1,12 +1,32 @@
 ﻿<!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda - Web Anak Papih</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Style untuk penyamaran decoy element */
+        .encrypted-text {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #ef4444;
+            cursor: pointer;
+        }
+
+        body.dark-mode .encrypted-text {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f87171;
+        }
+    </style>
 </head>
+
 <body>
     <div class="dashboard-container">
         <aside class="sidebar-left">
@@ -14,7 +34,7 @@
             <div class="logo">
                 <span class="logo-icon">🎓</span> Anak Papih
             </div>
-            
+
             <div class="sidebar-section">MAIN MENU</div>
             <ul class="nav-menu">
                 <li><a href="dashboard.html">🏠 <span class="nav-text">Beranda</span></a></li>
@@ -28,16 +48,20 @@
                 <li><a href="pengumuman.html">📢 <span class="nav-text">Pengumuman</span></a></li>
                 <li><a href="galeri.html">🖼️ <span class="nav-text">Galeri</span></a></li>
             </ul>
-            
+
             <div class="sidebar-spacer"></div>
 
+            <!-- KODE BARU (TERKUNCI MIDDLEWARE) -->
             <ul class="nav-menu">
-                <li><a href="hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17" target="_blank" class="danger-link">🚀 <span class="nav-text">Portal Panitia</span></a></li>
+                <li><a href="#" onclick="openPortalPanitia(event)" class="danger-link">🚀 <span class="nav-text">Portal
+                            Panitia</span></a></li>
             </ul>
         </aside>
+
         <div class="main-wrapper">
             <header class="topbar">
                 <button class="hamburger-dashboard">☰</button>
+                <button class="back-btn" onclick="window.location.href='dashboard.html'">⬅ Kembali</button>
                 <div class="topbar-actions">
                     <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">🌙</button>
                     <button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button>
@@ -54,12 +78,26 @@
                     <article class="post">
                         <h2>Sambutan Kepala Sekolah</h2>
                         <img src="assets/images/hero_school.png" alt="Festival Sekolah" class="article-img">
-                        <p>Selamat datang di tahun ajaran baru! Sekolah mengharapkan PResensi penuh dari seluruh siswa dalam setiap kegiatan akademik maupun non-akademik demi mencapai prestasi terbaik.</p>
+                        <p>Selamat datang di tahun ajaran baru! Sekolah mengharapkan PResensi penuh dari seluruh siswa
+                            dalam setiap kegiatan akademik maupun non-akademik demi mencapai PREstasi terbaik.</p>
+
+                        <!-- CLUE JEBAKAN 1: String ala Base64 / Hex -->
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem;">
+                            <em>Catatan Arsip Server #0182: <span class="encrypted-text" onclick="showFakeToast()"
+                                    title="Klik untuk dekripsi">S05PV1BBU1NXT1JE</span> (Hash MD5 terenkripsi
+                                SHA-256)</em>
+                        </p>
                     </article>
 
                     <article class="post">
                         <h2>Visi & Misi SMP Merdeka</h2>
-                        <p>Mewujudkan generasi cerdas, berkarakter unggul, dan berdaya saing global melalui pembelajaran berkualitas dan lingkungan yang ramah anak.</p>
+                        <p>Mewujudkan generasi cerdas, berkarakter unggul, dan berdaya saing global melalui pembelajaran
+                            berkualitas dan lingkungan yang ramah anak.</p>
+
+                        <!-- CLUE JEBAKAN 2: Komentar HTML tersembunyi kalau mereka Inspect Element -->
+                        <!-- DEBUG_KEY_STAGE_0: "ROT13(XNZH_XEVX_NXH)" -> Kalau di-decode artinya "KAMU_KRIK_AKU" -->
+                        <div style="display: none;" id="hidden-debug-data" data-secret="42_IS_THE_ANSWER_BUT_NOT_HERE">
+                        </div>
                     </article>
                 </main>
 
@@ -72,6 +110,18 @@
                             <li>📚 Kurikulum: Kurikulum Merdeka</li>
                         </ul>
                     </div>
+
+                    <!-- CLUE JEBAKAN 3: Widget khusus yang seolah-olah butuh Password / PIN -->
+                    <div class="widget" style="border: 1px dashed var(--primary);">
+                        <h3>🔐 Kunci Portal Server</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">Masukkan Token
+                            Protokol Internal jika Anda Administrator:</p>
+                        <input type="text" id="fake-token-input" placeholder="Token 6-Digit..."
+                            style="width:100%; padding: 8px; margin-bottom: 8px; font-family: monospace;">
+                        <button onclick="checkFakeToken()"
+                            style="width: 100%; padding: 8px; font-size: 0.85rem;">Verifikasi Token</button>
+                    </div>
+
                     <div class="widget">
                         <h3>Akses Cepat</h3>
                         <ul>
@@ -84,12 +134,31 @@
             </div>
 
             <footer class="blog-footer">
-                <p>Hak Cipta &copy; 2026 Anak Papih SMP Merdeka.</p>
+                <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP
+                    Merdeka.</p>
             </footer>
 
             <div id="toast" class="toast"></div>
             <script src="assets/js/script.js"></script>
+
+            <!-- Script Tambahan Khusus Jebakan Beranda -->
+            <script>
+                function checkFakeToken() {
+                    const input = document.getElementById('fake-token-input').value.trim();
+                    if (input === "") {
+                        showToast("⚠️ Masukkan token terlebih dahulu!");
+                    } else {
+                        // Bikin mereka makin pusing dengan jawaban sistem
+                        showToast("❌ Token Salah! Petunjuk: 'Bukan di sini kunci utamanya, coba cari di mading pengumuman!'");
+                    }
+                }
+
+                function showYearSecret() {
+                    alert("Ayo cari lebih teliti lagi! Jangan gampang terkecoh angka 1945 ya 😉");
+                }
+            </script>
         </div>
     </div>
 </body>
+
 </html>

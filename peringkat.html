@@ -1,25 +1,30 @@
 ﻿<!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prestasi - Web Anak Papih</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         body.dark-mode .leaderboard-container {
             background: var(--dark-card) !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
         }
+
         body.dark-mode .list-item {
             background: rgba(15, 23, 42, 0.5) !important;
-            border-color: rgba(255,255,255,0.05) !important;
+            border-color: rgba(255, 255, 255, 0.05) !important;
         }
+
         body.dark-mode .progress-bar {
-            background: rgba(255,255,255,0.1) !important;
+            background: rgba(255, 255, 255, 0.1) !important;
         }
     </style>
 </head>
+
 <body>
     <div class="dashboard-container">
         <aside class="sidebar-left">
@@ -27,7 +32,7 @@
             <div class="logo">
                 <span class="logo-icon">🎓</span> Anak Papih
             </div>
-            
+
             <div class="sidebar-section">MAIN MENU</div>
             <ul class="nav-menu">
                 <li><a href="dashboard.html">🏠 <span class="nav-text">Beranda</span></a></li>
@@ -41,11 +46,13 @@
                 <li><a href="pengumuman.html">📢 <span class="nav-text">Pengumuman</span></a></li>
                 <li><a href="galeri.html">🖼️ <span class="nav-text">Galeri</span></a></li>
             </ul>
-            
+
             <div class="sidebar-spacer"></div>
 
+            <!-- KODE BARU (TERKUNCI MIDDLEWARE) -->
             <ul class="nav-menu">
-                <li><a href="hijacked.html?route=https://www.youtube.com/watch?v=gT5c0zP1h2s&target=https://john1507.github.io/AnakPapih-Competition/pos1.html?key=protokol17" target="_blank" class="danger-link">🚀 <span class="nav-text">Portal Panitia</span></a></li>
+                <li><a href="#" onclick="openPortalPanitia(event)" class="danger-link">🚀 <span class="nav-text">Portal
+                            Panitia</span></a></li>
             </ul>
         </aside>
         <div class="main-wrapper">
@@ -59,155 +66,214 @@
             </header>
 
             <header class="blog-header header-prestasi" style="text-align: center;">
-        <h1>Prestasi & Klasemen</h1>
-        <p>Berita Membanggakan & Papan Peringkat Umum 2026</p>
-    </header>
+                <h1>Prestasi & Klasemen</h1>
+                <p>Berita Membanggakan & Papan Peringkat Umum 2026</p>
+            </header>
 
-    <style>
-        .split-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            align-items: start;
-        }
-        @media (max-width: 1024px) {
-            .split-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+            <style>
+                .split-layout {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 2rem;
+                    padding: 2rem;
+                    max-width: 1400px;
+                    margin: 0 auto;
+                    align-items: start;
+                }
 
-    <div class="split-layout">
-        <main class="blog-content" style="width: 100%;">
-            <article class="post">
-                <h2>Juara 1 Lomba Pidato Bahasa Inggris</h2>
-                <p class="date">Dipublikasikan: 16 Agustus 2026</p>
-                <img src="assets/images/school_trophies.jpg" alt="Prestasi Gemilang" class="article-img">
-                <p>Selamat kepada ananda Siti dari kelas 9A yang berhasil menyabet juara pertama dalam perlombaan pidato bahasa Inggris tingkat provinsi. Prestasinya menjadi kebanggaan besar bagi SMP Merdeka.</p>
-            </article>
+                @media (max-width: 1024px) {
+                    .split-layout {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            </style>
 
-            <article class="post">
-                <h2>Medali Emas Olimpiade Sains Nasional (OSN)</h2>
-                <p class="date">Dipublikasikan: 12 Agustus 2026</p>
-                <p>Kabar gembira datang dari tim OSN IPA sekolah kita. Andi dari kelas 8C berhasil membawa pulang medali emas. Semoga ini bisa memotivasi siswa lain untuk terus berprestasi di bidang akademik.</p>
-            </article>
-            <article class="post">
-                <h2>Juara Umum Futsal Antar Sekolah Tingkat Kota</h2>
-                <p class="date">Dipublikasikan: 8 Agustus 2026</p>
-                <p>Tim Futsal kebanggaan kita berhasil menorehkan sejarah baru dengan memenangkan kejuaraan futsal tingkat kota tahun ini! Di partai final yang menegangkan, tim kita berhasil menundukkan lawannya dengan skor tipis 3-2. Semangat juang yang luar biasa!</p>
-            </article>
+            <div class="split-layout">
+                <main class="blog-content" style="width: 100%;">
+                    <article class="post">
+                        <h2>Juara 1 Lomba Pidato Bahasa Inggris</h2>
+                        <p class="date">Dipublikasikan: 16 Agustus 2026</p>
+                        <img src="assets/images/school_trophies.jpg" alt="Prestasi Gemilang" class="article-img">
+                        <p>Selamat kepada ananda Siti dari kelas 9A yang berhasil menyabet juara pertama dalam
+                            perlombaan pidato bahasa Inggris tingkat provinsi. Prestasinya menjadi kebanggaan besar bagi
+                            SMP Merdeka.</p>
+                    </article>
 
-            <article class="post">
-                <h2>Penghargaan Emas Tim Robotik Nasional</h2>
-                <p class="date">Dipublikasikan: 2 Agustus 2026</p>
-                <p>Ekskul Robotik kita kembali membuktikan tajinya di kancah nasional! Robot rancangan mereka yang difokuskan pada pengolahan limbah otomatis sukses menyabet medali emas kategori Inovasi Teknologi Tepat Guna. Selamat untuk seluruh anggota tim!</p>
-            </article>
+                    <article class="post">
+                        <h2>Medali Emas Olimpiade Sains Nasional (OSN)</h2>
+                        <p class="date">Dipublikasikan: 12 Agustus 2026</p>
+                        <p>Kabar gembira datang dari tim OSN IPA sekolah kita. Andi dari kelas 8C berhasil membawa
+                            pulang medali emas. Semoga ini bisa memotivasi siswa lain untuk terus berprestasi di bidang
+                            akademik.</p>
+                    </article>
+                    <article class="post">
+                        <h2>Juara Umum Futsal Antar Sekolah Tingkat Kota</h2>
+                        <p class="date">Dipublikasikan: 8 Agustus 2026</p>
+                        <p>Tim Futsal kebanggaan kita berhasil menorehkan sejarah baru dengan memenangkan kejuaraan
+                            futsal tingkat kota tahun ini! Di partai final yang menegangkan, tim kita berhasil
+                            menundukkan lawannya dengan skor tipis 3-2. Semangat juang yang luar biasa!</p>
+                    </article>
 
-            <article class="post">
-                <h2>Juara 2 Lomba Menulis Esai Kemerdekaan</h2>
-                <p class="date">Dipublikasikan: 28 Juli 2026</p>
-                <p>Di bidang literasi sastra, siswi kita, Rania dari kelas 9B, berhasil menduduki peringkat kedua dalam Lomba Menulis Esai Nasional dengan tema "Semangat Merah Putih di Era Digital". Tulisannya yang inspiratif mendapat apresiasi tinggi dari para juri.</p>
-            </article>
-        </main>
-        <aside class="leaderboard-sidebar" style="width: 100%;">
-            <div class="leaderboard-container" style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 2rem;">
-                
-                <!-- Podium Top 3 -->
-                <div class="podium-section" style="display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin-bottom: 3rem; margin-top: 2rem;">
-                    <!-- Rank 2 -->
-                    <div class="podium-item" style="display: flex; flex-direction: column; align-items: center;">
-                        <div class="avatar" style="width: 60px; height: 60px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 4px solid #cbd5e1; margin-bottom: 10px;">B</div>
-                        <div class="name" style="font-weight: bold; color: var(--text-main);">Budi</div>
-                        <div class="score" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">12j 22m</div>
-                        <div class="podium-block" style="width: 80px; height: 80px; background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold;">2</div>
-                    </div>
-                    
-                    <!-- Rank 1 -->
-                    <div class="podium-item" style="display: flex; flex-direction: column; align-items: center; transform: translateY(-20px);">
-                        <div style="font-size: 2rem; margin-bottom: -10px; z-index: 2;">👑</div>
-                        <div class="avatar" style="width: 80px; height: 80px; background: #fbbf24; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem; border: 4px solid #fde68a; margin-bottom: 10px; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);">J</div>
-                        <div class="name" style="font-weight: 800; color: var(--text-main); font-size: 1.2rem;">John</div>
-                        <div class="score" style="font-size: 0.85rem; color: var(--primary); font-weight: bold; margin-bottom: 10px;">14j 05m</div>
-                        <div class="podium-block" style="width: 100px; height: 120px; background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2.5rem; font-weight: bold;">1</div>
-                    </div>
+                    <article class="post">
+                        <h2>Penghargaan Emas Tim Robotik Nasional</h2>
+                        <p class="date">Dipublikasikan: 2 Agustus 2026</p>
+                        <p>Ekskul Robotik kita kembali membuktikan tajinya di kancah nasional! Robot rancangan mereka
+                            yang difokuskan pada pengolahan limbah otomatis sukses menyabet medali emas kategori Inovasi
+                            Teknologi Tepat Guna. Selamat untuk seluruh anggota tim!</p>
+                    </article>
 
-                    <!-- Rank 3 -->
-                    <div class="podium-item" style="display: flex; flex-direction: column; align-items: center;">
-                        <div class="avatar" style="width: 60px; height: 60px; background: #fb923c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 4px solid #fed7aa; margin-bottom: 10px;">R</div>
-                        <div class="name" style="font-weight: bold; color: var(--text-main);">Reza</div>
-                        <div class="score" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">11j 35m</div>
-                        <div class="podium-block" style="width: 80px; height: 60px; background: linear-gradient(180deg, #fb923c 0%, #ea580c 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold;">3</div>
-                    </div>
-                </div>
+                    <article class="post">
+                        <h2>Juara 2 Lomba Menulis Esai Kemerdekaan</h2>
+                        <p class="date">Dipublikasikan: 28 Juli 2026</p>
+                        <p>Di bidang literasi sastra, siswi kita, Rania dari kelas 9B, berhasil menduduki peringkat
+                            kedua dalam Lomba Menulis Esai Nasional dengan tema "Semangat Merah Putih di Era Digital".
+                            Tulisannya yang inspiratif mendapat apresiasi tinggi dari para juri.</p>
+                    </article>
+                </main>
+                <aside class="leaderboard-sidebar" style="width: 100%;">
+                    <div class="leaderboard-container"
+                        style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 2rem;">
 
-                <!-- List View (Rank 4+) -->
-                <div class="leaderboard-list" style="display: flex; flex-direction: column; gap: 10px;">
-                    <!-- Rank 4 -->
-                    <div class="list-item" style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                        <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">4</div>
-                        <div class="avatar-small" style="width: 40px; height: 40px; background: #60a5fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">L</div>
-                        <div class="info" style="flex: 1;">
-                            <div class="name" style="font-weight: 600; color: var(--text-main);">Lloyd</div>
-                            <div class="progress-bar" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
-                                <div style="width: 85%; height: 100%; background: #60a5fa; border-radius: 3px;"></div>
+                        <!-- Podium Top 3 -->
+                        <div class="podium-section"
+                            style="display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin-bottom: 3rem; margin-top: 2rem;">
+                            <!-- Rank 2 -->
+                            <div class="podium-item"
+                                style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="avatar"
+                                    style="width: 60px; height: 60px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 4px solid #cbd5e1; margin-bottom: 10px;">
+                                    B</div>
+                                <div class="name" style="font-weight: bold; color: var(--text-main);">Budi</div>
+                                <div class="score"
+                                    style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">12j 22m
+                                </div>
+                                <div class="podium-block"
+                                    style="width: 80px; height: 80px; background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold;">
+                                    2</div>
+                            </div>
+
+                            <!-- Rank 1 -->
+                            <div class="podium-item"
+                                style="display: flex; flex-direction: column; align-items: center; transform: translateY(-20px);">
+                                <div style="font-size: 2rem; margin-bottom: -10px; z-index: 2;">👑</div>
+                                <div class="avatar"
+                                    style="width: 80px; height: 80px; background: #fbbf24; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem; border: 4px solid #fde68a; margin-bottom: 10px; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);">
+                                    J</div>
+                                <div class="name" style="font-weight: 800; color: var(--text-main); font-size: 1.2rem;">
+                                    John</div>
+                                <div class="score"
+                                    style="font-size: 0.85rem; color: var(--primary); font-weight: bold; margin-bottom: 10px;">
+                                    14j 05m</div>
+                                <div class="podium-block"
+                                    style="width: 100px; height: 120px; background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2.5rem; font-weight: bold;">
+                                    1</div>
+                            </div>
+
+                            <!-- Rank 3 -->
+                            <div class="podium-item"
+                                style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="avatar"
+                                    style="width: 60px; height: 60px; background: #fb923c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; border: 4px solid #fed7aa; margin-bottom: 10px;">
+                                    R</div>
+                                <div class="name" style="font-weight: bold; color: var(--text-main);">Reza</div>
+                                <div class="score"
+                                    style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">11j 35m
+                                </div>
+                                <div class="podium-block"
+                                    style="width: 80px; height: 60px; background: linear-gradient(180deg, #fb923c 0%, #ea580c 100%); border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold;">
+                                    3</div>
                             </div>
                         </div>
-                        <div class="score" style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">10j 30m</div>
-                    </div>
 
-                    <!-- Rank 5 -->
-                    <div class="list-item" style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                        <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">5</div>
-                        <div class="avatar-small" style="width: 40px; height: 40px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">A</div>
-                        <div class="info" style="flex: 1;">
-                            <div class="name" style="font-weight: 600; color: var(--text-main);">Alex</div>
-                            <div class="progress-bar" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
-                                <div style="width: 75%; height: 100%; background: #94a3b8; border-radius: 3px;"></div>
+                        <!-- List View (Rank 4+) -->
+                        <div class="leaderboard-list" style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- Rank 4 -->
+                            <div class="list-item"
+                                style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
+                                <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">4
+                                </div>
+                                <div class="avatar-small"
+                                    style="width: 40px; height: 40px; background: #60a5fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
+                                    L</div>
+                                <div class="info" style="flex: 1;">
+                                    <div class="name" style="font-weight: 600; color: var(--text-main);">Lloyd</div>
+                                    <div class="progress-bar"
+                                        style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
+                                        <div style="width: 85%; height: 100%; background: #60a5fa; border-radius: 3px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="score"
+                                    style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">10j 30m
+                                </div>
+                            </div>
+
+                            <!-- Rank 5 -->
+                            <div class="list-item"
+                                style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
+                                <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">5
+                                </div>
+                                <div class="avatar-small"
+                                    style="width: 40px; height: 40px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
+                                    A</div>
+                                <div class="info" style="flex: 1;">
+                                    <div class="name" style="font-weight: 600; color: var(--text-main);">Alex</div>
+                                    <div class="progress-bar"
+                                        style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
+                                        <div style="width: 75%; height: 100%; background: #94a3b8; border-radius: 3px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="score"
+                                    style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">9j 40m</div>
+                            </div>
+
+                            <!-- Rank 6 -->
+                            <div class="list-item"
+                                style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
+                                <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">6
+                                </div>
+                                <div class="avatar-small"
+                                    style="width: 40px; height: 40px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">
+                                    D</div>
+                                <div class="info" style="flex: 1;">
+                                    <div class="name" style="font-weight: 600; color: var(--text-main);">Dina</div>
+                                    <div class="progress-bar"
+                                        style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
+                                        <div style="width: 70%; height: 100%; background: #94a3b8; border-radius: 3px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="score"
+                                    style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">9j 0m</div>
                             </div>
                         </div>
-                        <div class="score" style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">9j 40m</div>
                     </div>
-                    
-                    <!-- Rank 6 -->
-                    <div class="list-item" style="display: flex; align-items: center; padding: 15px 20px; background: var(--bg-light); border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                        <div class="rank" style="font-weight: bold; color: var(--text-muted); width: 30px;">6</div>
-                        <div class="avatar-small" style="width: 40px; height: 40px; background: #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 15px;">D</div>
-                        <div class="info" style="flex: 1;">
-                            <div class="name" style="font-weight: 600; color: var(--text-main);">Dina</div>
-                            <div class="progress-bar" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 3px; margin-top: 5px; overflow: hidden;">
-                                <div style="width: 70%; height: 100%; background: #94a3b8; border-radius: 3px;"></div>
-                            </div>
-                        </div>
-                        <div class="score" style="font-weight: bold; color: var(--text-muted); margin-left: 15px;">9j 0m</div>
+                </aside>
+            </div>
+            <footer class="blog-footer">
+                <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP
+                    Merdeka.</p>
+            </footer>
+
+            <!-- FAKE LOGIN MODAL -->
+            <div id="login-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <h2>Akses Portal Panitia</h2>
+                    <p>Masukkan sandi rahasia gabungan (12 huruf/angka).</p>
+                    <div class="input-group">
+                        <input type="text" id="secret-code" placeholder="Sandi rahasia...">
+                        <button onclick="checkSecretCode()">Buka Portal</button>
                     </div>
+                    <p id="modal-error" class="error-msg"></p>
                 </div>
             </div>
-        </aside>
-    </div>
-    <footer class="blog-footer">
-        <p>Hak Cipta &copy; <span id="easter-egg-year" onclick="showYearSecret()">1945</span> Anak Papih SMP Merdeka.</p>
-    </footer>
 
-    <!-- FAKE LOGIN MODAL -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Akses Portal Panitia</h2>
-            <p>Masukkan sandi rahasia gabungan (12 huruf/angka).</p>
-            <div class="input-group">
-                <input type="text" id="secret-code" placeholder="Sandi rahasia...">
-                <button onclick="checkSecretCode()">Buka Portal</button>
-            </div>
-            <p id="modal-error" class="error-msg"></p>
+            <div id="toast" class="toast"></div>
+            <script src="assets/js/script.js"></script>
         </div>
     </div>
-    
-    <div id="toast" class="toast"></div>
-    <script src="assets/js/script.js"></script>
-</div>
-    </div>
 </body>
+
 </html>
