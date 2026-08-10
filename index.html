@@ -531,15 +531,32 @@
             padding: 5rem 2rem;
             text-align: center;
         }
-        .contact-container {
-            max-width: 600px;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            max-width: 1000px;
             margin: 0 auto;
+        }
+        .contact-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .contact-image-container img:hover {
+            transform: scale(1.02);
+        }
+        .contact-container {
             background: white;
             padding: 3rem 2rem;
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             border: 1px solid rgba(0,0,0,0.02);
             transition: all 0.3s ease;
+            text-align: left;
         }
         body.dark-mode .contact-container {
             background: var(--dark-card);
@@ -577,23 +594,32 @@
         body.dark-mode .contact-label {
             color: var(--text-main);
         }
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
     </style>
     <section id="contact" class="contact-section">
-        <div class="contact-container">
-            <h2 class="section-title" style="margin-bottom: 0.5rem;">Hubungi Panitia</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.05rem;">Ada pertanyaan seputar kompetisi? Jangan ragu untuk mengirim pesan kepada kami.</p>
+        <h2 class="section-title" style="margin-bottom: 0.5rem;">Hubungi Panitia</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.05rem;">Ada pertanyaan seputar kompetisi? Jangan ragu untuk mengirim pesan kepada kami.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-image-container">
+                <img src="assets/images/logo_anak_papih.png" alt="Anak Papih Logo Besar">
+            </div>
             
-            <form id="contactForm" onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
-                <div>
-                    <label class="contact-label">Nama Lengkap</label>
-                    <input type="text" id="contactName" class="contact-input" required placeholder="Masukkan nama Anda">
-                </div>
-                <div>
-                    <label class="contact-label">Pesan / Pertanyaan</label>
-                    <textarea id="contactMessage" class="contact-input" required placeholder="Tuliskan pesan Anda di sini..." rows="4" style="resize: vertical;"></textarea>
-                </div>
-                <button type="submit" class="cta-btn" style="width: 100%; border: none; padding: 15px; margin-top: 10px; font-size: 1.1rem; border-radius: 12px;">Kirim Pesan &rarr;</button>
-            </form>
+            <div class="contact-container">
+                <form id="contactForm" onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
+                    <div>
+                        <label class="contact-label">Nama Lengkap</label>
+                        <input type="text" id="contactName" class="contact-input" required placeholder="Masukkan nama Anda">
+                    </div>
+                    <div>
+                        <label class="contact-label">Pesan / Pertanyaan</label>
+                        <textarea id="contactMessage" class="contact-input" required placeholder="Tuliskan pesan Anda di sini..." rows="4" style="resize: vertical;"></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn" style="width: 100%; border: none; padding: 15px; margin-top: 10px; font-size: 1.1rem; border-radius: 12px;">Kirim Pesan &rarr;</button>
+                </form>
+            </div>
         </div>
     </section>
 
