@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -394,7 +394,79 @@
         </div>
     </section>
 
-    <!-- 4. FOOTER -->
+    <!-- 4. CONTACT SECTION -->
+    <style>
+        .contact-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+        body.dark-mode .contact-container {
+            background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .contact-input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            outline: none;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.3s;
+            box-sizing: border-box;
+            color: var(--text-main);
+        }
+        body.dark-mode .contact-input {
+            background: #0f172a;
+            border-color: rgba(255,255,255,0.1);
+        }
+        .contact-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        .contact-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: block;
+        }
+        body.dark-mode .contact-label {
+            color: var(--text-main);
+        }
+    </style>
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="section-title" style="margin-bottom: 0.5rem;">Hubungi Panitia</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.05rem;">Ada pertanyaan seputar kompetisi? Jangan ragu untuk mengirim pesan kepada kami.</p>
+            
+            <form id="contactForm" onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
+                <div>
+                    <label class="contact-label">Nama Lengkap</label>
+                    <input type="text" id="contactName" class="contact-input" required placeholder="Masukkan nama Anda">
+                </div>
+                <div>
+                    <label class="contact-label">Pesan / Pertanyaan</label>
+                    <textarea id="contactMessage" class="contact-input" required placeholder="Tuliskan pesan Anda di sini..." rows="4" style="resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="cta-btn" style="width: 100%; border: none; padding: 15px; margin-top: 10px; font-size: 1.1rem; border-radius: 12px;">Kirim Pesan &rarr;</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 5. FOOTER -->
     <footer class="landing-footer">
         <p class="footer-text">&copy; 2026 Anak Papih Competition. Semua Hak Cipta Dilindungi.</p>
     </footer>
@@ -444,6 +516,42 @@
                 themeBtn.textContent = "🌙";
             }
         });
+
+        // Form Submit Handler untuk Contact Us
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Mengirim...';
+            btn.style.opacity = '0.7';
+            
+            const name = document.getElementById('contactName').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+                const dbRef = firebase.database().ref('contacts');
+                dbRef.push({
+                    name: name,
+                    message: message,
+                    timestamp: Date.now()
+                }).then(() => {
+                    alert('Terima kasih, ' + name + '! Pesan Anda telah terkirim ke panitia Anak Papih.');
+                    e.target.reset();
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                }).catch(err => {
+                    alert('Maaf, gagal mengirim pesan karena masalah koneksi.');
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                });
+            } else {
+                // Fallback jika firebase belum dimuat dengan baik
+                alert('Pesan simulasi berhasil terkirim. Terima kasih, ' + name + '!');
+                e.target.reset();
+                btn.innerHTML = originalText;
+                btn.style.opacity = '1';
+            }
+        }
     </script>
 </body>
 </html>
