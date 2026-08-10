@@ -36,14 +36,14 @@
     </div>
     <script>
         (function() {
-            const hasSeen = sessionStorage.getItem("hasSeenWelcome");
+            const hasSeen = sessionStorage.getItem("hasSeenWelcomeV2");
             const overlay = document.getElementById("welcome-overlay");
             if (hasSeen === "true") {
                 overlay.style.display = "none";
             } else {
                 const username = sessionStorage.getItem("username") || "Siswa";
                 document.getElementById("welcome-username").textContent = username;
-                sessionStorage.setItem("hasSeenWelcome", "true");
+                sessionStorage.setItem("hasSeenWelcomeV2", "true");
                 
                 setTimeout(() => {
                     overlay.style.opacity = "0";
