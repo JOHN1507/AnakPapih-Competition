@@ -309,7 +309,8 @@ function revealPos1() {
 function revealPos2() {
     document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'none');
     document.body.classList.add('active-game-bg');
-    startKerupukGameFullScreen();
+    const ctf = document.getElementById('ctf-game');
+    if (ctf) ctf.classList.remove('hidden');
 }
 
 function revealPos3() {
@@ -349,94 +350,34 @@ function checkPos1Password() {
     }
 }
 
-// --- POS 2 LOGIC (Makan Kerupuk Full Screen) ---
-let kClicks = 0;
-let kTimeLeft = 15.0;
-let kTimerInterval;
-let kMoveInterval;
-let kGameEnded = true;
-
-function startKerupukGameFullScreen() {
-    kClicks = 0;
-    kTimeLeft = 15.0;
-    kGameEnded = false;
+// --- POS 2 LOGIC (Digital Forensics) ---
+function checkPos2Password() {
+    const input = document.getElementById('pos2-password');
+    const errorEl = document.getElementById('error-game');
+    const successEl = document.getElementById('stage-2-success');
+    const btn = document.getElementById('submit-pos2-btn');
     
-    if (document.getElementById('k-score')) document.getElementById('k-score').textContent = '0';
-    if (document.getElementById('k-time')) document.getElementById('k-time').textContent = '15.0';
-    if (document.getElementById('kerupuk-full-screen')) document.getElementById('kerupuk-full-screen').classList.remove('hidden');
+    if(!input) return;
+    const val = input.value.trim().toUpperCase();
     
-    kTimerInterval = setInterval(updateKTimer, 100);
-    kMoveInterval = setInterval(moveKerupukFullScreen, 1000);
-    moveKerupukFullScreen(); 
-}
-
-function moveKerupukFullScreen() {
-    if (kGameEnded) return;
-    const kerupuk = document.getElementById('flying-kerupuk');
-    if (!kerupuk) return;
-    
-    const maxX = window.innerWidth - 100;
-    const maxY = window.innerHeight - 100;
-    
-    const randomX = Math.floor(Math.random() * maxX) + 50;
-    const randomY = Math.floor(Math.random() * maxY) + 50;
-    
-    kerupuk.style.left = `${randomX}px`;
-    kerupuk.style.top = `${randomY}px`;
-}
-
-function biteKerupuk() {
-    if (kGameEnded) return;
-    kClicks++;
-    if (document.getElementById('k-score')) document.getElementById('k-score').textContent = kClicks;
-    
-    const kerupuk = document.getElementById('flying-kerupuk');
-    if (kerupuk) kerupuk.style.transform = `translate(-50%, -50%) scale(${1 - (kClicks * 0.05)})`;
-    
-    moveKerupukFullScreen();
-    
-    if (kClicks >= 10 && kTimeLeft > 0) {
-        winKerupuk();
-    }
-}
-
-function updateKTimer() {
-    kTimeLeft -= 0.1;
-    if (document.getElementById('k-time')) document.getElementById('k-time').textContent = Math.max(0, kTimeLeft).toFixed(1);
-    
-    if (kTimeLeft <= 0) {
-        if (kClicks < 10) {
-            loseKerupuk();
+    if (val === "DIRGAHAYU79") {
+        if(errorEl) errorEl.textContent = '';
+        if(successEl) successEl.classList.remove('hidden');
+        if(btn) btn.disabled = true;
+        input.disabled = true;
+        
+        sessionStorage.setItem("pos3Unlocked", "true");
+        updateNavbarUI();
+    } else {
+        if(errorEl) {
+            errorEl.textContent = '> ERROR: PASSCODE TIDAK DITEMUKAN PADA DATABASE.';
+            setTimeout(() => {
+                if (errorEl.textContent.includes('TIDAK DITEMUKAN')) {
+                    errorEl.textContent = '';
+                }
+            }, 3000);
         }
     }
-}
-
-function winKerupuk() {
-    kGameEnded = true;
-    clearInterval(kTimerInterval);
-    clearInterval(kMoveInterval);
-    
-    if (document.getElementById('kerupuk-full-screen')) document.getElementById('kerupuk-full-screen').classList.add('hidden');
-    const pos2Intro = document.querySelector('.pos2-intro');
-    if (pos2Intro) pos2Intro.classList.remove('hidden');
-    
-    sessionStorage.setItem("pos3Unlocked", "true");
-    updateNavbarUI();
-}
-
-function loseKerupuk() {
-    kGameEnded = true;
-    clearInterval(kTimerInterval);
-    clearInterval(kMoveInterval);
-    
-    alert("Waktu habis! Kerupuk gagal ditangkap. Coba lagi dari awal.");
-    
-    if (document.getElementById('kerupuk-full-screen')) document.getElementById('kerupuk-full-screen').classList.add('hidden');
-    document.querySelectorAll('.decoy-element').forEach(el => el.style.display = 'block');
-    if (document.getElementById('arena-nav')) document.getElementById('arena-nav').classList.remove('game-nav');
-    document.body.classList.remove('active-game-bg');
-    
-    if (document.getElementById('flying-kerupuk')) document.getElementById('flying-kerupuk').style.transform = 'translate(-50%, -50%) scale(1)';
 }
 
 // --- POS 3 LOGIC (Tarik Tambang) ---

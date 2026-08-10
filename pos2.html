@@ -129,26 +129,67 @@
                 </aside>
             </div>
 
-            <div id="kerupuk-full-screen" class="full-screen-game hidden">
-                <div class="hud">
-                    &nbsp;|&nbsp; 🤤 Gigitan: <span id="k-score">0</span> / 10
-                </div>
-                <div id="flying-kerupuk" onclick="biteKerupuk()">🍘</div>
-            </div>
-
-            <div id="ctf-game" class="pos2-intro hidden">
-                <div class="app-container stage-container active">
-                    <div class="flag-icon">🍘</div>
-                    <h1>Alarm Dimatikan!</h1>
-                    <p>Nyam nyam! Kamu berhasil menangkap dan memakan semua kerupuk curiannya sebelum satpam pabrik
-                        datang.</p>
-
-                    <div id="stage-2-success">
-                        <p class="success-text" style="margin: 2rem 0;">Perut kenyang, siap melangkah!</p>
-                        <button class="next-btn" onclick="window.location.href='pos3.html'">Kabur ke Pos 3
-                            &rarr;</button>
+            <div id="ctf-game" class="hidden">
+                <style>
+                    .terminal-theme {
+                        font-family: 'Courier New', Courier, monospace;
+                        text-align: left;
+                        padding: 2rem;
+                        background: #ffffff;
+                        color: #1e293b;
+                        border: 1px solid #cbd5e1;
+                    }
+                    body.dark-mode .terminal-theme {
+                        background: #0b0f19;
+                        color: #10b981;
+                        border: 1px solid #10b981;
+                    }
+                    .terminal-input {
+                        font-family: 'Courier New', Courier, monospace;
+                        background: transparent; border: 1px solid #94a3b8; color: #1e293b; padding: 10px; width: 100%; font-size: 1.1rem; margin-top: 1rem;
+                    }
+                    body.dark-mode .terminal-input {
+                        border-color: #10b981; color: #10b981;
+                    }
+                    .terminal-btn {
+                        margin-top: 1rem; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; font-size: 1.1rem;
+                        font-family: 'Courier New', Courier, monospace;
+                        background: #3b82f6; color: white;
+                    }
+                    body.dark-mode .terminal-btn {
+                        background: #10b981; color: #0b0f19;
+                    }
+                    .terminal-header-text {
+                        color: #3b82f6 !important; margin-bottom: 1.5rem; text-align: center; border-bottom: 1px dashed #94a3b8; padding-bottom: 1rem; text-transform: uppercase;
+                    }
+                    body.dark-mode .terminal-header-text {
+                        color: #10b981 !important; border-bottom-color: #10b981;
+                    }
+                </style>
+                <div class="app-container stage-container active terminal-theme">
+                    <h1 class="terminal-header-text">Pos 2: Digital Forensics</h1>
+                    <div style="font-size: 1.2rem; margin-bottom: 1rem; color: #ef4444; font-weight: bold;">[REKAMAN LOG POS 2: DOKUMEN GALERI]</div>
+                    
+                    <p style="line-height: 1.6; margin-bottom: 1rem;">
+                        "Seseorang di divisi dokumentasi panitia membuat kesalahan fatal! Mereka mengunggah foto kegiatan 17-an ke Galeri Sekolah tanpa menghapus catatan rahasia yang menempel pada properti fotonya.
+                    </p>
+                    <p style="line-height: 1.6; margin-bottom: 2rem;">
+                        Foto itu terlihat biasa saja di layar, tetapi berkas aslinya menyembunyikan 'passcode' penting di dalam Exif Data (Comments/Properti Berkas). Cari foto tersebut di Galeri, unduh berkas aslinya, lalu temukan pesan teledor yang ditinggalkan panitia!"
+                    </p>
+                    
+                    <div>
+                        <label for="pos2-password" style="font-weight: bold; font-size: 1.1rem;">> INPUT PASSCODE_</label><br>
+                        <input type="text" id="pos2-password" class="terminal-input" placeholder="Ketik kata sandi di sini..." autocomplete="off">
+                        <button id="submit-pos2-btn" class="terminal-btn" onclick="checkPos2Password()">[ ENTER ]</button>
                     </div>
-                    <p id="error-stage-2" class="error-msg"></p>
+                    
+                    <p id="error-game" class="error-msg" style="color: #ef4444; margin-top: 1rem; font-weight: bold; font-family: monospace;"></p>
+                    
+                    <div id="stage-2-success" class="hidden" style="margin-top: 2rem; border-top: 1px dashed #10b981; padding-top: 1rem;">
+                        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 1rem;" class="success-text">> AKSES DITERIMA: PASSCODE VALID</p>
+                        <p>Analisis forensik selesai. Anda telah mendapatkan akses ke sistem Pos 2.</p>
+                        <button class="terminal-btn" onclick="window.location.href='pos3.html'">Maju ke Pos 3 &rarr;</button>
+                    </div>
                 </div>
             </div>
 
