@@ -30,27 +30,42 @@
 
 <body>
     <!-- WELCOME OVERLAY -->
-    <div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; transition: opacity 0.8s ease;">
-        <h1 style="color: white; font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; text-align: center; letter-spacing: -1px;">Selamat datang, <span id="welcome-username" style="color: white;">Siswa</span> 👋</h1>
-        <p style="color: #cbd5e1; font-size: 1.1rem; text-align: center; max-width: 600px; line-height: 1.6;">Sistem telah menyesuaikan profil berandamu. Mari jelajahi pengalaman perlombaan siber baru di Anak Papih Competition.</p>
+    <div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 1.2s ease, visibility 1.2s ease;">
+        <div id="welcome-content" style="transform: translateY(30px); opacity: 0; transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; align-items: center;">
+            <h1 style="color: white; font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; text-align: center; letter-spacing: -1px;">Selamat datang, <span id="welcome-username" style="color: white;">Siswa</span> 👋</h1>
+            <p style="color: #cbd5e1; font-size: 1.1rem; text-align: center; max-width: 600px; line-height: 1.6;">Sistem telah menyesuaikan profil berandamu. Mari jelajahi pengalaman perlombaan siber baru di Anak Papih Competition.</p>
+        </div>
     </div>
     <script>
         (function() {
-            const hasSeen = sessionStorage.getItem("hasSeenWelcomeV2");
+            const hasSeen = sessionStorage.getItem("hasSeenWelcomeV3");
             const overlay = document.getElementById("welcome-overlay");
+            const content = document.getElementById("welcome-content");
             if (hasSeen === "true") {
                 overlay.style.display = "none";
             } else {
                 const username = sessionStorage.getItem("username") || "Siswa";
                 document.getElementById("welcome-username").textContent = username;
-                sessionStorage.setItem("hasSeenWelcomeV2", "true");
+                sessionStorage.setItem("hasSeenWelcomeV3", "true");
                 
+                // Animasi masuk super smooth (fade in + slide up)
+                overlay.style.display = "flex";
+                setTimeout(() => {
+                    overlay.style.visibility = "visible";
+                    overlay.style.opacity = "1";
+                    content.style.opacity = "1";
+                    content.style.transform = "translateY(0)";
+                }, 50);
+                
+                // Menghilang perlahan setelah 3 detik
                 setTimeout(() => {
                     overlay.style.opacity = "0";
+                    content.style.transform = "translateY(-15px)";
+                    content.style.opacity = "0";
                     setTimeout(() => {
                         overlay.style.display = "none";
-                    }, 800);
-                }, 2500); // Tampil selama 2.5 detik
+                    }, 1200); // Tunggu sampai transisi CSS selesai
+                }, 3000); 
             }
         })();
     </script>

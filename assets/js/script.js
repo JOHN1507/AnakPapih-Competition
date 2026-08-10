@@ -191,6 +191,7 @@ function handleLogout() {
     sessionStorage.removeItem("unlocked");
     sessionStorage.removeItem("pos2Unlocked");
     sessionStorage.removeItem("pos3Unlocked");
+    sessionStorage.removeItem("hasSeenWelcomeV3");
     sessionStorage.removeItem("hasSeenWelcomeV2");
     sessionStorage.removeItem("hasSeenWelcome");
     window.location.href = "login.html";
