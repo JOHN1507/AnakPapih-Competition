@@ -66,7 +66,8 @@ function handleLogin(event) {
             const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
             sessionStorage.setItem("userLoggedIn", "true");
             sessionStorage.setItem("username", cleanName);
-            window.location.href = "dashboard.html";
+            if (typeof window.onLoginSuccess === 'function') window.onLoginSuccess();
+            else window.location.href = "dashboard.html";
         }
         return;
     }
@@ -82,7 +83,8 @@ function handleLogin(event) {
                 const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
                 sessionStorage.setItem("userLoggedIn", "true");
                 sessionStorage.setItem("username", cleanName);
-                window.location.href = "dashboard.html";
+                if (typeof window.onLoginSuccess === 'function') window.onLoginSuccess();
+                else window.location.href = "dashboard.html";
             } else {
                 if (errorMsg) {
                     errorMsg.textContent = "Password salah!";
@@ -96,7 +98,8 @@ function handleLogin(event) {
                 const cleanName = username.length > 15 ? username.substring(0, 15) + ".." : username;
                 sessionStorage.setItem("userLoggedIn", "true");
                 sessionStorage.setItem("username", cleanName);
-                window.location.href = "dashboard.html";
+                if (typeof window.onLoginSuccess === 'function') window.onLoginSuccess();
+                else window.location.href = "dashboard.html";
             } else {
                 if (errorMsg) {
                     errorMsg.textContent = "Akun tidak ditemukan. Silakan daftar dulu.";

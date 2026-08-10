@@ -13,7 +13,7 @@
 </head>
 
 <body class="login-page-bg">
-    <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem;">
+    <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; position: relative; z-index: 10;">
         <div class="logo">Anak Papih</div>
         <ul class="nav-links" style="display: flex; align-items: center; gap: 15px;">
             <li><a href="index.html" class="back-btn" style="text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 5px; color: var(--text-main); background: rgba(0,0,0,0.03); padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem; transition: 0.3s;">⬅ Kembali</a></li>
@@ -21,7 +21,73 @@
         </ul>
     </nav>
 
-    <main class="login-container">
+    <!-- DECORATIONS (Animasi Kerupuk & Panjat Pinang) -->
+    <div class="login-decorations" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 0;">
+        <style>
+            @keyframes kerupukSwing {
+                0% { transform: rotate(-10deg); }
+                100% { transform: rotate(10deg); }
+            }
+            @keyframes walkLegL {
+                0%, 100% { transform: rotate(25deg); }
+                50% { transform: rotate(-25deg); }
+            }
+            @keyframes walkLegR {
+                0%, 100% { transform: rotate(-25deg); }
+                50% { transform: rotate(25deg); }
+            }
+            @keyframes walkArmL {
+                0%, 100% { transform: rotate(-30deg); }
+                50% { transform: rotate(30deg); }
+            }
+            @keyframes walkArmR {
+                0%, 100% { transform: rotate(30deg); }
+                50% { transform: rotate(-30deg); }
+            }
+            .anim-walking #leg-l { animation: walkLegL 0.6s infinite; }
+            .anim-walking #leg-r { animation: walkLegR 0.6s infinite; }
+            .anim-walking #arm-l { animation: walkArmL 0.6s infinite; }
+            .anim-walking #arm-r { animation: walkArmR 0.6s infinite; }
+            
+            @media (max-width: 900px) {
+                #pinang-container { display: none !important; }
+                #kerupuk-container { left: 5% !important; }
+            }
+            @media (max-width: 600px) {
+                #kerupuk-container { display: none !important; }
+                #walking-human { display: none !important; }
+            }
+        </style>
+        
+        <!-- KERUPUK (Kiri) -->
+        <div id="kerupuk-container" style="position: absolute; left: 15%; top: -350px; display: flex; flex-direction: column; align-items: center; transition: top 1.5s cubic-bezier(0.34, 1.56, 0.64, 1); filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));">
+            <div style="width: 2px; height: 180px; background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(203,213,225,1) 100%);"></div>
+            <img src="assets/images/golden_kerupuk.png" alt="Kerupuk" style="width: 140px; animation: kerupukSwing 3s ease-in-out infinite alternate; transform-origin: top center;">
+        </div>
+
+        <!-- PANJAT PINANG (Kanan) -->
+        <div id="pinang-container" style="position: absolute; right: -350px; bottom: 0; height: 75%; display: flex; flex-direction: column; align-items: center; transition: right 1.5s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));">
+            <div style="width: 50px; height: 35px; background: #ef4444; position: relative; top: 15px; border-bottom: 17px solid white; border-radius: 2px;"></div>
+            <div style="width: 200px; height: 25px; border-radius: 50%; border: 6px solid #8b5cf6; position: absolute; top: 50px; transform: rotateX(65deg);"></div>
+            <div style="position: absolute; top: 60px; left: -20px; width: 40px; height: 40px; background: #fbbf24; border: 3px solid #b45309; border-radius: 6px;"></div>
+            <div style="position: absolute; top: 70px; right: -15px; width: 45px; height: 30px; background: #3b82f6; border: 3px solid #1e3a8a; border-radius: 6px;"></div>
+            <div style="width: 35px; height: 100%; background: linear-gradient(90deg, #b45309, #78350f, #b45309); border-radius: 12px 12px 0 0;"></div>
+        </div>
+
+        <!-- WALKING HUMAN -->
+        <div id="walking-human" style="position: absolute; left: -150px; bottom: 5%; transition: left 2.5s linear; color: var(--text-main);">
+            <svg width="80" height="150" viewBox="0 0 50 100" style="overflow: visible;">
+                <circle cx="25" cy="15" r="10" fill="none" stroke="currentColor" stroke-width="4"/>
+                <line x1="25" y1="25" x2="25" y2="60" stroke="currentColor" stroke-width="4"/>
+                <line x1="25" y1="35" x2="10" y2="55" stroke="currentColor" stroke-width="4" id="arm-l" style="transform-origin: 25px 35px;"/>
+                <line x1="25" y1="35" x2="40" y2="55" stroke="currentColor" stroke-width="4" id="arm-r" style="transform-origin: 25px 35px;"/>
+                <line x1="25" y1="60" x2="15" y2="95" stroke="currentColor" stroke-width="4" id="leg-l" style="transform-origin: 25px 60px;"/>
+                <line x1="25" y1="60" x2="35" y2="95" stroke="currentColor" stroke-width="4" id="leg-r" style="transform-origin: 25px 60px;"/>
+            </svg>
+        </div>
+    </div>
+    
+    <main class="login-container" style="position: relative; z-index: 10;">
         <div class="login-card">
             <div class="login-header">
                 <div class="login-badge">🔒 Akses Terproteksi</div>
@@ -147,6 +213,36 @@
                 document.querySelector('.login-header p').textContent = 'Silakan masuk terlebih dahulu untuk mengakses Beranda Sekolah & Arena Game Anak Papih.';
             }
         }
+
+        // Logic animasi
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                const kerupuk = document.getElementById('kerupuk-container');
+                const pinang = document.getElementById('pinang-container');
+                if(kerupuk) kerupuk.style.top = '0';
+                if(pinang) pinang.style.right = '8%';
+            }, 300);
+        });
+
+        // Dipanggil dari script.js saat berhasil login
+        window.onLoginSuccess = function() {
+            const human = document.getElementById("walking-human");
+            const kerupuk = document.getElementById("kerupuk-container");
+            
+            if (kerupuk) kerupuk.style.top = "-350px"; // Tarik kerupuk ke atas
+            
+            if (human && window.innerWidth > 600) {
+                human.classList.add("anim-walking");
+                human.style.left = "calc(100% - 350px)"; // Jalan menuju tiang
+                
+                // Beri waktu 2.5 detik agar animasi jalan selesai sebelum pindah
+                setTimeout(() => {
+                    window.location.href = "dashboard.html";
+                }, 2500);
+            } else {
+                window.location.href = "dashboard.html";
+            }
+        };
     </script>
 </body>
 
