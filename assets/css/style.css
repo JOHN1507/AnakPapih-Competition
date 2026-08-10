@@ -1210,9 +1210,9 @@ body.dark-mode .demo-credentials-box {
 }
 
 body.dark-mode .sidebar-left {
-    background: #0f172a;
+    background: #0b0f19; /* Align with main background */
     color: #f8fafc;
-    border-right: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.05); /* Soft border instead of none */
 }
 
 .sidebar-left .logo {
@@ -1290,7 +1290,7 @@ body.dark-mode .sidebar-left .nav-menu a:hover, body.dark-mode .sidebar-left .na
 }
 
 body.dark-mode .topbar {
-    background: rgba(15, 23, 42, 0.85);
+    background: rgba(11, 15, 25, 0.85);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
