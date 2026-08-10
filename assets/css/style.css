@@ -1,4 +1,4 @@
-﻿/* --- VARIABLES & RESET --- */
+/* --- VARIABLES & RESET --- */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -104,8 +104,8 @@ body {
     /* Margin negatif agar pinggiran blur tidak terpotong (vignette effect) */
     top: -30px; left: -30px; right: -30px; bottom: -30px;
     
-    filter: blur(8px);
-    opacity: 0.8; /* Transparansi agar gambar lebih terlihat */
+    filter: blur(8px) brightness(0.5);
+    opacity: 1; /* Transparansi agar gambar lebih terlihat */
     z-index: 0;
 }
 
@@ -115,16 +115,21 @@ body {
 }
 
 .blog-header h1 {
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: var(--dark);
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
     margin-bottom: 1rem;
     letter-spacing: -1px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0,0,0,0.5);
 }
 
 .blog-header p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
+    color: #f8fafc;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .blog-layout {
