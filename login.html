@@ -59,16 +59,6 @@
             }
         </style>
         
-        <!-- KERUPUK (Kiri) -->
-        <div id="kerupuk-container" style="position: absolute; left: 10%; top: -350px; display: flex; flex-direction: column; align-items: center; transition: top 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);">
-            <img src="assets/images/kerupuk_ai.jpg" alt="Kerupuk" style="width: 250px; mix-blend-mode: screen; animation: kerupukSwing 4s ease-in-out infinite alternate; transform-origin: top center;">
-        </div>
-
-        <!-- PANJAT PINANG (Kanan) -->
-        <div id="pinang-container" style="position: absolute; right: -400px; bottom: 0; height: 90vh; display: flex; flex-direction: column; align-items: center; transition: right 1.5s cubic-bezier(0.16, 1, 0.3, 1);">
-            <img src="assets/images/panjat_ai.jpg" alt="Panjat Pinang" style="height: 100%; object-fit: cover; mix-blend-mode: screen;">
-        </div>
-
         <!-- WALKING HUMAN -->
         <div id="walking-human" style="position: absolute; left: -150px; bottom: 5%; transition: left 2.5s linear; color: var(--text-main);">
             <svg width="80" height="150" viewBox="0 0 50 100" style="overflow: visible;">
@@ -211,24 +201,16 @@
 
         // Logic animasi
         document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                const kerupuk = document.getElementById('kerupuk-container');
-                const pinang = document.getElementById('pinang-container');
-                if(kerupuk) kerupuk.style.top = '-50px';
-                if(pinang) pinang.style.right = '2%';
-            }, 300);
+            // (Kosong karena dekorasi telah dihapus)
         });
 
         // Dipanggil dari script.js saat berhasil login
         window.onLoginSuccess = function() {
             const human = document.getElementById("walking-human");
-            const kerupuk = document.getElementById("kerupuk-container");
-            
-            if (kerupuk) kerupuk.style.top = "-350px"; // Tarik kerupuk ke atas
             
             if (human && window.innerWidth > 600) {
                 human.classList.add("anim-walking");
-                human.style.left = "calc(100% - 350px)"; // Jalan menuju tiang
+                human.style.left = "calc(100% - 350px)"; // Jalan menuju kanan
                 
                 // Beri waktu 2.5 detik agar animasi jalan selesai sebelum pindah
                 setTimeout(() => {
