@@ -691,18 +691,18 @@ button:active {
 .header-ekskul::before { background: url('../images/school_sports.jpg') center/cover no-repeat; }
 .header-galeri::before { background: url('../images/school_gallery.jpg') center/cover no-repeat; }
 body.dark-mode {
-    --bg-light: #0f172a;
+    --bg-light: #0b0f19; /* Latar belakang super gelap khas Obsidian */
     --text-main: #f8fafc;
-    --text-muted: #94a3b8;
+    --text-muted: #8b949e;
     --dark: #f8fafc;
-    --dark-card: #1e293b;
+    --dark-card: #161b22; /* Card color sangat pekat */
 }
 body.dark-mode .navbar {
-    background: rgba(15, 23, 42, 0.85);
+    background: rgba(11, 15, 25, 0.85);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 body.dark-mode .blog-header {
-    background: #0f172a;
+    background: #0b0f19;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 body.dark-mode .post, body.dark-mode .widget {
@@ -713,7 +713,7 @@ body.dark-mode .post h2, body.dark-mode .widget h3 {
     color: var(--text-main);
 }
 body.dark-mode .sidebar input {
-    background: #0f172a;
+    background: #0b0f19;
     color: var(--text-main);
     border: 1px solid rgba(255,255,255,0.1);
 }
@@ -742,7 +742,7 @@ body.dark-mode .sidebar input {
 }
 
 body.dark-mode.login-page-bg {
-    background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1e1b4b);
+    background: linear-gradient(-45deg, #0b0f19, #0d1117, #161b22, #0d1117);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
@@ -1643,7 +1643,7 @@ body.dark-mode input[type='text']:focus,
 body.dark-mode input[type='password']:focus,
 body.dark-mode .contact-input:focus,
 body.dark-mode .input-wrapper input:focus {
-    background: #0f172a !important;
+    background: #0b0f19 !important;
     color: #f8fafc !important;
     border-color: var(--primary) !important;
 }
@@ -1651,7 +1651,7 @@ body.dark-mode .input-wrapper input:focus {
 body.dark-mode input[type='text'],
 body.dark-mode input[type='password'],
 body.dark-mode textarea {
-    background: #0f172a !important;
+    background: #0b0f19 !important;
     color: #f8fafc !important;
     border-color: rgba(255,255,255,0.1) !important;
 }
@@ -1675,11 +1675,11 @@ body.dark-mode .widget h3 {
 }
 
 body.dark-mode .list-item {
-    background: #0f172a !important;
+    background: #0b0f19 !important;
     border-color: rgba(255,255,255,0.05) !important;
 }
 body.dark-mode .list-item:hover {
-    background: #1e293b !important;
+    background: #161b22 !important;
     box-shadow: 0 8px 15px rgba(0,0,0,0.3) !important;
 }
 
@@ -1692,7 +1692,7 @@ body.dark-mode .podium-item .name {
 }
 
 body.dark-mode .leaderboard-sidebar input {
-    background: #0f172a !important;
+    background: #0b0f19 !important;
     color: #f8fafc !important;
     border-color: rgba(255,255,255,0.1) !important;
 }
