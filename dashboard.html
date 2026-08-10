@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -110,6 +110,16 @@
                             style="width:100%; padding: 8px; margin-bottom: 8px; font-family: monospace;">
                         <button onclick="checkFakeToken()"
                             style="width: 100%; padding: 8px; font-size: 0.85rem;">Verifikasi Token</button>
+                    </div>
+                    
+                    <div class="widget">
+                        <h3>📞 Hubungi Panitia</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">Ada kendala? Kirim pesan ke kami:</p>
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 8px;">
+                            <input type="text" id="contactName" placeholder="Nama Lengkap" required style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); font-family: inherit;">
+                            <textarea id="contactMessage" placeholder="Pesan Anda..." required rows="3" style="padding: 8px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); font-family: inherit; resize: vertical;"></textarea>
+                            <button type="submit" style="padding: 8px; border-radius: 8px; background: var(--primary); color: white; border: none; font-weight: bold; cursor: pointer;">Kirim Pesan</button>
+                        </form>
                     </div>
 
                     <div class="widget">
