@@ -638,6 +638,7 @@ function verifyPortalPassword() {
 document.addEventListener("DOMContentLoaded", function() {
     checkAuth();
     initTheme();
+    updateNavbarUI();
 
     const toggleBtn = document.getElementById('theme-toggle');
     if (toggleBtn) {
