@@ -203,12 +203,15 @@
             text-decoration: none;
         }
 
-        /* 2. FEATURES SECTION */
         .features-section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
+            padding: 6rem 0; /* Removed side padding to allow full width scroll */
+            max-width: 100%;
             margin: 0 auto;
             text-align: center;
+            overflow: hidden;
+        }
+        .features-header {
+            padding: 0 2rem;
         }
         .section-title {
             font-size: 2.5rem;
@@ -222,12 +225,30 @@
             color: var(--text-muted);
             margin-bottom: 4rem;
         }
+        .features-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 1rem 0 3rem 0;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            width: max-content;
             gap: 2rem;
+            animation: scrollFeatures 20s linear infinite;
+        }
+        .features-grid:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scrollFeatures {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 1rem)); }
         }
         .feature-card {
+            width: 350px;
+            flex-shrink: 0;
             background: white;
             padding: 2.5rem 2rem;
             border-radius: 24px;
@@ -363,26 +384,50 @@
 
     <!-- 2. FEATURES SECTION -->
     <section id="features" class="features-section">
-        <h2 class="section-title">Cabang Perlombaan</h2>
-        <p class="section-subtitle">Tiga tantangan utama yang akan menguji kecepatan, ketangkasan, dan kekuatan Anda.</p>
+        <div class="features-header">
+            <h2 class="section-title">Cabang Perlombaan</h2>
+            <p class="section-subtitle">Tiga tantangan utama yang akan menguji kecepatan, ketangkasan, dan kekuatan Anda.</p>
+        </div>
         
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🏁</div>
-                <h3 class="feature-title">Balap Karung Ekstrem</h3>
-                <p class="feature-desc">Bukan sekadar melompat. Anda membutuhkan kecepatan jari yang luar biasa untuk menjadi yang tercepat mencapai garis akhir sebelum waktu habis.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🍘</div>
-                <h3 class="feature-title">Makan Kerupuk Gila</h3>
-                <p class="feature-desc">Kerupuk melayang tak menentu! Uji refleks Anda dengan menangkap dan "menggigit" kerupuk yang berterbangan di udara secepat kilat.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🪢</div>
-                <h3 class="feature-title">Tarik Tambang Besi</h3>
-                <p class="feature-desc">Kerahkan seluruh tenaga virtual Anda. Lawan kecerdasan buatan dalam permainan adu kekuatan dan kecepatan tanpa henti.</p>
+        <div class="features-wrapper">
+            <div class="features-grid">
+                <!-- Set 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🏁</div>
+                    <h3 class="feature-title">Balap Karung Ekstrem</h3>
+                    <p class="feature-desc">Bukan sekadar melompat. Anda membutuhkan kecepatan jari yang luar biasa untuk menjadi yang tercepat mencapai garis akhir sebelum waktu habis.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🍘</div>
+                    <h3 class="feature-title">Makan Kerupuk Gila</h3>
+                    <p class="feature-desc">Kerupuk melayang tak menentu! Uji refleks Anda dengan menangkap dan "menggigit" kerupuk yang berterbangan di udara secepat kilat.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🪢</div>
+                    <h3 class="feature-title">Tarik Tambang Besi</h3>
+                    <p class="feature-desc">Kerahkan seluruh tenaga virtual Anda. Lawan kecerdasan buatan dalam permainan adu kekuatan dan kecepatan tanpa henti.</p>
+                </div>
+                
+                <!-- Set 2 (Duplikasi untuk efek Infinite Scroll) -->
+                <div class="feature-card" aria-hidden="true">
+                    <div class="feature-icon">🏁</div>
+                    <h3 class="feature-title">Balap Karung Ekstrem</h3>
+                    <p class="feature-desc">Bukan sekadar melompat. Anda membutuhkan kecepatan jari yang luar biasa untuk menjadi yang tercepat mencapai garis akhir sebelum waktu habis.</p>
+                </div>
+                
+                <div class="feature-card" aria-hidden="true">
+                    <div class="feature-icon">🍘</div>
+                    <h3 class="feature-title">Makan Kerupuk Gila</h3>
+                    <p class="feature-desc">Kerupuk melayang tak menentu! Uji refleks Anda dengan menangkap dan "menggigit" kerupuk yang berterbangan di udara secepat kilat.</p>
+                </div>
+                
+                <div class="feature-card" aria-hidden="true">
+                    <div class="feature-icon">🪢</div>
+                    <h3 class="feature-title">Tarik Tambang Besi</h3>
+                    <p class="feature-desc">Kerahkan seluruh tenaga virtual Anda. Lawan kecerdasan buatan dalam permainan adu kekuatan dan kecepatan tanpa henti.</p>
+                </div>
             </div>
         </div>
     </section>
