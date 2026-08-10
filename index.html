@@ -549,20 +549,20 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         .contact-image-side {
-            background: #f8fafc;
+            background: #000; /* Dark background to match image edges just in case */
             display: flex;
-            align-items: center;
+            align-items: stretch; /* Make it fill height */
             justify-content: center;
-            padding: 2rem;
+            padding: 0; /* Remove padding */
         }
         body.dark-mode .contact-image-side {
             background: rgba(0,0,0,0.2);
         }
         .contact-image-side img {
             width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            height: 100%;
+            object-fit: cover; /* Ensure image covers the whole side */
+            border-radius: 0; /* Let the parent's overflow: hidden handle the outer corners */
             transition: transform 0.3s ease;
         }
         .contact-image-side img:hover {
