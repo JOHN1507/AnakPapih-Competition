@@ -1638,3 +1638,61 @@ body.dark-mode .sec-item {
     gap: 8px;
     width: 100%;
 }
+/* --- GLOBAL DARK MODE FIXES (MENGATASI INLINE STYLES) --- */
+body.dark-mode input[type='text']:focus,
+body.dark-mode input[type='password']:focus,
+body.dark-mode .contact-input:focus,
+body.dark-mode .input-wrapper input:focus {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: var(--primary) !important;
+}
+
+body.dark-mode input[type='text'],
+body.dark-mode input[type='password'],
+body.dark-mode textarea {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+body.dark-mode .widget,
+body.dark-mode .leaderboard-container {
+    background: var(--dark-card) !important;
+    color: #f8fafc !important;
+    border-color: rgba(255,255,255,0.05) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+}
+
+body.dark-mode h2, 
+body.dark-mode h3 {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .leaderboard-container h2,
+body.dark-mode .widget h3 {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .list-item {
+    background: #0f172a !important;
+    border-color: rgba(255,255,255,0.05) !important;
+}
+body.dark-mode .list-item:hover {
+    background: #1e293b !important;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3) !important;
+}
+
+body.dark-mode .list-item .name {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .podium-item .name {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .leaderboard-sidebar input {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
