@@ -257,6 +257,25 @@ function updateNavbarUI() {
             link.onclick = function(e) { e.preventDefault(); alert("Pos 3 masih terkunci! Selesaikan Pos 2 dulu."); };
         }
     });
+
+    // Fitur "Kembali ke Arena" untuk halaman non-arena jika sudah unlocked
+    if (sessionStorage.getItem("unlocked") === "true") {
+        const path = window.location.pathname.split("/").pop();
+        const isArenaPage = path.includes("pos1") || path.includes("pos2") || path.includes("pos3") || path.includes("menang") || path.includes("hijacked");
+        
+        if (!isArenaPage) {
+            const menus = document.querySelectorAll('.sidebar-left .nav-menu');
+            if (menus.length > 0) {
+                // Cari menu pertama, tambahkan di bagian bawah menu utama
+                const mainMenu = menus[0];
+                if (!document.getElementById('kembali-arena-btn')) {
+                    const arenaLink = document.createElement('li');
+                    arenaLink.innerHTML = `<a href="pos1.html" id="kembali-arena-btn" style="color: #10b981; font-weight: bold; background: rgba(16, 185, 129, 0.1);">🎮 <span class="nav-text">Kembali ke Arena</span></a>`;
+                    mainMenu.appendChild(arenaLink);
+                }
+            }
+        }
+    }
 }
 
 function showFakeToast() {
