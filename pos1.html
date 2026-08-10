@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -126,25 +126,29 @@
             </div>
 
             <div id="ctf-game" class="hidden">
-                <div class="app-container stage-container active">
-                    <div class="flag-icon">🇮🇩</div>
-                    <h1>Pos 1: Balap Karung Ekstrem</h1>
-                    <p>Kerja bagus, Detektif! Kamu menemukan pintu rahasianya.</p>
-                    <p>Lari secepat mungkin!</p>
-                    <p class="hint">Tantangan: Tekan tombol "Lompat!" sebanyak 17 kali dalam waktu 5 detik.</p>
+                <div class="app-container stage-container active terminal-theme" style="background: #0b0f19; color: #10b981; border: 1px solid #10b981; font-family: 'Courier New', Courier, monospace; text-align: left; padding: 2rem;">
+                    <div style="font-size: 1.2rem; margin-bottom: 1rem; color: #ef4444; font-weight: bold;">[TERCEGAT: Sinyal Komunikasi Panitia #01]</div>
+                    
+                    <p style="line-height: 1.6; margin-bottom: 1rem;">
+                        "Radar sekolah menangkap frekuensi aneh yang dipancarkan dari ruang laboratorium Informatika. Sinyal tersebut hanya berisi dua angka yang berulang secara monoton—seolah-olah membisikkan bahasa mesin masa lalu.
+                    </p>
+                    <p style="line-height: 1.6; margin-bottom: 2rem;">
+                        Sinyal ini terbagi menjadi 7 gelombang (masing-masing sepanjang 8 denyut). Temukan pemancar sinyal tersebut di balik dinding kode sekolah, lalu terjemahkan kata rahasia yang terkandung di dalamnya untuk membungkam sistem pertahanan Pos 1."
+                    </p>
 
-                    <div class="game-area">
-                        <div class="timer">Waktu: <span id="time-left">5.0</span>s</div>
-                        <div class="score">Lompatan: <span id="jump-count">0</span> / 17</div>
-                        <button id="jump-btn" onclick="jump()">Lompat!</button>
+                    <div class="game-area" style="background: transparent; box-shadow: none; padding: 0;">
+                        <label for="pos1-password" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">[INPUT DEKRIPSI BINER]:</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="pos1-password" placeholder="Masukkan kata sandi..." autocomplete="off" style="flex: 1; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #10b981; color: #10b981; font-family: 'Courier New', Courier, monospace; border-radius: 4px; text-transform: uppercase;">
+                            <button id="submit-pos1-btn" onclick="checkPos1Password()" style="background: #10b981; color: #0b0f19; border: none; padding: 10px 20px; font-family: 'Courier New', Courier, monospace; font-weight: bold; cursor: pointer; border-radius: 4px;">EKSEKUSI</button>
+                        </div>
                     </div>
 
-                    <div id="stage-1-success" class="hidden">
-                        <p class="success-text">Luar biasa! Kamu menang balap karung.</p>
-                        <button class="next-btn" onclick="window.location.href='pos2.html'">Lanjut ke Pos 2
-                            &rarr;</button>
+                    <div id="stage-1-success" class="hidden" style="margin-top: 2rem; border-top: 1px dashed #10b981; padding-top: 1rem;">
+                        <p class="success-text" style="color: #10b981; font-weight: bold; text-align: left;">> AKSES DITERIMA. FIREWALL POS 1 LUMPUH.</p>
+                        <button class="next-btn" onclick="window.location.href='pos2.html'" style="margin-top: 10px; background: #3b82f6; border: none; color: white;">Lanjut ke Pos 2 &rarr;</button>
                     </div>
-                    <p id="error-game" class="error-msg"></p>
+                    <p id="error-game" class="error-msg" style="color: #ef4444; margin-top: 1rem; font-weight: bold; text-align: left;"></p>
                 </div>
             </div>
 

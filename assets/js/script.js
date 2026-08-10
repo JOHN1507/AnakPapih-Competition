@@ -300,69 +300,34 @@ function revealPos3() {
     document.body.classList.add('active-game-bg');
 }
 
-// --- POS 1 LOGIC (Balap Karung) ---
-let clicks = 0;
-let gameStarted = false;
-let gameEnded = false;
-let timeLeft = 5.0;
-let timerInterval;
-
-function jump() {
-    if (gameEnded) return;
+// --- POS 1 LOGIC (Binary Decryption) ---
+function checkPos1Password() {
+    const input = document.getElementById('pos1-password');
+    const errorEl = document.getElementById('error-game');
+    const successEl = document.getElementById('stage-1-success');
+    const btn = document.getElementById('submit-pos1-btn');
     
-    if (!gameStarted) {
-        gameStarted = true;
-        timerInterval = setInterval(updateTimer, 100);
-    }
+    if(!input) return;
+    const val = input.value.trim().toUpperCase();
     
-    clicks++;
-    const jumpCount = document.getElementById('jump-count');
-    if(jumpCount) jumpCount.textContent = clicks;
-    
-    if (clicks >= 17 && timeLeft > 0) {
-        winStage1();
-    }
-}
-
-function updateTimer() {
-    timeLeft -= 0.1;
-    const timeLeftEl = document.getElementById('time-left');
-    if(timeLeftEl) timeLeftEl.textContent = Math.max(0, timeLeft).toFixed(1);
-    
-    if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        if (clicks < 17) {
-            loseStage1();
+    if (val === "MERDEKA") {
+        if(errorEl) errorEl.textContent = '';
+        if(successEl) successEl.classList.remove('hidden');
+        if(btn) btn.disabled = true;
+        input.disabled = true;
+        
+        sessionStorage.setItem("pos2Unlocked", "true");
+        updateNavbarUI();
+    } else {
+        if(errorEl) {
+            errorEl.textContent = '> ERROR: KATA SANDI SALAH. AKSES DITOLAK.';
+            setTimeout(() => {
+                if (errorEl.textContent.includes('DITOLAK')) {
+                    errorEl.textContent = '';
+                }
+            }, 3000);
         }
     }
-}
-
-function winStage1() {
-    gameEnded = true;
-    clearInterval(timerInterval);
-    document.getElementById('jump-btn').disabled = true;
-    document.getElementById('stage-1-success').classList.remove('hidden');
-    
-    sessionStorage.setItem("pos2Unlocked", "true");
-    updateNavbarUI();
-}
-
-function loseStage1() {
-    gameEnded = true;
-    document.getElementById('jump-btn').disabled = true;
-    const errorEl = document.getElementById('error-game');
-    if(errorEl) errorEl.textContent = 'Waktu habis! Kamu kurang cepat.';
-    
-    setTimeout(() => {
-        clicks = 0;
-        timeLeft = 5.0;
-        gameStarted = false;
-        gameEnded = false;
-        if (document.getElementById('jump-count')) document.getElementById('jump-count').textContent = '0';
-        if (document.getElementById('time-left')) document.getElementById('time-left').textContent = '5.0';
-        if (document.getElementById('jump-btn')) document.getElementById('jump-btn').disabled = false;
-        if (errorEl) errorEl.textContent = '';
-    }, 2000);
 }
 
 // --- POS 2 LOGIC (Makan Kerupuk Full Screen) ---
