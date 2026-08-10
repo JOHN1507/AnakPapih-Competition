@@ -329,7 +329,7 @@ function checkPos1Password() {
     if(!input) return;
     const val = input.value.trim().toUpperCase();
     
-    if (val === "MERDEKA") {
+    if (val === "LOMBAKARUNG") {
         if(errorEl) errorEl.textContent = '';
         if(successEl) successEl.classList.remove('hidden');
         if(btn) btn.disabled = true;
