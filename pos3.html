@@ -124,33 +124,67 @@
             </div>
 
             <div id="ctf-game" class="hidden">
-                <div class="app-container stage-container active">
-                    <div class="flag-icon">🪢</div>
-                    <h1>Pos 3: Lomba Tarik Tambang</h1>
-                    <p>Kamu berani menantang Dewa Tambang? Satu tarik lagi menuju kemenangan!</p>
-                    <p class="hint">Tantangan: SPAM KLIK tombol "TARIK!" secepat mungkin untuk melawan musuh. Buat
-                        indikator mencapai 100%!</p>
+                <style>
+                    .terminal-theme {
+                        font-family: 'Courier New', Courier, monospace;
+                        text-align: left;
+                        padding: 2rem;
+                        background: #ffffff;
+                        color: #1e293b;
+                        border: 1px solid #cbd5e1;
+                    }
+                    body.dark-mode .terminal-theme {
+                        background: #0b0f19;
+                        color: #10b981;
+                        border: 1px solid #10b981;
+                    }
+                    .terminal-input {
+                        font-family: 'Courier New', Courier, monospace;
+                        background: transparent; border: 1px solid #94a3b8; color: #1e293b; padding: 10px; width: 100%; font-size: 1.1rem; margin-top: 1rem;
+                    }
+                    body.dark-mode .terminal-input {
+                        border-color: #10b981; color: #10b981;
+                    }
+                    .terminal-btn {
+                        margin-top: 1rem; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; font-size: 1.1rem;
+                        font-family: 'Courier New', Courier, monospace;
+                        background: #3b82f6; color: white;
+                    }
+                    body.dark-mode .terminal-btn {
+                        background: #10b981; color: #0b0f19;
+                    }
+                    .terminal-header-text {
+                        color: #3b82f6 !important; margin-bottom: 1.5rem; text-align: center; border-bottom: 1px dashed #94a3b8; padding-bottom: 1rem; text-transform: uppercase;
+                    }
+                    body.dark-mode .terminal-header-text {
+                        color: #10b981 !important; border-bottom-color: #10b981;
+                    }
+                </style>
+                <div class="app-container stage-container active terminal-theme">
+                    <h1 class="terminal-header-text">Pos 3: Kriptografi Ganda</h1>
+                    <div style="font-size: 1.2rem; margin-bottom: 1rem; color: #ef4444; font-weight: bold;">[TRANSMISI SINYAL TERENKRIPSI DITERIMA]</div>
+                    
+                    <p style="line-height: 1.6; margin-bottom: 1rem;">
+                        Pesan terakhir dari Markas Pusat telah dicegat. Sistem enkripsi kami mengamankan pesan tersebut ke dalam format Base64. Tugas Anda adalah menerjemahkan teks di bawah ini dan menemukan sandi akhirnya.
+                    </p>
 
-                    <div class="game-area tambang-area">
-                        <div class="score">Kekuatanmu: <span id="t-score">50</span>%</div>
-
-                        <div class="progress-bar-container">
-                            <div class="progress-bar-bg"></div>
-                            <div id="t-progress" class="progress-bar-fill"></div>
-                            <div class="progress-bar-center"></div>
-                        </div>
-
-                        <button id="start-t-btn" class="next-btn" onclick="startTambangGame()">Mulai
-                            Pertandingan!</button>
-                        <button id="pull-btn" class="hidden" onclick="pullTambang()">TARIK!!!</button>
+                    <div style="background: rgba(0,0,0,0.05); padding: 1rem; border: 1px dashed #94a3b8; word-break: break-all; margin-bottom: 2rem; font-size: 1.1rem;">
+U2VsYW1hdCBhbmRhIHRlbGFoIG1lbnllbGVzYWlrYW4gUG9zIDEgZGFuIFBvcyAyLiBBbmRhIHNlYmVudGFyIGxhZ2kgbWVueWVsZXNhaWthbiBzZWx1cnVoIHBlcnRhbmRpbmdhbiBpbmkuIFBhc3N3b3JkIGRhcmkgUG9zIDMgYWRhbGFoIC4tLS4gLi0gLi0tLiAuLiAuLi4uIC0uLS4gLS0tIC4uLSAtLiAtLi0uIC4uIC4tLi4=
                     </div>
-
-                    <div id="stage-3-success" class="hidden">
-                        <p class="success-text" style="margin: 2rem 0;">Luar biasa kuat! Kamu menang Tarik Tambang.</p>
-                        <button class="next-btn" onclick="window.location.href='menang.html'">Ambil Piala
-                            &rarr;</button>
+                    
+                    <div>
+                        <label for="pos3-passcode" style="font-weight: bold; font-size: 1.1rem;">> INPUT PASSCODE TERAKHIR_</label><br>
+                        <input type="text" id="pos3-passcode" class="terminal-input" placeholder="Masukkan sandi hasil dekripsi..." autocomplete="off">
+                        <button id="pos3-btn" class="terminal-btn" onclick="checkPos3Password()">[ UNLOCK ]</button>
                     </div>
-                    <p id="error-stage-3" class="error-msg"></p>
+                    
+                    <p id="error-stage-3" class="error-msg" style="color: #ef4444; margin-top: 1rem; font-weight: bold; font-family: monospace;"></p>
+                    
+                    <div id="stage-3-success" class="hidden" style="margin-top: 2rem; border-top: 1px dashed #10b981; padding-top: 1rem;">
+                        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 1rem;" class="success-text">> AKSES DITERIMA: PROTOKOL KEMENANGAN DIAKTIFKAN</p>
+                        <p>Selamat! Anda telah memecahkan semua kode rahasia.</p>
+                        <button class="terminal-btn" onclick="window.location.href='menang.html'">Klaim Kemenangan &rarr;</button>
+                    </div>
                 </div>
             </div>
 

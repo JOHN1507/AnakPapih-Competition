@@ -380,93 +380,48 @@ function checkPos2Password() {
     }
 }
 
-// --- POS 3 LOGIC (Tarik Tambang) ---
-let tPower = 50;
-let tGameEnded = true;
-let tInterval;
+// --- POS 3 LOGIC (Base64 & Morse) ---
+function checkPos3Password() {
+    const input = document.getElementById('pos3-passcode');
+    const errorEl = document.getElementById('error-stage-3');
+    const successEl = document.getElementById('stage-3-success');
+    const btn = document.getElementById('pos3-btn');
+    
+    if(!input) return;
+    const val = input.value.trim().toUpperCase();
+    
+    if (val === "PAPIHCOUNCIL") {
+        if(errorEl) errorEl.textContent = '';
+        if(successEl) successEl.classList.remove('hidden');
+        if(btn) btn.disabled = true;
 
-function startTambangGame() {
-    tPower = 50;
-    tGameEnded = false;
-    if (document.getElementById('t-score')) document.getElementById('t-score').textContent = tPower;
-    if (document.getElementById('t-progress')) document.getElementById('t-progress').style.width = '50%';
-    if (document.getElementById('error-stage-3')) document.getElementById('error-stage-3').textContent = '';
-    
-    if (document.getElementById('start-t-btn')) document.getElementById('start-t-btn').classList.add('hidden');
-    if (document.getElementById('pull-btn')) document.getElementById('pull-btn').classList.remove('hidden');
-    
-    tInterval = setInterval(opponentPull, 150);
-}
-
-function opponentPull() {
-    if (tGameEnded) return;
-    tPower -= 2;
-    updateTambangUI();
-    
-    if (tPower <= 0) {
-        loseTambang();
+        // Push data ke Firebase Realtime Database
+        if (typeof firebase !== 'undefined') {
+            const username = sessionStorage.getItem('username') || 'Unknown';
+            
+            // Cek jika user sudah ada di leaderboard untuk mencegah double submit
+            const dbRef = firebase.database().ref('leaderboard');
+            dbRef.orderByChild('username').equalTo(username).once('value', snapshot => {
+                if (!snapshot.exists()) {
+                    const finishTime = Date.now();
+                    // Randomize a finish duration to simulate gameplay time (e.g. 5 to 15 minutes in milliseconds)
+                    const completionDuration = Math.floor(Math.random() * 600000) + 300000; 
+                    
+                    dbRef.push({
+                        username: username,
+                        timestamp: finishTime,
+                        duration: completionDuration
+                    });
+                }
+            });
+        }
+    } else {
+        if(errorEl) {
+            errorEl.textContent = "Sandi salah! Dekripsi lagi.";
+            errorEl.style.color = "#ef4444";
+        }
+        input.value = '';
     }
-}
-
-function pullTambang() {
-    if (tGameEnded) return;
-    tPower += 5;
-    updateTambangUI();
-    
-    if (tPower >= 100) {
-        winTambang();
-    }
-}
-
-function updateTambangUI() {
-    if (tPower < 0) tPower = 0;
-    if (tPower > 100) tPower = 100;
-    
-    if (document.getElementById('t-score')) document.getElementById('t-score').textContent = tPower;
-    if (document.getElementById('t-progress')) document.getElementById('t-progress').style.width = `${tPower}%`;
-}
-
-function winTambang() {
-    tGameEnded = true;
-    clearInterval(tInterval);
-    if (document.getElementById('pull-btn')) document.getElementById('pull-btn').classList.add('hidden');
-    if (document.getElementById('stage-3-success')) document.getElementById('stage-3-success').classList.remove('hidden');
-
-    // Push data ke Firebase Realtime Database
-    if (typeof firebase !== 'undefined') {
-        const username = sessionStorage.getItem('username') || 'Unknown';
-        
-        // Cek jika user sudah ada di leaderboard untuk mencegah double submit
-        const dbRef = firebase.database().ref('leaderboard');
-        dbRef.orderByChild('username').equalTo(username).once('value', snapshot => {
-            if (!snapshot.exists()) {
-                const finishTime = Date.now();
-                // Randomize a finish duration to simulate gameplay time (e.g. 5 to 15 minutes in milliseconds)
-                const completionDuration = Math.floor(Math.random() * 600000) + 300000; 
-                
-                dbRef.push({
-                    username: username,
-                    timestamp: finishTime,
-                    duration: completionDuration
-                });
-            }
-        });
-    }
-}
-
-function loseTambang() {
-    tGameEnded = true;
-    clearInterval(tInterval);
-    
-    if (document.getElementById('pull-btn')) document.getElementById('pull-btn').classList.add('hidden');
-    if (document.getElementById('error-stage-3')) document.getElementById('error-stage-3').textContent = 'Kamu kalah kuat! Coba spam klik lebih cepat.';
-    
-    setTimeout(() => {
-        if (document.getElementById('start-t-btn')) document.getElementById('start-t-btn').classList.remove('hidden');
-        if (document.getElementById('error-stage-3')) document.getElementById('error-stage-3').textContent = '';
-        if (document.getElementById('t-progress')) document.getElementById('t-progress').style.width = '50%';
-        if (document.getElementById('t-score')) document.getElementById('t-score').textContent = '50';
-    }, 2500);
 }
 
 function triggerConfetti() {
