@@ -360,7 +360,7 @@ function checkPos2Password() {
     if(!input) return;
     const val = input.value.trim().toUpperCase();
     
-    if (val === "DIRGAHAYU79") {
+    if (val === "DIRGAHAYU81") {
         if(errorEl) errorEl.textContent = '';
         if(successEl) successEl.classList.remove('hidden');
         if(btn) btn.disabled = true;
