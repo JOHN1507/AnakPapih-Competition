@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -36,7 +36,9 @@
         <div class="main-wrapper">
             <header class="topbar">
                 <button class="hamburger-dashboard">☰</button>
+                <button class="back-btn" onclick="window.location.href='dashboard.html'" style="margin-left: 15px; font-weight: bold; background: rgba(0,0,0,0.05); border-radius: 8px; padding: 5px 10px; border: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer;">⬅ Kembali</button>
                 <div class="topbar-actions">
+                    <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">🌙</button>
                     <button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button>
                 </div>
             </header>

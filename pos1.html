@@ -36,7 +36,9 @@
         <div class="main-wrapper">
             <header class="topbar">
                 <button class="hamburger-dashboard">☰</button>
+                <button class="back-btn" onclick="window.location.href='dashboard.html'" style="margin-left: 15px; font-weight: bold; background: rgba(0,0,0,0.05); border-radius: 8px; padding: 5px 10px; border: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer;">⬅ Kembali</button>
                 <div class="topbar-actions">
+                    <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">🌙</button>
                     <button onclick="handleLogout()" class="logout-btn" title="Keluar Sesi">Logout</button>
                 </div>
             </header>
@@ -126,8 +128,45 @@
             </div>
 
             <div id="ctf-game" class="hidden">
-                <div class="app-container stage-container active terminal-theme" style="background: #0b0f19; color: #10b981; border: 1px solid #10b981; font-family: 'Courier New', Courier, monospace; text-align: left; padding: 2rem;">
-                    <h1 style="color: #10b981; margin-bottom: 1.5rem; text-align: center; border-bottom: 1px dashed #10b981; padding-bottom: 1rem; text-transform: uppercase;">Pos 1: Binary Waveform Decryption</h1>
+                <style>
+                    .terminal-theme {
+                        font-family: 'Courier New', Courier, monospace;
+                        text-align: left;
+                        padding: 2rem;
+                        background: #ffffff;
+                        color: #1e293b;
+                        border: 1px solid #cbd5e1;
+                    }
+                    body.dark-mode .terminal-theme {
+                        background: #0b0f19;
+                        color: #10b981;
+                        border: 1px solid #10b981;
+                    }
+                    .terminal-input {
+                        flex: 1; padding: 10px; border-radius: 4px; text-transform: uppercase;
+                        font-family: 'Courier New', Courier, monospace;
+                        background: #f1f5f9; border: 1px solid #94a3b8; color: #1e293b;
+                    }
+                    body.dark-mode .terminal-input {
+                        background: rgba(0,0,0,0.5); border: 1px solid #10b981; color: #10b981;
+                    }
+                    .terminal-btn {
+                        padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; border: none;
+                        font-family: 'Courier New', Courier, monospace;
+                        background: #3b82f6; color: white;
+                    }
+                    body.dark-mode .terminal-btn {
+                        background: #10b981; color: #0b0f19;
+                    }
+                    .terminal-header-text {
+                        color: #3b82f6; margin-bottom: 1.5rem; text-align: center; border-bottom: 1px dashed #94a3b8; padding-bottom: 1rem; text-transform: uppercase;
+                    }
+                    body.dark-mode .terminal-header-text {
+                        color: #10b981; border-bottom-color: #10b981;
+                    }
+                </style>
+                <div class="app-container stage-container active terminal-theme">
+                    <h1 class="terminal-header-text">Pos 1: Binary Waveform Decryption</h1>
                     <div style="font-size: 1.2rem; margin-bottom: 1rem; color: #ef4444; font-weight: bold;">[TERCEGAT: Sinyal Komunikasi Panitia #01]</div>
                     
                     <p style="line-height: 1.6; margin-bottom: 1rem;">
@@ -140,8 +179,8 @@
                     <div class="game-area" style="background: transparent; box-shadow: none; padding: 0;">
                         <label for="pos1-password" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">[INPUT DEKRIPSI BINER]:</label>
                         <div style="display: flex; gap: 10px;">
-                            <input type="text" id="pos1-password" placeholder="Masukkan kata sandi..." autocomplete="off" style="flex: 1; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #10b981; color: #10b981; font-family: 'Courier New', Courier, monospace; border-radius: 4px; text-transform: uppercase;">
-                            <button id="submit-pos1-btn" onclick="checkPos1Password()" style="background: #10b981; color: #0b0f19; border: none; padding: 10px 20px; font-family: 'Courier New', Courier, monospace; font-weight: bold; cursor: pointer; border-radius: 4px;">EKSEKUSI</button>
+                            <input type="text" id="pos1-password" class="terminal-input" placeholder="Masukkan kata sandi..." autocomplete="off">
+                            <button id="submit-pos1-btn" onclick="checkPos1Password()" class="terminal-btn">EKSEKUSI</button>
                         </div>
                     </div>
 
