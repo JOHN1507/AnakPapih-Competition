@@ -1669,6 +1669,12 @@ body.dark-mode h3 {
     color: #f8fafc !important;
 }
 
+body.dark-mode .blog-footer {
+    background-color: #0b0f19 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #8b949e !important;
+}
+
 body.dark-mode .leaderboard-container h2,
 body.dark-mode .widget h3 {
     color: #f8fafc !important;
