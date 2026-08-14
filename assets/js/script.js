@@ -13,6 +13,10 @@ if (typeof firebase !== 'undefined' && !firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 
+// --- COMPETITION LOCK ---
+// Ubah menjadi 'true' pada saat hari H perlombaan untuk membuka akses Login & Register.
+const IS_COMPETITION_OPEN = false;
+
 function checkAuth() {
     const path = window.location.pathname.split("/").pop() || "index.html";
     const isLoggedIn = sessionStorage.getItem("userLoggedIn") === "true";
@@ -45,9 +49,20 @@ function checkAuth() {
 
 function handleLogin(event) {
     if (event) event.preventDefault();
+    
+    const errorMsg = document.getElementById("login-error");
+    
+    // Check if competition is open
+    if (!IS_COMPETITION_OPEN) {
+        if (errorMsg) {
+            errorMsg.textContent = "Pendaftaran dan Login belum dibuka! Arena akan dibuka sesuai jadwal panitia.";
+            errorMsg.style.display = "block";
+        }
+        return;
+    }
+
     const usernameInput = document.getElementById("login-username");
     const passwordInput = document.getElementById("login-password");
-    const errorMsg = document.getElementById("login-error");
 
     const username = usernameInput ? usernameInput.value.trim() : "";
     const password = passwordInput ? passwordInput.value.trim() : "";
@@ -119,11 +134,23 @@ function handleLogin(event) {
 
 function handleRegister(event) {
     if (event) event.preventDefault();
+    
+    const errorMsg = document.getElementById("reg-error");
+    const successMsg = document.getElementById("reg-success");
+    
+    errorMsg.style.display = "none";
+    successMsg.style.display = "none";
+
+    // Check if competition is open
+    if (!IS_COMPETITION_OPEN) {
+        errorMsg.textContent = "Pendaftaran belum dibuka! Arena akan dibuka sesuai jadwal panitia.";
+        errorMsg.style.display = "block";
+        return;
+    }
+
     const usernameInput = document.getElementById("reg-username");
     const passwordInput = document.getElementById("reg-password");
     const confirmInput = document.getElementById("reg-password-confirm");
-    const errorMsg = document.getElementById("reg-error");
-    const successMsg = document.getElementById("reg-success");
 
     const username = usernameInput ? usernameInput.value.trim() : "";
     const password = passwordInput ? passwordInput.value.trim() : "";
