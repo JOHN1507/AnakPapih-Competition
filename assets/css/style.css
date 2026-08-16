@@ -286,6 +286,13 @@ body.dark-mode .navbar .logo {
     animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+body.dark-mode .modal-content {
+    background-color: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    color: var(--text-main);
+}
+
 @keyframes modalPop {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
@@ -303,10 +310,17 @@ body.dark-mode .navbar .logo {
 
 .close-btn:hover { color: var(--dark); }
 
+body.dark-mode .close-btn { color: var(--text-muted); }
+body.dark-mode .close-btn:hover { color: white; }
+
 .modal-content h2 {
     color: var(--dark);
     font-weight: 800;
     margin-bottom: 0.5rem;
+}
+
+body.dark-mode .modal-content h2 {
+    color: white;
 }
 
 .input-group {
