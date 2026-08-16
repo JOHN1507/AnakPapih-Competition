@@ -15,7 +15,7 @@ if (typeof firebase !== 'undefined' && !firebase.apps.length) {
 
 // --- COMPETITION LOCK ---
 // Ubah menjadi 'true' pada saat hari H perlombaan untuk membuka akses Login & Register.
-const IS_COMPETITION_OPEN = false;
+const IS_COMPETITION_OPEN = true;
 
 function checkAuth() {
     const path = window.location.pathname.split("/").pop() || "index.html";
